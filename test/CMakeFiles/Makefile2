@@ -50,10 +50,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/local/Cellar/cmake/2.8.12.1/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/REN/git/package/c++/GameFramework/test
+CMAKE_SOURCE_DIR = /Users/REN/git/GameFramework/test
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/REN/git/package/c++/GameFramework/test
+CMAKE_BINARY_DIR = /Users/REN/git/GameFramework/test
 
 #=============================================================================
 # Target rules for target CMakeFiles/GameTest.dir
@@ -62,7 +62,7 @@ CMAKE_BINARY_DIR = /Users/REN/git/package/c++/GameFramework/test
 CMakeFiles/GameTest.dir/all:
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/depend
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/package/c++/GameFramework/test/CMakeFiles  1 2 3
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles  1 2
 	@echo "Built target GameTest"
 .PHONY : CMakeFiles/GameTest.dir/all
 
@@ -72,9 +72,9 @@ all: CMakeFiles/GameTest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/GameTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/REN/git/package/c++/GameFramework/test/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/REN/git/GameFramework/test/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/GameTest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/REN/git/package/c++/GameFramework/test/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/REN/git/GameFramework/test/CMakeFiles 0
 .PHONY : CMakeFiles/GameTest.dir/rule
 
 # Convenience name for target.

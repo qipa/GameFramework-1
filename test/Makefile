@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/local/Cellar/cmake/2.8.12.1/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/REN/git/package/c++/GameFramework/test
+CMAKE_SOURCE_DIR = /Users/REN/git/GameFramework/test
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/REN/git/package/c++/GameFramework/test
+CMAKE_BINARY_DIR = /Users/REN/git/GameFramework/test
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -72,9 +72,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/REN/git/package/c++/GameFramework/test/CMakeFiles /Users/REN/git/package/c++/GameFramework/test/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/REN/git/GameFramework/test/CMakeFiles /Users/REN/git/GameFramework/test/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/REN/git/package/c++/GameFramework/test/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/REN/git/GameFramework/test/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -138,53 +138,29 @@ GLFWGameTest.cpp.s:
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/GLFWGameTest.cpp.s
 .PHONY : GLFWGameTest.cpp.s
 
-Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.o: Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.o
-.PHONY : Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.o
+Users/REN/git/GameFramework/include/glfw/GLFWGame.o: Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o
+.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.o
 
 # target to build an object file
-Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.o:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.o
-.PHONY : Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.o
+Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o
+.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o
 
-Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.i: Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.i
-.PHONY : Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.i
-
-# target to preprocess a source file
-Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.i:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.i
-.PHONY : Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.i
-
-Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.s: Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.s
-.PHONY : Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.s
-
-# target to generate assembly for a file
-Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.s:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.s
-.PHONY : Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.cpp.s
-
-Users/REN/git/package/c++/GameFramework/include/math/Vector2.o: Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.o
-.PHONY : Users/REN/git/package/c++/GameFramework/include/math/Vector2.o
-
-# target to build an object file
-Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.o:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.o
-.PHONY : Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.o
-
-Users/REN/git/package/c++/GameFramework/include/math/Vector2.i: Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.i
-.PHONY : Users/REN/git/package/c++/GameFramework/include/math/Vector2.i
+Users/REN/git/GameFramework/include/glfw/GLFWGame.i: Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i
+.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.i
 
 # target to preprocess a source file
-Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.i:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.i
-.PHONY : Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.i
+Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i
+.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i
 
-Users/REN/git/package/c++/GameFramework/include/math/Vector2.s: Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.s
-.PHONY : Users/REN/git/package/c++/GameFramework/include/math/Vector2.s
+Users/REN/git/GameFramework/include/glfw/GLFWGame.s: Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s
+.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.s
 
 # target to generate assembly for a file
-Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.s:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.s
-.PHONY : Users/REN/git/package/c++/GameFramework/include/math/Vector2.cpp.s
+Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s
+.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s
 
 # Help Target
 help:
@@ -198,12 +174,9 @@ help:
 	@echo "... GLFWGameTest.o"
 	@echo "... GLFWGameTest.i"
 	@echo "... GLFWGameTest.s"
-	@echo "... Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.o"
-	@echo "... Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.i"
-	@echo "... Users/REN/git/package/c++/GameFramework/include/glfw/GLFWGame.s"
-	@echo "... Users/REN/git/package/c++/GameFramework/include/math/Vector2.o"
-	@echo "... Users/REN/git/package/c++/GameFramework/include/math/Vector2.i"
-	@echo "... Users/REN/git/package/c++/GameFramework/include/math/Vector2.s"
+	@echo "... Users/REN/git/GameFramework/include/glfw/GLFWGame.o"
+	@echo "... Users/REN/git/GameFramework/include/glfw/GLFWGame.i"
+	@echo "... Users/REN/git/GameFramework/include/glfw/GLFWGame.s"
 .PHONY : help
 
 

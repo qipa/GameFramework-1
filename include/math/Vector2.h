@@ -198,12 +198,12 @@ public:
     return *this;
   }
 
-  Vector2 operator+()
+  Vector2 operator+() const
   {
     return *this;
   }
 
-  Vector2 operator-()
+  Vector2 operator-() const
   {
     return Vector2(-x, -y);
   }
@@ -218,7 +218,7 @@ public:
     return Vector2(this->x-rhs.x, this->y-rhs.y);
   }
 
-  Vector2 operator*(const float &k)
+  Vector2 operator*(const float &k) const
   {
     return Vector2(this->x*k, this->y*k);    
   }
@@ -229,7 +229,7 @@ public:
     return Vector2(k*rhs.x, k*rhs.y);
   }
 
-  Vector2 operator/(const float &k)
+  Vector2 operator/(const float &k) const
   {
     return Vector2(this->x/k, this->y/k);
   }

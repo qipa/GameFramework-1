@@ -7,7 +7,6 @@
 
 class Camera3D
 {
-  {  
   GLFWwindow *window; //glfwの関数に渡す為constにできない
 
   //画面上での位置, サイズ
@@ -52,7 +51,16 @@ class Camera3D
     viewportX = viewportWidth/2;
     viewportY = viewportHeight/2;
   }
-  
+
+  void setPosition(const Vector3 &_position)
+  {
+    position = _position;
+  }
+
+  void setLook(const Vector3 &_look)
+  {
+    look = _look;
+  }
   //:画面の場所, サイズを変える  
   void setViewportWidth(const float &width)
   {
@@ -77,12 +85,12 @@ class Camera3D
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    ratio = viewportWidth / (float) viewportHeight;
+    float ratio = viewportWidth / (float) viewportHeight;
     gluPerspective(frustumFOV, ratio, frustumNear, frustumFar);
-    gluLookAt(position.x, position.y, position.z, look.x, look.y, look.z, 0.0, 1.0, 0.0);
     
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    gluLookAt(position.x, position.y, position.z, look.x, look.y, look.z, 0.0, 1.0, 0.0);
   }
   
   Vector3 screenToWorld(const Vector2 &touch) const
@@ -90,8 +98,8 @@ class Camera3D
     int width, height;           
     glfwGetFramebufferSize(window, &width, &height);
   
-    float screenX = (       x - viewportWidth )/(float)viewportWidth;
-    float screenY = (height-y - viewportHeight)/(float)viewportHeight;
+    float screenX = (       touch.x - viewportWidth )/(float)viewportWidth;
+    float screenY = (height-touch.y - viewportHeight)/(float)viewportHeight;
     float ratio = viewportWidth/(float)viewportHeight;
     
     float nearHeight = frustumNear*tan(M_PI*frustumFOV/180.0);
@@ -99,7 +107,8 @@ class Camera3D
     float farHeight  = frustumFar*tan(M_PI*frustumFOV/180.0);
     float farWidth   = farHeight*ratio;
   
-    auto cDirection = (look - position).normalize();  //カメラの方向ベクトル
+    auto cDirection = look - position;
+    cDirection.normalize();  //カメラの方向ベクトル
 
     Vector3 baseDirection;
     Vector3 nearVec, farVec;
@@ -107,16 +116,16 @@ class Camera3D
     if( cDirection.z < 0)
     {
       //カメラが-zの方面を向いてるときは, 基準ベクトルはv(0,0,-1)を使う
-      baseDirection = Leap::Vector(0,0,-1);
-      nearVec = Vector3( screenX*nearWidth, screenY*nearHeight, -near);
-      farVec  = Vector3( screenX*farWidth , screenY*farHeight , -far);
+      baseDirection = Vector3(0,0,-1);
+      nearVec = Vector3( screenX*nearWidth, screenY*nearHeight, -frustumNear);
+      farVec  = Vector3( screenX*farWidth , screenY*farHeight , -frustumFar);
     } else
     {
       //カメラが+zの方面を向いてるときは, 基準ベクトルはv(0,0,+1)を使う
-      baseDirection = Leap::Vector(0,0,+1);
+      baseDirection = Vector3(0,0,+1);
       //右手系だから, +zの方を向くと右が負になる
-      nearVec = Vector3( -screenX*nearWidth, screenY*nearHeight, near);
-      farVec  = Vector3( -screenX*farWidth , screenY*farHeight , far);
+      nearVec = Vector3( -screenX*nearWidth, screenY*nearHeight, frustumNear);
+      farVec  = Vector3( -screenX*farWidth , screenY*farHeight , frustumFar);
     }
 
     //カメラが実際に向いている方向にあわせて回転させる

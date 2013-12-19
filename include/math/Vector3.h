@@ -149,7 +149,7 @@ public:
   {
     return Vector3(this->y*other.z - this->z*other.y,
                    this->z*other.x - this->x*other.z,
-                   this->x*other*y - this->y*other.x);
+                   this->x*other.y - this->y*other.x);
   }
 
   float angleTo(const Vector3 &other)
@@ -205,45 +205,45 @@ public:
     return *this;
   }
 
-  Vector3 operator+()
+  Vector3 operator+() const
   {
     return *this;
   }
 
-  Vector3 operator-()
+  Vector3 operator-() const
   {
     return Vector3(-x, -y, -z);
   }
 
-  Vector3 operator+(const Vector3 &rhs)
+  Vector3 operator+(const Vector3 &rhs) const
   {
     return Vector3(this->x+rhs.x, this->y+rhs.y, this->z+rhs.z);
   }
 
-  Vector3 operator-(const Vector3 &rhs)
+  Vector3 operator-(const Vector3 &rhs) const
   {
     return Vector3(this->x-rhs.x, this->y-rhs.y, this->z-rhs.z);
   }
 
-  Vector3 operator*(const float &k)
+  Vector3 operator*(const float &k) const
   {
     return Vector3(this->x*k, this->y*k, this->z*k);
   }
 
   friend Vector3 operator*(const float &k, const Vector3 &rhs)
   {
-    return Vector3(this->x*k, this->y*k, this->z*k);
+    return Vector3(rhs.x*k, rhs.y*k, rhs.z*k);
   }
 
-  Vector3 operator/(const float &k)
+  Vector3 operator/(const float &k) const
   {
     return Vector3(this->x/k, this->y/k, this->z/k);
   }
 
-  friend ostream& operator<<(const ostream &s, const Vector3 &rhs)
+  friend ostream& operator<<(ostream &s, const Vector3 &rhs)
   {
-    return s << "(" << this->x << "," << this->y << "," << this->z << ")" << endl;
+    return s << "(" << rhs.x << "," << rhs.y << "," << rhs.z << ")" << endl;
   }
 };
-3
+
 #endif

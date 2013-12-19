@@ -1,1 +1,1 @@
-/Users/REN/git/package/c++/GameFramework/test/CMakeFiles/GameTest.dir
+/Users/REN/git/GameFramework/test/CMakeFiles/GameTest.dir

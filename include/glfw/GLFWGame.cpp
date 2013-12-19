@@ -10,9 +10,10 @@ GLFWGame::GLFWGame(GLFWwindow* _window)
 {
   scene = NULL;
   nextScene = NULL;
-  elapsedTime[0] = elapsedTime[1] = 0;    
+  elapsedTime[0] = glfwGetTime();
+  elapsedTime[1] = glfwGetTime();    
   //create member variables
-  input = NULL;
+  input = new GLFWInput(window);
   fileIO = NULL;
   audio = NULL;  
 };
@@ -43,7 +44,6 @@ bool GLFWGame::setScene(Scene *scene)
 
 void GLFWGame::loop()
 {
-
   float deltaTime = elapsedTime[1] - elapsedTime[0];
   elapsedTime[0] = glfwGetTime();
   scene->update(deltaTime);

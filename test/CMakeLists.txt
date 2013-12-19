@@ -23,7 +23,7 @@ link_directories(~/glew-1.10.0/lib)
 
 set(CMAKE_BUILD_TYPE release)
 
-add_executable(${Project} "../include/math/Vector2.cpp" "../include/glfw/GLFWGame.cpp" GLFWGameTest.cpp)
+add_executable(${Project} "../include/glfw/GLFWGame.cpp" GLFWGameTest.cpp)
 
 target_link_libraries(${Project} /System/Library/Frameworks/GLUT.framework ${OPENGL_LIBRARY} m)
 target_link_libraries(${Project} GLEW.a)
