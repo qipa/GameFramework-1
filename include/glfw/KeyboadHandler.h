@@ -9,6 +9,18 @@
 
 class KeyboadHandler
 {
+  class KeyEventFactory:public PoolObjectFactory<KeyEvent>
+  {
+    KeyEvent* createObject()
+    {
+      return new KeyEvent();
+    }
+
+    void initializeObject(KeyEvent* object)
+    {      
+    }
+  };
+  
   bool pressedKeys[128];
   Pool<KeyEvent> *keyEventPool;
   vector<KeyEvent*> keyEvents;
@@ -16,18 +28,61 @@ class KeyboadHandler
   pthread_mutex_t lock;
   
 public:
-  KeyboadHandler();
-  const bool isKeyPressed(int keyCode) const
+  KeyboadHandler()
   {
-    
+    keyEventPool = new Pool<KeyEvent>(new KeyEventFactory(), 30);
+    pthread_mutex_init(&lock, NULL);
   }
   
+  bool isKeyPressed(int keyCode)
+  {
+    bool res;
+    
+    pthread_mutex_lock(&lock);    
+    res = pressedKeys[keyCode];    
+    pthread_mutex_unlock(&lock);
+    
+    return res;
+  }
+
+  //ループの最初に一回だけ呼び出す
   const vector<KeyEvent*>& getKeyEvents()
   {
-    
+    //他の関数ではkeyEventPoolは当たらないので, ロックする必要なし
+    for(auto event : keyEvents)
+      keyEventPool->freeObject(event);    
+    keyEvents.clear();
+
+    pthread_mutex_lock(&lock);
+    keyEvents.insert(keyEvents.end(), keyEventBuffer.begin(), keyEventBuffer.end());
+    keyEventBuffer.clear();
+
+    pthread_mutex_unlock(&lock);
+
+    //keyEventsはこの関数でしか使ってないから, ロックの外に出ても大丈夫だと思う
+    return keyEvents; 
   }
   
-  friend void onKeyEvent(int keyCode, int action);
+  void onEvent(int keyCode, int action, int mods)
+  {
+    KeyEvent *event = keyEventPool->newObject();
+    event->keyCode = keyCode;
+    event->action = action;
+    
+    pthread_mutex_lock(&lock);
+    
+    if(action == GLFW_PRESS && keyCode>=0 && keyCode < 128)
+    {
+      pressedKeys[keyCode] = true;
+    }
+    else if(action == GLFW_RELEASE && keyCode>=0 && keyCode < 128)
+    {
+      pressedKeys[keyCode] = false;
+    }
+    
+    keyEventBuffer.push_back(event);    
+    pthread_mutex_unlock(&lock);
+  } 
 };
 
 #endif

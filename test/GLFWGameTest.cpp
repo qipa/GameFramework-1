@@ -1,6 +1,9 @@
+
 #include "../include/glfw/GLFWGame.h"
 #include "../include/glfw/GLFWScene.h"
+#include "../include/glfw/GLFWInput.h"
 #include "../include/glfw/Camera2D.h"
+
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
@@ -11,14 +14,12 @@ using namespace std;
 
 static bool flag = false;
 
-
 class TestScene2 :public GLFWScene
 {
   Camera2D *camera2;
 public:
   TestScene2(GLFWGame* glfwGame):GLFWScene(glfwGame)
   {
-
     camera2 = new Camera2D(glfwGame->getWindow(), 2.0, 2.0);    //ワールド座標におけるカメラの視野の横幅を2.0, 縦幅を2.0と設定
     
     int width, height;
@@ -27,7 +28,6 @@ public:
     camera2->setViewportWidth(width/4);
     camera2->setViewportHeight(height/4);
     camera2->setViewportPosition(width/4*3, height/2); //viewの中心位置
-
   }
 
   ~TestScene2(){}
@@ -113,18 +113,27 @@ public:
 //TestScene2でのupdate 
 void TestScene2::update(float deltaTime)
 {
-  if(!flag)
-  {
+  auto keyEvents = glfwGame->getInput()->getKeyEvents();
+  for (auto event : keyEvents)
+  { 
+    if(event->action != GLFW_PRESS) continue;
     glfwGame->setScene(new TestScene1(glfwGame));
+    return;
   }
+
 }
 
 void TestScene1::update(float deltaTime)
 {
-  if(flag)
+  auto keyEvents = glfwGame->getInput()->getKeyEvents();
+  
+  for (auto event : keyEvents)
   {
-    glfwGame->setScene(new TestScene2(glfwGame));
+    if(event->action != GLFW_PRESS) continue;
+    glfwGame->setScene(new TestScene2(glfwGame));   
+    return;
   }
+  
 }
 
 class TestGame:public GLFWGame
@@ -159,6 +168,12 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
   if (key == GLFW_KEY_F1 && action == GLFW_PRESS)
     exit(2);
 
+  ((GLFWInput*)glfwGetWindowUserPointer(window))->onKey(key, action, mods);
+}
+
+static void mouse_callback(GLFWwindow* window, int button, int action, int mods)
+{
+  ((GLFWInput*)glfwGetWindowUserPointer(window))->onMouse(button, action, mods);
 }
 
 #include <unistd.h>
@@ -181,17 +196,18 @@ int main()
   
   glfwMakeContextCurrent(window);
   TestGame* game = new TestGame(window);
-  glfwSetWindowUserPointer(window, game);
+  
+  glfwSetWindowUserPointer(window, game->getInput()); //このwindowにコールバック用にインプットを登録
   
   glfwSetKeyCallback(window, key_callback);
-
+  glfwSetMouseButtonCallback(window, mouse_callback);
+  
   glClearColor(0.0, 0.0, 0.0, 1.0);
-
   while(!glfwWindowShouldClose(window))
   {
     game->loop();
-    glfwSwapBuffers(window);
-    glfwPollEvents(); //絶対必要
+    glfwSwapBuffers(window); //絶対必要
+    glfwPollEvents();        //絶対必要
   }
   
   glfwDestroyWindow(window);

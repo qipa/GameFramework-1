@@ -3,6 +3,7 @@
 
 #include <map>
 #include <vector>
+#include "GLFW/glfw3.h"
 using namespace std;
 
 class KeyEvent
@@ -19,15 +20,15 @@ public:
 class MouseEvent
 {
 public:
-  static const int MOUSE_DOWN=0;
-  static const int MOUSE_UP=1;
-  static const int MOUSE_DRAGGED=2;
+  static const int MOUSE_DOWN   = GLFW_RELEASE;
+  static const int MOUSE_UP     = GLFW_PRESS;
+  static const int MOUSE_DRAGGED= GLFW_REPEAT;
 
-  static const int MOUSE_LEFT  = 0;
-  static const int MOUSE_RIGHT = 0;
+  static const int MOUSE_LEFT  = GLFW_MOUSE_BUTTON_LEFT;
+  static const int MOUSE_RIGHT = GLFW_MOUSE_BUTTON_RIGHT;
     
   int action;
-  int side;
+  int button;
   int x, y;
 };
 
@@ -35,8 +36,8 @@ class Input
 {
 public:
   virtual bool isKeyPressed(int keyCode) = 0;
-  virtual const vector<KeyEvent*>& getKeyEvents() const = 0;
-  virtual const vector<MouseEvent*>& getMouseEvents() const = 0;
+  virtual MouseEvent* const getMouseEvent() = 0;
+  virtual const vector<KeyEvent*>& getKeyEvents() = 0;
 
   Input(){}
   virtual ~Input(){}

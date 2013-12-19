@@ -4,31 +4,48 @@
 #include "../Input.h"
 #include "GLFW/glfw3.h"
 #include "KeyboadHandler.h"
+#include "MouseHandler.h"
 
 class GLFWInput : public Input
 {
-  vector<KeyEvent*> keyEventBuffer;
-  vector<MouseEvent*> mouseEventBuffer;
-  KeyboadHandler *keyboadHandler;
-  
+GLFWwindow *window;
+  MouseHandler   *mouseHandler;
+  KeyboadHandler *keyboadHandler;  
 public:
-  GLFWInput();
-  bool isKeyPressed(int keyCode)
+GLFWInput(GLFWwindow *_window)
+:window(_window)
+{
+mouseHandler = new MouseHandler();
+keyboadHandler = new KeyboadHandler();
+}
+bool isKeyPressed(int keyCode)
   {
-    //todo
-    return false;
+    return keyboadHandler->isKeyPressed(keyCode);
   }
   
   const vector<KeyEvent*>& getKeyEvents()
   {
-    //todo
-    return keyEventBuffer;
+    return keyboadHandler->getKeyEvents();
   }
   
-  const vector<MouseEvent*>& getMouseEvents()
+  MouseEvent* const getMouseEvent()
   {
-    //todo
-    return mouseEventBuffer;
+return mouseHandler->getMouseEvent();
+  }
+
+void getCursorPos(double &x, double &y)
+{
+glfwGetCursorPos(window, &x, &y);
+}
+  
+  void onMouse(int button, int action, int mods)
+  {
+    mouseHandler->onEvent(button, action, mods);
+}
+
+  void onKey(int keyCode, int action, int mods)
+  {
+    keyboadHandler->onEvent(keyCode, action, mods);
   }
 };
 

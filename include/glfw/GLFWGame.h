@@ -29,23 +29,23 @@ public:
   void loop();
   bool setScene(Scene *scene);
   
-  const Input* getInput() const
+  Input* getInput() const
   {
     return input;
   }
 
-  const FileIO* getFileIO() const
+  FileIO* getFileIO() const
   {
     return fileIO;
   }
 
-  const Audio*  getAudio()  const
+  Audio*  getAudio()  const
   {
     return audio;
   }
 
   //グラフィックはglfwをそのままたたくからいらない
-  const Graphics* getGraphics() const
+  Graphics* getGraphics() const
   {
     return NULL;
   }
