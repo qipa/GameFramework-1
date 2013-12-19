@@ -17,9 +17,17 @@ class KeyboadHandler
   
 public:
   KeyboadHandler();
-  const inline bool isKeyPressed(int keyCode) const;
-  const vector<KeyEvent*>& getKeyEvents();
-  void onKey(int keyCode, int action);
+  const bool isKeyPressed(int keyCode) const
+  {
+    
+  }
+  
+  const vector<KeyEvent*>& getKeyEvents()
+  {
+    
+  }
+  
+  friend void onKeyEvent(int keyCode, int action);
 };
 
 #endif

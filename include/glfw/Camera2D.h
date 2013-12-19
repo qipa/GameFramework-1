@@ -24,8 +24,8 @@ Camera2D(GLFWwindow *_window, float _frustumWidth, float _frustumHeight)
     ,frustumWidth(_frustumWidth)
     ,frustumHeight(_frustumHeight)
   {
-    position.x = frustumWidth/2;
-    position.y = frustumHeight/2;
+    position.x = 0;
+    position.y = 0;
     //最初は, 画面いっぱいに描画する設定
     glfwGetFramebufferSize(window, &viewportWidth, &viewportHeight);
     viewportX = viewportWidth/2;
@@ -54,22 +54,27 @@ Camera2D(GLFWwindow *_window, float _frustumWidth, float _frustumHeight)
     glViewport(viewportX-viewportWidth/2, viewportY-viewportHeight/2, viewportWidth, viewportHeight);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+    
     glOrtho(position.x-frustumWidth/2,
             position.x+frustumWidth/2,
             position.y-frustumHeight/2,
             position.y+frustumHeight/2, -1, 1);
-  
+    
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
   }
+
   
-  void screenToWorld(Vector2 touch)
+  Vector2 screenToWorld(const Vector2 &touch) const
   {
     int windowWidth, windowHeight;
     glfwGetFramebufferSize(window, &windowWidth, &windowHeight);  //todo 毎回呼び出したら遅い?
 
-    touch.x = (             touch.x  - viewportX)/(float)viewportWidth*frustumWidth;
-    touch.y = ((windowWidth-touch.y) - viewportY)/(float)viewportWidth*frustumHeight;
+    //引数のときにコピーされているので, そのまま変更して返す
+    float _x = (             touch.x  - viewportX)/(float)viewportWidth*frustumWidth;
+    float _y = ((windowWidth-touch.y) - viewportY)/(float)viewportWidth*frustumHeight;
+
+    return Vector2(_x,_y);
   }
 };
 

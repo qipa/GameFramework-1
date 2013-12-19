@@ -3,6 +3,8 @@
 
 #include <cmath>
 #include <string>
+#include <iostream>
+using namespace std;
 
 class Vector2
 {
@@ -11,7 +13,8 @@ public:
   static constexpr float TO_DEGREE  = 180.0f/M_PI;
   float x,y;
 	
-  Vector2(){		
+  Vector2(){
+    x = y = 0;
   }
 	
   Vector2(float x, float y){
@@ -153,11 +156,11 @@ public:
 
   float angleTo(const Vector2 &other)
   {
-    //thisとotherとの角度(時計回り方向を正)    
+    //thisとotherとの角度(otherがthisより反時計回りだと正)
     float ang1 = this->angle();
     float ang2 = other.angle();
 
-    return ang1-ang2;
+    return ang2-ang1;
   }
 
   float distanceTo(const Vector2 &other)
@@ -203,19 +206,39 @@ public:
   Vector2 operator-()
   {
     return Vector2(-x, -y);
-  }  
+  }
+  
+  Vector2 operator+(const Vector2 &rhs) const
+  {
+    return Vector2(this->x+rhs.x, this->y+rhs.y);
+  }
+
+  Vector2 operator-(const Vector2 &rhs) const
+  {
+    return Vector2(this->x-rhs.x, this->y-rhs.y);
+  }
+
+  Vector2 operator*(const float &k)
+  {
+    return Vector2(this->x*k, this->y*k);    
+  }
+
+  //friend 関数はただのグローバルだが, ヘッダに直接書いて大丈夫なのか(インクルードガードはあるけど...)
+  friend Vector2 operator*(const float &k, const Vector2 &rhs)
+  {
+    return Vector2(k*rhs.x, k*rhs.y);
+  }
+
+  Vector2 operator/(const float &k)
+  {
+    return Vector2(this->x/k, this->y/k);
+  }
+
+  //画面への出力
+  friend ostream& operator<<(ostream& s, const Vector2 &v)
+  {
+    return s << "(" << v.x << "," << v.y << ")" << endl;
+  }
 };
-
-Vector2 operator+(const Vector2 &u, const Vector2 &v);
-Vector2 operator-(const Vector2 &u, const Vector2 &v);
-Vector2 operator*(const Vector2 &u, const float &k);
-Vector2 operator*(const float &k, const Vector2 &u);
-float operator*(const Vector2 &u, const Vector2 &v);//内積
-Vector2 operator/(const Vector2 &u, const float &k);
-
-
-#include <iostream>
-using namespace std;
-ostream& operator<<(ostream& s, const Vector2 &v);//画面への出力
 
 #endif
