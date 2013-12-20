@@ -1,241 +1,62 @@
-
+#include "../include/glfw/GL/freeglut.h"
 #include "../include/glfw/GLFWGame.h"
-#include "../include/glfw/GLFWScene.h"
 #include "../include/glfw/GLFWInput.h"
-#include "../include/glfw/Camera2D.h"
-#include "../include/glfw/Camera3D.h"
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
 #include <time.h>
 #include <sys/time.h>
-
-void glDrawTextureCube(const float size,const int tex,const bool reverse)
-{  
-  glPushAttrib( GL_CURRENT_BIT | GL_COLOR_BUFFER_BIT | GL_ENABLE_BIT);  
-  glBindTexture(GL_TEXTURE_2D, tex);
-  
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-  glDisable(GL_BLEND);
-  glDisable(GL_ALPHA_TEST);//アルファテスト開始
-
-  const float n = reverse ? -1 : 1;
-  
-  //vertex normal texture
-  float vertices[] =
-    {
-      //bottom
-      -size, -size, -size,  0,-n,0,  0,1,
-      +size, -size, -size,  0,-n,0,  1,1,
-      +size, -size, +size,  0,-n,0,  1,0,
-      -size, -size, +size,  0,-n,0,  0,0,
-
-      //top
-      -size, +size, -size,  0,+n,0,  0,0,
-      +size, +size, -size,  0,+n,0,  1,0,
-      +size, +size, +size,  0,+n,0,  1,1,
-      -size, +size, +size,  0,+n,0,  0,1,
-
-      //left
-      -size, -size, -size,  -n,0,0,  0,1,
-      -size, +size, -size,  -n,0,0,  0,0,
-      -size, +size, +size,  -n,0,0,  1,0,
-      -size, -size, +size,  -n,0,0,  1,1,
-
-      //right
-      +size, -size, -size,  +n,0,0,  1,1,
-      +size, +size, -size,  +n,0,0,  1,0,
-      +size, +size, +size,  +n,0,0,  0,0,
-      +size, -size, +size,  +n,0,0,  0,1,
-
-      //front
-      -size, -size, +size,  0,0,+n,  0,1,
-      -size, +size, +size,  0,0,+n,  0,0,
-      +size, +size, +size,  0,0,+n,  1,0,
-      +size, -size, +size,  0,0,+n,  1,1,
-
-      //back
-      -size, -size, -size,  0,0,-n,  1,1,
-      -size, +size, -size,  0,0,-n,  1,0,
-      +size, +size, -size,  0,0,-n,  0,0,
-      +size, -size, -size,  0,0,-n,  0,1      
-    };
-
-  GLuint indices[] =
-    {
-       0,  1,  2,  3,  0,  2,
-       4,  5,  6,  7,  4,  6,
-       8,  9, 10, 11,  8, 10,
-       12, 13, 14, 15, 12, 14,
-       16, 17, 18, 19, 16, 18,
-       20, 21, 22, 23, 20, 22
-    };
-
-  glEnableClientState(GL_VERTEX_ARRAY);
-  glEnableClientState(GL_NORMAL_ARRAY);
-  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-  
-  glVertexPointer(3,  GL_FLOAT, 8*sizeof(float), vertices  );
-  glNormalPointer(    GL_FLOAT, 8*sizeof(float), vertices+3);
-  glTexCoordPointer(2,GL_FLOAT, 8*sizeof(float), vertices+6);  
-  glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, indices);
-  
-  glDisableClientState(GL_VERTEX_ARRAY);
-  glDisableClientState(GL_NORMAL_ARRAY);
-  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-  
-  glBindTexture(GL_TEXTURE_2D, 0);
-  
-  glPopAttrib();
-}
-
-
+#include "TestScene1.h"
+#include "TestScene2.h"
 using namespace std;
 
-static bool flag = false;
-
-class TestScene2 :public GLFWScene
-{
-  Camera3D *camera2;
-public:
-  TestScene2(GLFWGame* glfwGame):GLFWScene(glfwGame)
-  {
-    camera2 = new Camera3D(glfwGame->getWindow(), 1, 100, 45); //near, far, 視野角
-    camera2->setPosition(Vector3(0,0,-10));
-    camera2->setLook(Vector3(0,0,0));
-/*    
-    int width, height;
-    glfwGetFramebufferSize(glfwGame->getWindow(), &width, &height); //windowサイズを取得
-
-    camera2->setViewportWidth(width/4);
-    camera2->setViewportHeight(height/4);
-    camera2->setViewportPosition(width/4*3, height/2); //viewの中心位置
-*/
-  }
-
-  ~TestScene2(){}
-  void update(float deltaTime);
-
-  
-  void render(float deltaTime)
-  {   
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    /*
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHTING);    
-    glEnable(GL_LIGHT0);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_BLEND);
-    glEnable(GL_ALPHA_TEST);//アルファテスト開始
-    */
-    GLfloat red[] = { 1.0, 1.0, 1.0, 1.0 };
-    GLfloat lightpos[]  = { 50.0, -50.0, 0.0, 1.0 };
-    glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
-    
-    GLfloat lightpos2[] = { -50.0, 50.0, 0.0, 1.0 };
-    glEnable(GL_LIGHT1);
-    glLightfv(GL_LIGHT1, GL_POSITION, lightpos2);
-    
-    camera2->setViewportAndMatrices();
-    glColor3f(0.0,1,0);
-    glTranslatef(0,0,10);
-//    glRotatef((float) glfwGetTime() * 50.f, glfwGetTime(), glfwGetTime()*2, glfwGetTime()*3);
-    glColor3f(1,1,1);
-    glutSolidCube(5);
-//    glDrawTextureCube(5, 0, false);
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_LIGHTING);    
-    glDisable(GL_LIGHT0);
-  }
-  
-  void reshape(int width, int height)
-  {
-   
-  }
-  
-  void dispose() 
-  {
-  }
-};
-
-class TestScene1: public GLFWScene
-{
-  Camera2D *camera1;
-Vector2 pos;
-public:
-  TestScene1(GLFWGame* glfwGame):GLFWScene(glfwGame)
-  {
-    camera1 = new Camera2D(glfwGame->getWindow(), 2.0, 2.0);    //ワールド座標におけるカメラの視野の横幅を2.0, 縦幅を2.0と設定
-
-    int width, height;
-    glfwGetFramebufferSize(glfwGame->getWindow(), &width, &height); //windowサイズを取得    
-    
-    //画面の1/4の大きさに
-    camera1->setViewportWidth(width/4);
-    camera1->setViewportHeight(height/4);
-    camera1->setViewportPosition(width/4, height/2); //viewの中心位置(画面上での)
-
-pos = Vector2();
-  }
-
-  ~TestScene1(){}
-  
-  void update(float deltaTime);
-  
-  void render(float deltaTime)
-  {   
-    glClear(GL_COLOR_BUFFER_BIT);
-    camera1->setViewportAndMatrices();
-    glColor3f(1.0, 0,0);
-glTranslatef(pos.x, pos.y, 0);
-    glRotatef((float) glfwGetTime() * 50.f, 0.f, 0.f, 1.f);
-
-    glBegin(GL_TRIANGLES);
-    glColor3f(1.f, 0.f, 0.f);
-    glVertex3f(-0.6f, -0.4f, 0.f);
-    glColor3f(0.f, 1.f, 0.f);
-    glVertex3f(0.6f, -0.4f, 0.f);
-    glColor3f(0.f, 0.f, 1.f);
-    glVertex3f(0.f, 0.6f, 0.f);
-    glEnd();
-  }
-  
-  void reshape(int width, int height)
-  {
-   
-  }
-  
-  void dispose() 
-  {
-  }
-};
-
-//循環してるクラス関係を1つのファイルで表す為に,こんな書き方してる
-//TestScene2でのupdate 
-void TestScene2::update(float deltaTime)
+//循環してるクラス関係を1つのファイルで表す為に,updateをこっちに書いてる
+//TestScene1でのupdate 
+void TestScene1::update(float deltaTime)
 {
   auto keyEvents = glfwGame->getInput()->getKeyEvents();
   for (auto event : keyEvents)
   { 
-    if(event->action != GLFW_PRESS) continue;
-    glfwGame->setScene(new TestScene1(glfwGame));
-    return;
+    if(event->action != GLFW_PRESS)
+      continue;
+
+    if(event->keyCode == GLFW_KEY_ENTER)
+    {
+      glfwGame->setScene(new TestScene2(glfwGame));
+      return;
+    }
   }
+
+  auto mouse = glfwGame->getInput()->getMouseEvent();
+  auto touch = Vector2();
+
+  touch.set(mouse->x, mouse->y);
+  Vector3 direction = camera->screenToWorld(touch);
+  pos = camera->getPosition() + 100*direction;  
 }
 
-void TestScene1::update(float deltaTime)
+//TestScene2でのupdate
+void TestScene2::update(float deltaTime)
 {
   auto keyEvents = glfwGame->getInput()->getKeyEvents();
   
   for (auto event : keyEvents)
   {
-    if(event->action != GLFW_PRESS) continue;
-    glfwGame->setScene(new TestScene2(glfwGame));   
+    if(event->action != GLFW_PRESS || event->keyCode != GLFW_KEY_RIGHT)
+      continue;    
+    glfwGame->setScene(new TestScene1(glfwGame));   
     return;
   }
-  
+
+  auto mouse = glfwGame->getInput()->getMouseEvent();
+  auto touch = Vector2();
+  if(mouse->action == GLFW_PRESS)
+  {
+    touch.set(mouse->x, mouse->y);   
+    pos = camera->screenToWorld(touch);
+  }
 }
+
 
 class TestGame:public GLFWGame
 {
@@ -258,10 +79,7 @@ static void error_callback(int error, const char* description)
 }
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-  if(action == GLFW_PRESS)
-    flag = !flag;
-  
+{  
   if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)  
     glfwSetWindowShouldClose(window, GL_TRUE);
 
@@ -275,6 +93,12 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 static void mouse_callback(GLFWwindow* window, int button, int action, int mods)
 {
   ((GLFWInput*)glfwGetWindowUserPointer(window))->onMouse(button, action, mods);
+}
+
+
+static void cursor_callback(GLFWwindow *window, double x, double y)
+{
+// ((GLFWInput*)glfwGetWindowUserPointer(window))->onCursor(x, y);
 }
 
 #include <unistd.h>
@@ -304,9 +128,29 @@ int main()
   glfwSetMouseButtonCallback(window, mouse_callback);
   
   glClearColor(0.0, 0.0, 0.0, 1.0);
+  
   while(!glfwWindowShouldClose(window))
   {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
     game->loop();
+/*
+    int width, height;           
+    glfwGetFramebufferSize(window, &width, &height);
+
+    float ratio = width / (float) height;
+
+    glViewport(0, 0, width, height);  
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45, ratio, 1, 1000);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(0, -10, 0,    0, 0, 0,   0.0, 1.0, 0.0);
+    
+    drawAxis();
+*/  
     glfwSwapBuffers(window); //絶対必要
     glfwPollEvents();        //絶対必要
   }

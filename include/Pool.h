@@ -28,6 +28,12 @@ public:
   ~Pool()
   {
     delete factory;
+    while(!freeObjects.empty())
+    {
+      auto object = freeObjects.top();
+      delete object;
+      freeObjects.pop();
+    }
   }
 
   inline T* newObject()
@@ -54,6 +60,7 @@ public:
     else
       delete object;    //再大容量を超えた場合はしょうがないので削除
   }
+
 private:
   stack<T*> freeObjects;
   PoolObjectFactory<T> *const factory;

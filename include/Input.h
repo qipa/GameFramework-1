@@ -29,7 +29,7 @@ public:
     
   int action;
   int button;
-  int x, y;
+  double x, y;
 };
 
 class Input
