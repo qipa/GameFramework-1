@@ -21,8 +21,9 @@ GLFWGame::GLFWGame(GLFWwindow* _window)
 GLFWGame::~GLFWGame()
 {
   //todo
-  /*
+  
   delete input;
+  /*
   delete fileIO;
 
   delete audio;
@@ -32,12 +33,19 @@ GLFWGame::~GLFWGame()
   
 bool GLFWGame::setScene(Scene *scene)
 {
-  //既に別の所から次のシーンを指定されていたら, 除外する
-  if(this->nextScene != NULL || scene == NULL)
+  //NULLを指定しようとしたらfalse
+  if(scene == NULL)
   {
     return false;
   }
-  
+
+  //既に別の所から次のシーンを指定されていたら, 除外する
+  if(this->nextScene != NULL)
+  {
+    delete scene; //削除しておく todo 呼び出し側でするべき?
+    return false;
+  }
+
   this->nextScene = scene;  //次のシーンの決定
   return true;
 }
