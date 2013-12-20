@@ -1,6 +1,7 @@
 #include "../include/glfw/GL/freeglut.h"
 #include "../include/glfw/GLFWGame.h"
 #include "../include/glfw/GLFWInput.h"
+#include <algorithm>
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
@@ -17,22 +18,44 @@ void TestScene1::update(float deltaTime)
   auto keyEvents = glfwGame->getInput()->getKeyEvents();
   for (auto event : keyEvents)
   { 
-    if(event->action != GLFW_PRESS)
-      continue;
-
-    if(event->keyCode == GLFW_KEY_ENTER)
+    switch(event->keyCode)
     {
+    case GLFW_KEY_ENTER:
+      if(event->action != GLFW_PRESS)  continue;
       glfwGame->setScene(new TestScene2(glfwGame));
       return;
+    case GLFW_KEY_LEFT:
+      theta -= 100*deltaTime;
+      if(theta<0) theta+=2*M_PI;
+      break;
+    case GLFW_KEY_RIGHT:
+      theta += 100*deltaTime;
+      if(theta>2*M_PI) theta-=2*M_PI;
+      break;
+    case GLFW_KEY_UP:
+      phi = min(phi+100*deltaTime, (float)M_PI/3.8f);
+      break;
+    case GLFW_KEY_DOWN:
+      phi = min(phi-100*deltaTime, 0.0f);
+      break;
+    case GLFW_KEY_T:
+      theta = 0;
+      break;
+    case GLFW_KEY_P:
+      phi = 0;
+      break;
     }
   }
+
+  float R = 100;
+  camera->setPosition(Vector3(R*cos(phi)*cos(theta), R*sin(phi), R*cos(phi)*sin(theta)));
 
   auto mouse = glfwGame->getInput()->getMouseEvent();
   auto touch = Vector2();
 
   touch.set(mouse->x, mouse->y);
   Vector3 direction = camera->screenToWorld(touch);
-  pos = camera->getPosition() + 100*direction;  
+  pos = camera->getPosition() + 100*direction;
 }
 
 //TestScene2でのupdate

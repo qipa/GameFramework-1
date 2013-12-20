@@ -10,14 +10,21 @@ class TestScene1 :public GLFWScene
 {
   Camera3D *camera;
   Vector3 pos;
-  
+  Vector2 target;
+  const int cellSize;
+  const int cellNum;
+  float theta, phi;
 public:
-  TestScene1(GLFWGame* glfwGame):GLFWScene(glfwGame)
+  TestScene1(GLFWGame* glfwGame)
+    :GLFWScene(glfwGame)
+    ,cellSize(10)
+    ,cellNum(10)
   {
     camera = new Camera3D(glfwGame->getWindow(), 1, 1000, 45); //near, far, 視野角
     camera->setPosition( Vector3(100, 0, 0) );
     camera->setLook(Vector3(0,0,0));
 
+    theta = phi = 0;
     //画面右半分
     int width, height;
     glfwGetFramebufferSize(glfwGame->getWindow(), &width, &height); //windowサイズを取得    
@@ -61,13 +68,28 @@ public:
 
 
     glColor3f(1,1,1);
-    drawAxis();    
+    drawAxis();
+    
     glPushMatrix();
     glTranslatef(pos.x, pos.y, pos.z);
     glRotatef((float) glfwGetTime() * 50.f, glfwGetTime(), glfwGetTime()*2, glfwGetTime()*3);
-    glutSolidCube(5);
+    glutSolidCube(5);    
     glPopMatrix();
-
+    /*
+    glPushMatrix();
+    for(int i=0; i<cellNum; i++)
+    {
+      glPushMatrix();
+      for(int j=0; j<cellNum; j++)
+      {
+        glutSolidCube(5);
+        glTranslatef(0,0,cellSize);
+      }
+      glPopMatrix();
+      glTranslatef(cellSize,0,0);
+    }
+    glPopMatrix();
+    */
     glPopAttrib();
   }
   
