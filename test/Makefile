@@ -138,30 +138,6 @@ GLFWGameTest.cpp.s:
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/GLFWGameTest.cpp.s
 .PHONY : GLFWGameTest.cpp.s
 
-Users/REN/git/GameFramework/include/glfw/GLFWGame.o: Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o
-.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.o
-
-# target to build an object file
-Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o
-.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o
-
-Users/REN/git/GameFramework/include/glfw/GLFWGame.i: Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i
-.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.i
-
-# target to preprocess a source file
-Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i
-.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i
-
-Users/REN/git/GameFramework/include/glfw/GLFWGame.s: Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s
-.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.s
-
-# target to generate assembly for a file
-Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s
-.PHONY : Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -174,9 +150,6 @@ help:
 	@echo "... GLFWGameTest.o"
 	@echo "... GLFWGameTest.i"
 	@echo "... GLFWGameTest.s"
-	@echo "... Users/REN/git/GameFramework/include/glfw/GLFWGame.o"
-	@echo "... Users/REN/git/GameFramework/include/glfw/GLFWGame.i"
-	@echo "... Users/REN/git/GameFramework/include/glfw/GLFWGame.s"
 .PHONY : help
 
 

@@ -52,32 +52,9 @@ include CMakeFiles/GameTest.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/GameTest.dir/flags.make
 
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: CMakeFiles/GameTest.dir/flags.make
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o -c /Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp
-
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp > CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.i
-
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp -o CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.s
-
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o.requires:
-.PHONY : CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o.requires
-
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o.provides: CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o.provides.build
-.PHONY : CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o.provides
-
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o.provides.build: CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o
-
 CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: CMakeFiles/GameTest.dir/flags.make
 CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: GLFWGameTest.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o -c /Users/REN/git/GameFramework/test/GLFWGameTest.cpp
 
@@ -100,13 +77,11 @@ CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o.provides.build: CMakeFiles/GameTest.d
 
 # Object files for target GameTest
 GameTest_OBJECTS = \
-"CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o" \
 "CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o"
 
 # External object files for target GameTest
 GameTest_EXTERNAL_OBJECTS =
 
-GameTest: CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o
 GameTest: CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o
 GameTest: CMakeFiles/GameTest.dir/build.make
 GameTest: /usr/local/Cellar/glfw3/3.0.3/lib/libglfw3.dylib
@@ -118,7 +93,6 @@ GameTest: CMakeFiles/GameTest.dir/link.txt
 CMakeFiles/GameTest.dir/build: GameTest
 .PHONY : CMakeFiles/GameTest.dir/build
 
-CMakeFiles/GameTest.dir/requires: CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o.requires
 CMakeFiles/GameTest.dir/requires: CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o.requires
 .PHONY : CMakeFiles/GameTest.dir/requires
 

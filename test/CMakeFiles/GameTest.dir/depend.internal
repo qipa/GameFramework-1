@@ -20,18 +20,6 @@ CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o
  /Users/REN/git/GameFramework/include/math/Vector2.h
  /Users/REN/git/GameFramework/include/math/Vector3.h
  /Users/REN/git/GameFramework/test/GLFWGameTest.cpp
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o
- /Users/REN/git/GameFramework/include/Audio.h
- /Users/REN/git/GameFramework/include/FileIO.h
- /Users/REN/git/GameFramework/include/Game.h
- /Users/REN/git/GameFramework/include/Input.h
- /Users/REN/git/GameFramework/include/Pool.h
- /Users/REN/git/GameFramework/include/Scene.h
- /Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
- /Users/REN/git/GameFramework/include/glfw/GLFWAudio.h
- /Users/REN/git/GameFramework/include/glfw/GLFWFileIO.h
- /Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp
- /Users/REN/git/GameFramework/include/glfw/GLFWGame.h
- /Users/REN/git/GameFramework/include/glfw/GLFWInput.h
- /Users/REN/git/GameFramework/include/glfw/KeyboadHandler.h
- /Users/REN/git/GameFramework/include/glfw/MouseHandler.h
+ /Users/REN/git/GameFramework/test/SimpleObjectFactory.h
+ /Users/REN/git/GameFramework/test/TestScene1.h
+ /Users/REN/git/GameFramework/test/TestScene2.h

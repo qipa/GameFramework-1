@@ -93,10 +93,11 @@ public:
     return Vector2(x,y);
   }
 
+  //radianで返る
   float angle() const{
-    float angle = (float) atan2(y, x) * TO_DEGREE;
+    float angle = (float) atan2(y, x);
     if(angle < 0)
-      angle += 360;
+      angle += 2*M_PI;
     return angle;
   }
 	

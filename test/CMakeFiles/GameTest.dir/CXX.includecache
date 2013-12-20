@@ -35,6 +35,8 @@ GLFW/glfw3.h
 /Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
 ../math/Vector3.h
 /Users/REN/git/GameFramework/include/math/Vector3.h
+iostream
+-
 
 /Users/REN/git/GameFramework/include/glfw/GL/freeglut.h
 freeglut_std.h
@@ -117,6 +119,8 @@ pthread.h
 /Users/REN/git/GameFramework/include/Input.h
 ../Pool.h
 /Users/REN/git/GameFramework/include/Pool.h
+GLFW/glfw3.h
+/Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
 pthread.h
 -
 
@@ -129,18 +133,20 @@ iostream
 -
 
 /Users/REN/git/GameFramework/include/math/Vector3.h
+cmath
+-
+Vector2.h
+/Users/REN/git/GameFramework/include/math/Vector2.h
 
 /Users/REN/git/GameFramework/test/GLFWGameTest.cpp
+../include/glfw/GL/freeglut.h
+/Users/REN/git/GameFramework/include/glfw/GL/freeglut.h
 ../include/glfw/GLFWGame.h
 /Users/REN/git/GameFramework/include/glfw/GLFWGame.h
-../include/glfw/GLFWScene.h
-/Users/REN/git/GameFramework/include/glfw/GLFWScene.h
 ../include/glfw/GLFWInput.h
 /Users/REN/git/GameFramework/include/glfw/GLFWInput.h
-../include/glfw/Camera2D.h
-/Users/REN/git/GameFramework/include/glfw/Camera2D.h
-../include/glfw/Camera3D.h
-/Users/REN/git/GameFramework/include/glfw/Camera3D.h
+algorithm
+-
 cstdlib
 -
 cstdio
@@ -151,6 +157,34 @@ time.h
 -
 sys/time.h
 -
+TestScene1.h
+/Users/REN/git/GameFramework/test/TestScene1.h
+TestScene2.h
+/Users/REN/git/GameFramework/test/TestScene2.h
 unistd.h
 -
+
+/Users/REN/git/GameFramework/test/SimpleObjectFactory.h
+../include/glfw/GL/freeglut.h
+/Users/REN/git/GameFramework/include/glfw/GL/freeglut.h
+
+/Users/REN/git/GameFramework/test/TestScene1.h
+../include/glfw/GLFWScene.h
+/Users/REN/git/GameFramework/include/glfw/GLFWScene.h
+../include/glfw/GLFW/glfw3.h
+/Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
+../include/glfw/Camera3D.h
+/Users/REN/git/GameFramework/include/glfw/Camera3D.h
+SimpleObjectFactory.h
+/Users/REN/git/GameFramework/test/SimpleObjectFactory.h
+
+/Users/REN/git/GameFramework/test/TestScene2.h
+../include/glfw/GLFWScene.h
+/Users/REN/git/GameFramework/include/glfw/GLFWScene.h
+../include/glfw/GLFW/glfw3.h
+/Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
+SimpleObjectFactory.h
+/Users/REN/git/GameFramework/test/SimpleObjectFactory.h
+../include/glfw/Camera2D.h
+/Users/REN/git/GameFramework/include/glfw/Camera2D.h
 

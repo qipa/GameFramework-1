@@ -1,6 +1,9 @@
 #ifndef VECTOR_3_H_2013_12_19
 #define VECTOR_3_H_2013_12_19
 
+#include <cmath>
+#include "Vector2.h"
+
 class Vector3
 {
 public:
@@ -22,6 +25,7 @@ public:
   {
     this->x = other.x;
     this->y = other.y;
+    this->z = other.z;
   }
 	
   Vector3& set(const float &x, const float &y, const float &z)
@@ -106,7 +110,8 @@ public:
     return Vector3(x,y,z);
   }
 	
-  float dist(Vector3 other){
+  float dist(Vector3 other) const
+  {
     float distX = this->x - other.x;
     float distY = this->y - other.y;
     float distZ = this->z - other.z;
@@ -114,7 +119,8 @@ public:
     return sqrt(distX*distX + distY*distY + distZ*distZ); 
   }
 	
-  float dist(float x, float y, float z){
+  float dist(float x, float y, float z) const
+  {
     float distX = this->x - x;
     float distY = this->y - y;
     float distZ = this->z - z;
@@ -122,7 +128,8 @@ public:
   }
 
   //2乗距離
-  float distSquared(Vector3 other){
+  float distSquared(Vector3 other) const
+  {
     float distX = this->x - other.x;
     float distY = this->y - other.y;
     float distZ = this->z - other.z;
@@ -130,7 +137,8 @@ public:
     return distX*distX + distY*distY + distZ*distZ; 
   }
 	
-  float distSquared(float x, float y){
+  float distSquared(float x, float y) const
+  {
     float distX = this->x - x;
     float distY = this->y - y;
     float distZ = this->z - z;
@@ -139,33 +147,35 @@ public:
   }
 
   //内積
-  float dot(const Vector3 &other)
+  float dot(const Vector3 &other) const
   {
     return this->x*other.x + this->y*other.y + this->z*other.z;
   }
 
   //外積
-  Vector3 cross(const Vector3 &other)
+  Vector3 cross(const Vector3 &other) const
   {
     return Vector3(this->y*other.z - this->z*other.y,
                    this->z*other.x - this->x*other.z,
                    this->x*other.y - this->y*other.x);
   }
 
-  float angleTo(const Vector3 &other)
+
+  //ラジアンで返る
+  float angleTo(const Vector3 &other) const
   {
-    float dot = this->x*other.x + this->y*other.y + this->z*other.z;
+    float dot  = this->dot(other);
     float len1 = this->length();
     float len2 = other.length();
 
     //零ベクトルとの角度は0とする
     if(len1 ==0 || len2 == 0)
       return 0;
-    
-    return dot/len1/len2;
+
+    return acos(dot/len1/len2);
   }
 
-  float distanceTo(const Vector3 &other)
+  float distanceTo(const Vector3 &other) const
   {
     float _x = other.x - this->x;
     float _y = other.y - this->y;

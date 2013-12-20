@@ -21,6 +21,7 @@ class Camera3D
   //ワールド座標におけるカメラの位置と視野幅,高さ
   Vector3 position;
   Vector3 look;
+  Vector3 up; //カメラの上の方向 (基本は(0,1,0))
   float frustumNear, frustumFar;
   float frustumFOV;  //視野
   public:
@@ -31,10 +32,9 @@ class Camera3D
     ,frustumNear(_frustumNear)
     ,frustumFOV(_frustumFOV)
   {
-    
-    position.x = position.y = position.z = 0;
-    look.x = look.y = 0; look.z = 1;
-    
+    position.set(0,0,0);
+        look.set(0,0,1);
+          up.set(0,1,0);
     //最初は, 画面いっぱいに描画する設定
     glfwGetFramebufferSize(window, &viewportWidth, &viewportHeight);
     viewportX = viewportWidth/2;
@@ -49,6 +49,7 @@ class Camera3D
     ,position(_position)
     ,look(_look)
   {
+    up.set(0,1,0);
     //最初は, 画面いっぱいに描画する設定
     glfwGetFramebufferSize(window, &viewportWidth, &viewportHeight);
     viewportX = viewportWidth/2;
@@ -103,7 +104,7 @@ class Camera3D
     gluPerspective(frustumFOV, ratio, frustumNear, frustumFar);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(position.x, position.y, position.z,   look.x, look.y, look.z,   0.0, 1.0, 0.0);
+    gluLookAt(position.x, position.y, position.z,   look.x, look.y, look.z,   up.x, up.y, up.z);
   }
   
   Vector3 screenToWorld(const Vector2 &touch) const
@@ -117,31 +118,19 @@ class Camera3D
     
     float ratio = viewportWidth/(float)viewportHeight;
 
-    //near平面におけるタッチした場所
+    //near平面における画面のサイズ
     float nearHeight = 2*frustumNear*tan(0.5*frustumFOV*Vector3::TO_RADIANS);
     float nearWidth  = nearHeight*ratio;    
-  
-    auto cDirection = look - position;
-    cDirection.normalize();  //カメラの方向ベクトル
 
-    // カメラが, z方向を向いているのか -zを向いているのかで基準ベクトルが変わる
-    float dir_z = cDirection.z > 0 ? 1 : -1;
     
-    //右手系だから, +zの方を向くと右が負になる
-    //z方向により, x軸の向きも変わる(y軸はカメラは常に, 上を向いている設定なので変わらず
-    Vector3 baseDirection = Vector3(0, 0, dir_z);    
-    Vector3 nearVec = Vector3( -dir_z*screenX*nearWidth, screenY*nearHeight, dir_z*frustumNear);
-
-    //基準ベクトルとカメラの向いてる方向との角度を求める
-    auto rad = acos(cDirection.z*dir_z); //(基準ベクトルはz成分しか持たない, かつどちらも正規化されているので, z成分だけ見ればよい
-    auto A   = baseDirection.cross(cDirection).normalize();  //回転軸を計算
-    auto P         = nearVec.normalize();
-    auto Q         = A.cross(P);
-    auto projA_P   = A.dot(P)*A;
-    auto perpA_P   = P - A.dot(P)*A;
-    auto direction = perpA_P*cos(rad) + Q*sin(rad) + projA_P;
-
-    return direction.normalize();
+    auto cDirection = look - position;   //カメラの方向ベクトル(z軸に対応)    
+    cDirection.normalize();    
+    Vector3 axisY = up - cDirection.dot(up)*cDirection; //screenYに対応
+    axisY.normalize();
+    Vector3 axisX = cDirection.cross(axisY); //screenXに対応
+    axisX.normalize();
+    
+    return axisY*screenY*nearHeight + axisX*screenX*nearWidth + cDirection*frustumNear;
   }
 };
 #endif

@@ -19,19 +19,7 @@ CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: /Users/REN/git/GameFramework/include
 CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: /Users/REN/git/GameFramework/include/math/Vector2.h
 CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: /Users/REN/git/GameFramework/include/math/Vector3.h
 CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: GLFWGameTest.cpp
-
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/Audio.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/FileIO.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/Game.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/Input.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/Pool.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/Scene.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/glfw/GLFWAudio.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/glfw/GLFWFileIO.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/glfw/GLFWGame.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/glfw/GLFWInput.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/glfw/KeyboadHandler.h
-CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o: /Users/REN/git/GameFramework/include/glfw/MouseHandler.h
+CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: SimpleObjectFactory.h
+CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: TestScene1.h
+CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: TestScene2.h
 

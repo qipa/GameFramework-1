@@ -5,7 +5,6 @@ SET(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
   "/Users/REN/git/GameFramework/test/GLFWGameTest.cpp" "/Users/REN/git/GameFramework/test/CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o"
-  "/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp" "/Users/REN/git/GameFramework/test/CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/include/glfw/GLFWGame.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "Clang")
 

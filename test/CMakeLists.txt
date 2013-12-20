@@ -20,13 +20,14 @@ include_directories(${GLEW_INCLUDE_DIR})
 include_directories(${GLFW_INCLUDE_DIR})
 
 link_directories(~/glew-1.10.0/lib)
-
+link_directories(../bin)
 set(CMAKE_BUILD_TYPE release)
 
-add_executable(${Project} "../include/glfw/GLFWGame.cpp" GLFWGameTest.cpp)
-
+#add_executable(${Project} "../include/glfw/GLFWGame.cpp" GLFWGameTest.cpp)
+add_executable(${Project} GLFWGameTest.cpp)
 target_link_libraries(${Project} /System/Library/Frameworks/GLUT.framework ${OPENGL_LIBRARY} m)
 target_link_libraries(${Project} GLEW.a)
+target_link_libraries(${Project} libGLFWGame.a)
 target_link_libraries(${Project} ${GLFW_LIBRARY})
 
 
