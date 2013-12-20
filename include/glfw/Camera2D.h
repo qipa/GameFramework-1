@@ -70,11 +70,10 @@ Camera2D(GLFWwindow *_window, float _frustumWidth, float _frustumHeight)
     int windowWidth, windowHeight;
     glfwGetFramebufferSize(window, &windowWidth, &windowHeight);  //todo 毎回呼び出したら遅い?
 
-    //引数のときにコピーされているので, そのまま変更して返す
-    float _x = (             touch.x  - viewportX)/(float)viewportWidth*frustumWidth;
-    float _y = ((windowWidth-touch.y) - viewportY)/(float)viewportWidth*frustumHeight;
+    float _x = (             touch.x - viewportX)/(float)viewportWidth *frustumWidth  - position.x;
+    float _y = (windowHeight-touch.y - viewportY)/(float)viewportHeight*frustumHeight - position.y;
 
-    return Vector2(_x,_y);
+    return Vector2(_x, _y);
   }
 };
 

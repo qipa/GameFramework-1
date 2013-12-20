@@ -4,6 +4,9 @@
 #include "GL/freeglut.h"
 #include "GLFW/glfw3.h"
 #include "../math/Vector3.h"
+  #include <iostream>
+  using namespace std;
+
 
 class Camera3D
 {
@@ -52,6 +55,16 @@ class Camera3D
     viewportY = viewportHeight/2;
   }
 
+  Vector3 getPosition() const
+  {
+     return position;
+  }
+
+  Vector3 getLook() const
+  {
+    return look;
+  }
+  
   void setPosition(const Vector3 &_position)
   {
     position = _position;
@@ -61,6 +74,7 @@ class Camera3D
   {
     look = _look;
   }
+  
   //:画面の場所, サイズを変える  
   void setViewportWidth(const float &width)
   {
@@ -79,65 +93,54 @@ class Camera3D
   }
 
   void setViewportAndMatrices() const
-  {
+  {    
+    float ratio = viewportWidth/(float)viewportHeight;
+
     glViewport(viewportX-viewportWidth/2, viewportY-viewportHeight/2, viewportWidth, viewportHeight);  
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-
-    float ratio = viewportWidth / (float) viewportHeight;
     gluPerspective(frustumFOV, ratio, frustumNear, frustumFar);
-    
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(position.x, position.y, position.z, look.x, look.y, look.z, 0.0, 1.0, 0.0);
+    gluLookAt(position.x, position.y, position.z,   look.x, look.y, look.z,   0.0, 1.0, 0.0);
   }
   
   Vector3 screenToWorld(const Vector2 &touch) const
   {
     int width, height;           
     glfwGetFramebufferSize(window, &width, &height);
-  
-    float screenX = (       touch.x - viewportWidth )/(float)viewportWidth;
-    float screenY = (height-touch.y - viewportHeight)/(float)viewportHeight;
-    float ratio = viewportWidth/(float)viewportHeight;
+
+    //view内が-0.5~0.5の範囲になる様変換, 左下(-0.5, -0.5)
+    float screenX = (       touch.x - viewportX )/(float)viewportWidth;
+    float screenY = (height-touch.y - viewportY )/(float)viewportHeight;
     
-    float nearHeight = frustumNear*tan(M_PI*frustumFOV/180.0);
-    float nearWidth  = nearHeight*ratio;
-    float farHeight  = frustumFar*tan(M_PI*frustumFOV/180.0);
-    float farWidth   = farHeight*ratio;
+    float ratio = viewportWidth/(float)viewportHeight;
+
+    //near平面におけるタッチした場所
+    float nearHeight = 2*frustumNear*tan(0.5*frustumFOV*Vector3::TO_RADIANS);
+    float nearWidth  = nearHeight*ratio;    
   
     auto cDirection = look - position;
     cDirection.normalize();  //カメラの方向ベクトル
 
-    Vector3 baseDirection;
-    Vector3 nearVec, farVec;
+    // カメラが, z方向を向いているのか -zを向いているのかで基準ベクトルが変わる
+    float dir_z = cDirection.z > 0 ? 1 : -1;
     
-    if( cDirection.z < 0)
-    {
-      //カメラが-zの方面を向いてるときは, 基準ベクトルはv(0,0,-1)を使う
-      baseDirection = Vector3(0,0,-1);
-      nearVec = Vector3( screenX*nearWidth, screenY*nearHeight, -frustumNear);
-      farVec  = Vector3( screenX*farWidth , screenY*farHeight , -frustumFar);
-    } else
-    {
-      //カメラが+zの方面を向いてるときは, 基準ベクトルはv(0,0,+1)を使う
-      baseDirection = Vector3(0,0,+1);
-      //右手系だから, +zの方を向くと右が負になる
-      nearVec = Vector3( -screenX*nearWidth, screenY*nearHeight, frustumNear);
-      farVec  = Vector3( -screenX*farWidth , screenY*farHeight , frustumFar);
-    }
+    //右手系だから, +zの方を向くと右が負になる
+    //z方向により, x軸の向きも変わる(y軸はカメラは常に, 上を向いている設定なので変わらず
+    Vector3 baseDirection = Vector3(0, 0, dir_z);    
+    Vector3 nearVec = Vector3( -dir_z*screenX*nearWidth, screenY*nearHeight, dir_z*frustumNear);
 
-    //カメラが実際に向いている方向にあわせて回転させる
-    auto rad = baseDirection.angleTo(cDirection);    //回転角度  
-    auto A = baseDirection.cross(cDirection).normalize();        //回転軸を計算
-
-    auto P = (farVec-nearVec).normalize();
-    auto Q = A.cross(P);
-    auto projA_P = A.dot(P)*A;
-    auto perpA_P = P - A.dot(P)*A;
+    //基準ベクトルとカメラの向いてる方向との角度を求める
+    auto rad = acos(cDirection.z*dir_z); //(基準ベクトルはz成分しか持たない, かつどちらも正規化されているので, z成分だけ見ればよい
+    auto A   = baseDirection.cross(cDirection).normalize();  //回転軸を計算
+    auto P         = nearVec.normalize();
+    auto Q         = A.cross(P);
+    auto projA_P   = A.dot(P)*A;
+    auto perpA_P   = P - A.dot(P)*A;
     auto direction = perpA_P*cos(rad) + Q*sin(rad) + projA_P;
-  
+
     return direction.normalize();
   }
 };

@@ -33,6 +33,10 @@ public:
     keyEventPool = new Pool<KeyEvent>(new KeyEventFactory(), 30);
     pthread_mutex_init(&lock, NULL);
   }
+  ~KeyboadHandler()
+  {
+    delete keyEventPool;
+  }
   
   bool isKeyPressed(int keyCode)
   {

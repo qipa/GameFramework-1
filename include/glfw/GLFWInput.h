@@ -8,17 +8,24 @@
 
 class GLFWInput : public Input
 {
-GLFWwindow *window;
+  GLFWwindow *window;
   MouseHandler   *mouseHandler;
   KeyboadHandler *keyboadHandler;  
 public:
 GLFWInput(GLFWwindow *_window)
-:window(_window)
-{
-mouseHandler = new MouseHandler();
-keyboadHandler = new KeyboadHandler();
-}
-bool isKeyPressed(int keyCode)
+  :window(_window)
+  {
+    mouseHandler = new MouseHandler(window);
+    keyboadHandler = new KeyboadHandler();
+  }
+  
+  ~GLFWInput()
+  {
+    delete mouseHandler;
+    delete keyboadHandler;
+  }
+  
+  bool isKeyPressed(int keyCode)
   {
     return keyboadHandler->isKeyPressed(keyCode);
   }
@@ -30,18 +37,18 @@ bool isKeyPressed(int keyCode)
   
   MouseEvent* const getMouseEvent()
   {
-return mouseHandler->getMouseEvent();
+    return mouseHandler->getMouseEvent();
   }
 
-void getCursorPos(double &x, double &y)
-{
-glfwGetCursorPos(window, &x, &y);
-}
+  void getCursorPos(double &x, double &y)
+  {
+    glfwGetCursorPos(window, &x, &y);
+  }
   
   void onMouse(int button, int action, int mods)
   {
     mouseHandler->onEvent(button, action, mods);
-}
+  }
 
   void onKey(int keyCode, int action, int mods)
   {
