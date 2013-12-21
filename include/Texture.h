@@ -30,10 +30,11 @@ public:
 class TextureRegion
 {
 public:
+  const Texture * const texture;
   const float u1, v1;
   const float u2, v2;
   const float ratio; // height/width;
-  const Texture * const texture;
+
   
   TextureRegion(const Texture *_texture,const float x,const float y,const float width,const float height)
     :texture(_texture),
