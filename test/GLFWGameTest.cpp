@@ -7,80 +7,10 @@
 #include <iostream>
 #include <time.h>
 #include <sys/time.h>
-#include "TestScene1.h"
-#include "TestScene2.h"
+#include "TestListsScene.h"
 using namespace std;
 
-//循環してるクラス関係を1つのファイルで表す為に,updateをこっちに書いてる
-//TestScene1でのupdate 
-void TestScene1::update(float deltaTime)
-{
-  auto keyEvents = glfwGame->getInput()->getKeyEvents();
-  for (auto event : keyEvents)
-  { 
-    switch(event->keyCode)
-    {
-    case GLFW_KEY_ENTER:
-      if(event->action != GLFW_PRESS)  continue;
-      glfwGame->setScene(new TestScene2(glfwGame));
-      return;
-    case GLFW_KEY_LEFT:
-      theta -= 100*deltaTime;
-      if(theta<0) theta+=2*M_PI;
-      break;
-    case GLFW_KEY_RIGHT:
-      theta += 100*deltaTime;
-      if(theta>2*M_PI) theta-=2*M_PI;
-      break;
-    case GLFW_KEY_UP:
-      phi = min(phi+100*deltaTime, (float)M_PI/3.8f);
-      break;
-    case GLFW_KEY_DOWN:
-      phi = min(phi-100*deltaTime, 0.0f);
-      break;
-    case GLFW_KEY_T:
-      theta = 0;
-      break;
-    case GLFW_KEY_P:
-      phi = 0;
-      break;
-    }
-  }
-
-  float R = 100;
-  camera->setPosition(Vector3(R*cos(phi)*cos(theta), R*sin(phi), R*cos(phi)*sin(theta)));
-
-  auto mouse = glfwGame->getInput()->getMouseEvent();
-  auto touch = Vector2();
-
-  touch.set(mouse->x, mouse->y);
-  Vector3 direction = camera->screenToWorld(touch);
-  pos = camera->getPosition() + 100*direction;
-}
-
-//TestScene2でのupdate
-void TestScene2::update(float deltaTime)
-{
-  auto keyEvents = glfwGame->getInput()->getKeyEvents();
-  
-  for (auto event : keyEvents)
-  {
-    if(event->action != GLFW_PRESS || event->keyCode != GLFW_KEY_RIGHT)
-      continue;    
-    glfwGame->setScene(new TestScene1(glfwGame));   
-    return;
-  }
-
-  auto mouse = glfwGame->getInput()->getMouseEvent();
-  auto touch = Vector2();
-  if(mouse->action == GLFW_PRESS)
-  {
-    touch.set(mouse->x, mouse->y);   
-    pos = camera->screenToWorld(touch);
-  }
-}
-
-
+//mainで書き換えるのはこのクラスだけ
 class TestGame:public GLFWGame
 {
 public:
@@ -92,10 +22,13 @@ public:
 
   Scene* getStartScene()
   {
-    return new TestScene1(this);
+    return new TestListsScene(this);    
   }
 };
 
+//------------------------------------------------------------//
+//こっから下は基本固定
+//------------------------------------------------------------//
 static void error_callback(int error, const char* description)
 {
   fputs(description, stderr);
@@ -103,12 +36,11 @@ static void error_callback(int error, const char* description)
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {  
-  if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)  
+  if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
     glfwSetWindowShouldClose(window, GL_TRUE);
 
   //デバッグ用 F1で強制終了
-  if (key == GLFW_KEY_F1 && action == GLFW_PRESS)
-    exit(2);
+  if (key == GLFW_KEY_F1 && action == GLFW_PRESS)    exit(2);
 
   ((GLFWInput*)glfwGetWindowUserPointer(window))->onKey(key, action, mods);
 }
@@ -134,7 +66,7 @@ int main()
     exit(EXIT_FAILURE);
   }
 
-//  GLFWwindow* window = glfwCreateWindow(640, 480, "example", glfwGetPrimaryMonitor(), NULL);
+//  GLFWwindow* window = glfwCreateWindow(640, 480, "example", glfwGetPrimaryMonitor(), NULL);  //フルスクリーン
   GLFWwindow* window = glfwCreateWindow(640, 480, "example", NULL, NULL);
   if(!window)
   {
@@ -157,23 +89,7 @@ int main()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     game->loop();
-/*
-    int width, height;           
-    glfwGetFramebufferSize(window, &width, &height);
-
-    float ratio = width / (float) height;
-
-    glViewport(0, 0, width, height);  
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(45, ratio, 1, 1000);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    gluLookAt(0, -10, 0,    0, 0, 0,   0.0, 1.0, 0.0);
     
-    drawAxis();
-*/  
     glfwSwapBuffers(window); //絶対必要
     glfwPollEvents();        //絶対必要
   }

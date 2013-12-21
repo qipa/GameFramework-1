@@ -5,7 +5,7 @@ set(Project GameTest)
 #project name
 PROJECT(${Project})
 
-set(srcFile )
+set(srcFile GLFWGameTest.cpp TestListsScene.cpp Camera2DTestScene.cpp Camera3DTestScene.cpp SpriteBatcherTestScene.cpp SimpleObjectFactory.cpp)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ")
 
 # find packages
@@ -23,8 +23,8 @@ link_directories(~/glew-1.10.0/lib)
 link_directories(../bin)
 set(CMAKE_BUILD_TYPE release)
 
-#add_executable(${Project} "../include/glfw/GLFWGame.cpp" GLFWGameTest.cpp)
-add_executable(${Project} GLFWGameTest.cpp)
+#add_executable(${Project} )
+add_executable(${Project} ${srcFile})
 target_link_libraries(${Project} /System/Library/Frameworks/GLUT.framework ${OPENGL_LIBRARY} m)
 target_link_libraries(${Project} GLEW.a)
 target_link_libraries(${Project} libGLFWGame.a)
