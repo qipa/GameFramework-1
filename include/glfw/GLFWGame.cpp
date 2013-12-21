@@ -1,5 +1,4 @@
 #include "GLFW/glfw3.h"
-
 #include "GLFWGame.h"
 #include "GLFWInput.h"
 #include "GLFWFileIO.h"
@@ -12,7 +11,8 @@ GLFWGame::GLFWGame(GLFWwindow* _window)
   nextScene = NULL;
   elapsedTime[0] = glfwGetTime();
   elapsedTime[1] = glfwGetTime();    
-  //create member variables
+
+  
   input = new GLFWInput(window);
   fileIO = NULL;
   audio = NULL;  
