@@ -8,13 +8,14 @@
 
 class SpriteBatcherTestScene:public GLFWScene
 {
-  const float WIDTH;
+  const float WIDTH;  //2Dスクリーンの幅(ワールド座標系)
   const float HEIGHT;
 
   Camera2D *camera;
   SpriteBatcher *batcher;
   GLFWTexture *texture;
   TextureRegion *region;
+  
 public:
   SpriteBatcherTestScene(GLFWGame *glfwGame);
   

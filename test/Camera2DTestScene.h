@@ -6,8 +6,12 @@
 
 class Camera2DTestScene: public GLFWScene
 {
+  const float WIDTH;
+  const float HEIGHT;  
   Camera2D *camera;
-  Vector2 pos;
+  Camera2D *camera2;
+  Vector2 pos, pos2;
+  
 public:
   Camera2DTestScene(GLFWGame* glfwGame);
   

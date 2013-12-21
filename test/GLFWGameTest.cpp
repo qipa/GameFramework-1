@@ -8,6 +8,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include "TestListsScene.h"
+#include "ColorTest.h"
 using namespace std;
 
 //mainで書き換えるのはこのクラスだけ
@@ -22,7 +23,8 @@ public:
 
   Scene* getStartScene()
   {
-    return new TestListsScene(this);    
+//return new ColorTestScene(this);    
+return new TestListsScene(this);    
   }
 };
 

@@ -14,12 +14,13 @@ find_package(GLUT)
 find_package(GLEW)
 find_package(GLFW)
 
-include_directories(/usr/local/include)
+#include_directories(/usr/local/include)
 include_directories(~/freeglut-2.8.1/include)
 include_directories(${GLEW_INCLUDE_DIR})
 include_directories(${GLFW_INCLUDE_DIR})
 
-link_directories(~/glew-1.10.0/lib)
+#link_directories(~/glew-1.10.0/lib)
+#link_directories(${GLEW_LIBRARY})
 link_directories(../bin)
 set(CMAKE_BUILD_TYPE release)
 
