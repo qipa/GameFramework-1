@@ -101,9 +101,12 @@ class Camera3D
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+
+    //GLKMatrix4MakePerspective(frustumFOV, ratio, frustumNear, frustumFar);
     gluPerspective(frustumFOV, ratio, frustumNear, frustumFar);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    //GLKMatrix4MakeLookAt(position.x, position.y, position.z,   look.x, look.y, look.z,   up.x, up.y, up.z);
     gluLookAt(position.x, position.y, position.z,   look.x, look.y, look.z,   up.x, up.y, up.z);
   }
   

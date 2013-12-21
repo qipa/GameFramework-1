@@ -3,12 +3,11 @@
 
 #include "../Game.h"
 #include "../Scene.h"
-#include "GLFW/glfw3.h"
 
-class GLFWGraphics;
-class GLFWInput;
-class GLFWFileIO;
-class GLFWAudio;
+#include "GLFW/glfw3.h"
+#include "GLFWInput.h"
+#include "GLFWFileIO.h"
+#include "GLFWAudio.h"
 
 class GLFWGame: public Game
 {
