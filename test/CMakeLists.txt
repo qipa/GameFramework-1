@@ -34,7 +34,7 @@ find_package(GLFW)
 include_directories(${GLFW_INCLUDE_DIR})
 link_directories(${GLFW_LIBRARY_DIRS})
 
-link_directories(../bin)
+link_directories(../lib)
 
 set(CMAKE_BUILD_TYPE release)
 

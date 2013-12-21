@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/Users/REN/git/GameFramework/include/Audio.h
+string
+-
+
+/Users/REN/git/GameFramework/include/FileIO.h
+
 /Users/REN/git/GameFramework/include/Game.h
 
 /Users/REN/git/GameFramework/include/Input.h
@@ -21,6 +27,8 @@ stack
 -
 
 /Users/REN/git/GameFramework/include/Scene.h
+
+/Users/REN/git/GameFramework/include/Texture.h
 
 /Users/REN/git/GameFramework/include/glfw/Camera2D.h
 GLFW/glfw3.h
@@ -84,6 +92,14 @@ GL/gl.h
 GL/glu.h
 -
 
+/Users/REN/git/GameFramework/include/glfw/GLFWAudio.h
+../Audio.h
+/Users/REN/git/GameFramework/include/Audio.h
+
+/Users/REN/git/GameFramework/include/glfw/GLFWFileIO.h
+../FileIO.h
+/Users/REN/git/GameFramework/include/FileIO.h
+
 /Users/REN/git/GameFramework/include/glfw/GLFWGame.h
 ../Game.h
 /Users/REN/git/GameFramework/include/Game.h
@@ -91,6 +107,12 @@ GL/glu.h
 /Users/REN/git/GameFramework/include/Scene.h
 GLFW/glfw3.h
 /Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
+GLFWInput.h
+/Users/REN/git/GameFramework/include/glfw/GLFWInput.h
+GLFWFileIO.h
+/Users/REN/git/GameFramework/include/glfw/GLFWFileIO.h
+GLFWAudio.h
+/Users/REN/git/GameFramework/include/glfw/GLFWAudio.h
 
 /Users/REN/git/GameFramework/include/glfw/GLFWInput.h
 ../Input.h
@@ -103,6 +125,16 @@ MouseHandler.h
 /Users/REN/git/GameFramework/include/glfw/MouseHandler.h
 
 /Users/REN/git/GameFramework/include/glfw/GLFWScene.h
+../Scene.h
+/Users/REN/git/GameFramework/include/Scene.h
+GLFWGame.h
+/Users/REN/git/GameFramework/include/glfw/GLFWGame.h
+
+/Users/REN/git/GameFramework/include/glfw/GLFWTexture.h
+GLFW/glfw3.h
+/Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
+../Texture.h
+/Users/REN/git/GameFramework/include/Texture.h
 
 /Users/REN/git/GameFramework/include/glfw/KeyboadHandler.h
 ../Input.h
@@ -124,6 +156,10 @@ GLFW/glfw3.h
 pthread.h
 -
 
+/Users/REN/git/GameFramework/include/glfw/SpriteBatcher.h
+../Texture.h
+/Users/REN/git/GameFramework/include/Texture.h
+
 /Users/REN/git/GameFramework/include/math/Vector2.h
 cmath
 -
@@ -138,53 +174,59 @@ cmath
 Vector2.h
 /Users/REN/git/GameFramework/include/math/Vector2.h
 
-/Users/REN/git/GameFramework/test/GLFWGameTest.cpp
-../include/glfw/GL/freeglut.h
-/Users/REN/git/GameFramework/include/glfw/GL/freeglut.h
-../include/glfw/GLFWGame.h
-/Users/REN/git/GameFramework/include/glfw/GLFWGame.h
-../include/glfw/GLFWInput.h
-/Users/REN/git/GameFramework/include/glfw/GLFWInput.h
-algorithm
--
-cstdlib
--
-cstdio
--
-iostream
--
-time.h
--
-sys/time.h
--
-TestScene1.h
-/Users/REN/git/GameFramework/test/TestScene1.h
-TestScene2.h
-/Users/REN/git/GameFramework/test/TestScene2.h
-unistd.h
--
+/Users/REN/git/GameFramework/test/Camera2DTestScene.h
+../include/glfw/GLFWScene.h
+/Users/REN/git/GameFramework/include/glfw/GLFWScene.h
+../include/glfw/Camera2D.h
+/Users/REN/git/GameFramework/include/glfw/Camera2D.h
 
-/Users/REN/git/GameFramework/test/SimpleObjectFactory.h
-../include/glfw/GL/freeglut.h
-/Users/REN/git/GameFramework/include/glfw/GL/freeglut.h
-
-/Users/REN/git/GameFramework/test/TestScene1.h
+/Users/REN/git/GameFramework/test/Camera3DTestScene.h
 ../include/glfw/GLFWScene.h
 /Users/REN/git/GameFramework/include/glfw/GLFWScene.h
 ../include/glfw/GLFW/glfw3.h
 /Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
 ../include/glfw/Camera3D.h
 /Users/REN/git/GameFramework/include/glfw/Camera3D.h
+../include/glfw/Camera2D.h
+/Users/REN/git/GameFramework/include/glfw/Camera2D.h
 SimpleObjectFactory.h
 /Users/REN/git/GameFramework/test/SimpleObjectFactory.h
 
-/Users/REN/git/GameFramework/test/TestScene2.h
+/Users/REN/git/GameFramework/test/SimpleObjectFactory.h
+
+/Users/REN/git/GameFramework/test/SpriteBatcherTestScene.cpp
+SpriteBatcherTestScene.h
+/Users/REN/git/GameFramework/test/SpriteBatcherTestScene.h
+TestListsScene.h
+/Users/REN/git/GameFramework/test/TestListsScene.h
+
+/Users/REN/git/GameFramework/test/SpriteBatcherTestScene.h
 ../include/glfw/GLFWScene.h
 /Users/REN/git/GameFramework/include/glfw/GLFWScene.h
-../include/glfw/GLFW/glfw3.h
-/Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
-SimpleObjectFactory.h
-/Users/REN/git/GameFramework/test/SimpleObjectFactory.h
+../include/glfw/SpriteBatcher.h
+/Users/REN/git/GameFramework/include/glfw/SpriteBatcher.h
 ../include/glfw/Camera2D.h
 /Users/REN/git/GameFramework/include/glfw/Camera2D.h
+../include/glfw/GLFWTexture.h
+/Users/REN/git/GameFramework/include/glfw/GLFWTexture.h
+
+/Users/REN/git/GameFramework/test/TestListsScene.cpp
+../include/glfw/GL/freeglut.h
+/Users/REN/git/GameFramework/include/glfw/GL/freeglut.h
+TestListsScene.h
+/Users/REN/git/GameFramework/test/TestListsScene.h
+SpriteBatcherTestScene.h
+/Users/REN/git/GameFramework/test/SpriteBatcherTestScene.h
+Camera2DTestScene.h
+/Users/REN/git/GameFramework/test/Camera2DTestScene.h
+Camera3DTestScene.h
+/Users/REN/git/GameFramework/test/Camera3DTestScene.h
+string
+-
+
+/Users/REN/git/GameFramework/test/TestListsScene.h
+../include/glfw/GLFWScene.h
+/Users/REN/git/GameFramework/include/glfw/GLFWScene.h
+Camera2DTestScene.h
+/Users/REN/git/GameFramework/test/Camera2DTestScene.h
 

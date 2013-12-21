@@ -114,6 +114,54 @@ GameTest/fast:
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/build
 .PHONY : GameTest/fast
 
+Camera2DTestScene.o: Camera2DTestScene.cpp.o
+.PHONY : Camera2DTestScene.o
+
+# target to build an object file
+Camera2DTestScene.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.o
+.PHONY : Camera2DTestScene.cpp.o
+
+Camera2DTestScene.i: Camera2DTestScene.cpp.i
+.PHONY : Camera2DTestScene.i
+
+# target to preprocess a source file
+Camera2DTestScene.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.i
+.PHONY : Camera2DTestScene.cpp.i
+
+Camera2DTestScene.s: Camera2DTestScene.cpp.s
+.PHONY : Camera2DTestScene.s
+
+# target to generate assembly for a file
+Camera2DTestScene.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.s
+.PHONY : Camera2DTestScene.cpp.s
+
+Camera3DTestScene.o: Camera3DTestScene.cpp.o
+.PHONY : Camera3DTestScene.o
+
+# target to build an object file
+Camera3DTestScene.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Camera3DTestScene.cpp.o
+.PHONY : Camera3DTestScene.cpp.o
+
+Camera3DTestScene.i: Camera3DTestScene.cpp.i
+.PHONY : Camera3DTestScene.i
+
+# target to preprocess a source file
+Camera3DTestScene.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Camera3DTestScene.cpp.i
+.PHONY : Camera3DTestScene.cpp.i
+
+Camera3DTestScene.s: Camera3DTestScene.cpp.s
+.PHONY : Camera3DTestScene.s
+
+# target to generate assembly for a file
+Camera3DTestScene.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Camera3DTestScene.cpp.s
+.PHONY : Camera3DTestScene.cpp.s
+
 GLFWGameTest.o: GLFWGameTest.cpp.o
 .PHONY : GLFWGameTest.o
 
@@ -138,6 +186,78 @@ GLFWGameTest.cpp.s:
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/GLFWGameTest.cpp.s
 .PHONY : GLFWGameTest.cpp.s
 
+SimpleObjectFactory.o: SimpleObjectFactory.cpp.o
+.PHONY : SimpleObjectFactory.o
+
+# target to build an object file
+SimpleObjectFactory.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/SimpleObjectFactory.cpp.o
+.PHONY : SimpleObjectFactory.cpp.o
+
+SimpleObjectFactory.i: SimpleObjectFactory.cpp.i
+.PHONY : SimpleObjectFactory.i
+
+# target to preprocess a source file
+SimpleObjectFactory.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/SimpleObjectFactory.cpp.i
+.PHONY : SimpleObjectFactory.cpp.i
+
+SimpleObjectFactory.s: SimpleObjectFactory.cpp.s
+.PHONY : SimpleObjectFactory.s
+
+# target to generate assembly for a file
+SimpleObjectFactory.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/SimpleObjectFactory.cpp.s
+.PHONY : SimpleObjectFactory.cpp.s
+
+SpriteBatcherTestScene.o: SpriteBatcherTestScene.cpp.o
+.PHONY : SpriteBatcherTestScene.o
+
+# target to build an object file
+SpriteBatcherTestScene.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/SpriteBatcherTestScene.cpp.o
+.PHONY : SpriteBatcherTestScene.cpp.o
+
+SpriteBatcherTestScene.i: SpriteBatcherTestScene.cpp.i
+.PHONY : SpriteBatcherTestScene.i
+
+# target to preprocess a source file
+SpriteBatcherTestScene.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/SpriteBatcherTestScene.cpp.i
+.PHONY : SpriteBatcherTestScene.cpp.i
+
+SpriteBatcherTestScene.s: SpriteBatcherTestScene.cpp.s
+.PHONY : SpriteBatcherTestScene.s
+
+# target to generate assembly for a file
+SpriteBatcherTestScene.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/SpriteBatcherTestScene.cpp.s
+.PHONY : SpriteBatcherTestScene.cpp.s
+
+TestListsScene.o: TestListsScene.cpp.o
+.PHONY : TestListsScene.o
+
+# target to build an object file
+TestListsScene.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/TestListsScene.cpp.o
+.PHONY : TestListsScene.cpp.o
+
+TestListsScene.i: TestListsScene.cpp.i
+.PHONY : TestListsScene.i
+
+# target to preprocess a source file
+TestListsScene.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/TestListsScene.cpp.i
+.PHONY : TestListsScene.cpp.i
+
+TestListsScene.s: TestListsScene.cpp.s
+.PHONY : TestListsScene.s
+
+# target to generate assembly for a file
+TestListsScene.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/TestListsScene.cpp.s
+.PHONY : TestListsScene.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -147,9 +267,24 @@ help:
 	@echo "... GameTest"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... Camera2DTestScene.o"
+	@echo "... Camera2DTestScene.i"
+	@echo "... Camera2DTestScene.s"
+	@echo "... Camera3DTestScene.o"
+	@echo "... Camera3DTestScene.i"
+	@echo "... Camera3DTestScene.s"
 	@echo "... GLFWGameTest.o"
 	@echo "... GLFWGameTest.i"
 	@echo "... GLFWGameTest.s"
+	@echo "... SimpleObjectFactory.o"
+	@echo "... SimpleObjectFactory.i"
+	@echo "... SimpleObjectFactory.s"
+	@echo "... SpriteBatcherTestScene.o"
+	@echo "... SpriteBatcherTestScene.i"
+	@echo "... SpriteBatcherTestScene.s"
+	@echo "... TestListsScene.o"
+	@echo "... TestListsScene.i"
+	@echo "... TestListsScene.s"
 .PHONY : help
 
 
