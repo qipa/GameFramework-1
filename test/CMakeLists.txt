@@ -6,29 +6,40 @@ set(Project GameTest)
 PROJECT(${Project})
 
 set(srcFile GLFWGameTest.cpp TestListsScene.cpp Camera2DTestScene.cpp Camera3DTestScene.cpp SpriteBatcherTestScene.cpp SimpleObjectFactory.cpp)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ")
 
-# find packages
-find_package(OPENGL)
+#c++0x対応オプション
+set(CMAKE_CXX_FLAGS "-std=c++0x") 
+
+#about GLUT
 find_package(GLUT)
+include_directories(${GLUT_INCLUDE_DIRS})
+link_directories(${GLUT_LIBRARY_DIRS})
+if(NOT GLUT_FOUND)
+       message(ERROR " GLUT not found!")
+endif(NOT GLUT_FOUND)
+
+#aboud OpenGL
+find_package(OPENGL)
+include_directories(${OPENGL_INCLUDE_DIRS})
+link_directories(${OPENGL_LIBRARY_DIRS})
+if(NOT OPENGL_FOUND)
+    message(ERROR " OPENGL not found!")
+endif(NOT OPENGL_FOUND)
+
 find_package(GLEW)
-find_package(GLFW)
-
-#include_directories(/usr/local/include)
-include_directories(~/freeglut-2.8.1/include)
 include_directories(${GLEW_INCLUDE_DIR})
-include_directories(${GLFW_INCLUDE_DIR})
+link_directories(${GLEW_LIBRARY_DIRS})
 
-#link_directories(~/glew-1.10.0/lib)
-#link_directories(${GLEW_LIBRARY})
+find_package(GLFW)
+include_directories(${GLFW_INCLUDE_DIR})
+link_directories(${GLFW_LIBRARY_DIRS})
+
 link_directories(../bin)
+
 set(CMAKE_BUILD_TYPE release)
 
-#add_executable(${Project} )
 add_executable(${Project} ${srcFile})
-target_link_libraries(${Project} /System/Library/Frameworks/GLUT.framework ${OPENGL_LIBRARY} m)
-target_link_libraries(${Project} GLEW.a)
-target_link_libraries(${Project} libGLFWGame.a)
-target_link_libraries(${Project} ${GLFW_LIBRARY})
+target_link_libraries(${Project} ${OPENGL_LIBRARY} ${GLUT_LIBRARY} ${GLFW_LIBRARY} ${GLEW_LIBRARY} m)
 
+target_link_libraries(${Project} libGLFWGame.a) # my Framework
 
