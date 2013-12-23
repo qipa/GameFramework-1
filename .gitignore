@@ -1,0 +1,4 @@
+include/
+test/CMake*
+test/cmake*
+src/CMake*
