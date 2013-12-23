@@ -4,6 +4,7 @@
 #include <iostream>
 #include <regex>
 #include <string>
+#include <cstring>
 using namespace std;
 
 XfileModel::XfileModel(const char *fileName, float size)
