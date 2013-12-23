@@ -3,7 +3,7 @@
 
 #include "../Input.h"
 #include "../Pool.h"
-
+#include "../Lock.h"
 #include <vector>
 #include <pthread.h>
 
@@ -21,18 +21,19 @@ class KeyboadHandler
     }
   };
   
-  bool pressedKeys[128];
+  bool pressedKeys[350];
   Pool<KeyEvent> *keyEventPool;
   vector<KeyEvent*> keyEvents;
   vector<KeyEvent*> keyEventBuffer;
-  pthread_mutex_t lock;
-  
+  pthread_mutex_t lock;  
 public:
+  
   KeyboadHandler()
   {
     keyEventPool = new Pool<KeyEvent>(new KeyEventFactory(), 30);
     pthread_mutex_init(&lock, NULL);
   }
+  
   ~KeyboadHandler()
   {
     delete keyEventPool;
@@ -40,30 +41,31 @@ public:
   
   bool isKeyPressed(int keyCode)
   {
-    bool res;
-    
-    pthread_mutex_lock(&lock);    
-    res = pressedKeys[keyCode];    
-    pthread_mutex_unlock(&lock);
-    
-    return res;
+    Lock lck(&lock); //ロック
+    return pressedKeys[keyCode] == GLFW_PRESS;
   }
+
+  int getKeyState(int keyCode)
+  {
+    Lock lck(&lock);
+    return pressedKeys[keyCode];    
+  }
+  
 
   //ループの最初に一回だけ呼び出す
   const vector<KeyEvent*>& getKeyEvents()
   {
     //他の関数ではkeyEventPoolは当たらないので, ロックする必要なし
     for(auto event : keyEvents)
-      keyEventPool->freeObject(event);    
+      keyEventPool->freeObject(event);
+    
     keyEvents.clear();
 
-    pthread_mutex_lock(&lock);
+    Lock lck(&lock); //ロック デストラクタでアンロックする
+        
     keyEvents.insert(keyEvents.end(), keyEventBuffer.begin(), keyEventBuffer.end());
-    keyEventBuffer.clear();
+    keyEventBuffer.clear();    
 
-    pthread_mutex_unlock(&lock);
-
-    //keyEventsはこの関数でしか使ってないから, ロックの外に出ても大丈夫だと思う
     return keyEvents; 
   }
   
@@ -72,21 +74,15 @@ public:
     KeyEvent *event = keyEventPool->newObject();
     event->keyCode = keyCode;
     event->action = action;
+
+    Lock lck(&lock); //ロック
+
+    if(keyCode>=0 && keyCode<350)
+      pressedKeys[keyCode] = action;
     
-    pthread_mutex_lock(&lock);
-    
-    if(action == GLFW_PRESS && keyCode>=0 && keyCode < 128)
-    {
-      pressedKeys[keyCode] = true;
-    }
-    else if(action == GLFW_RELEASE && keyCode>=0 && keyCode < 128)
-    {
-      pressedKeys[keyCode] = false;
-    }
-    
-    keyEventBuffer.push_back(event);    
-    pthread_mutex_unlock(&lock);
-  } 
+    keyEventBuffer.push_back(event);
+  }
+  
 };
 
 #endif

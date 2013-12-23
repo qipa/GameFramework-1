@@ -124,7 +124,6 @@ class Camera3D
     //near平面における画面のサイズ
     float nearHeight = 2*frustumNear*tan(0.5*frustumFOV*Vector3::TO_RADIANS);
     float nearWidth  = nearHeight*ratio;    
-
     
     auto cDirection = look - position;   //カメラの方向ベクトル(z軸に対応)    
     cDirection.normalize();    

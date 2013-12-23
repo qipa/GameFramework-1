@@ -13,6 +13,7 @@ public:
   GLFWTexture(const char* fileName);  
   void load(const char* fileName);
   void bind()const;
+  void unbind()const;  
 };
 
 /*

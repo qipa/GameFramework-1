@@ -15,7 +15,7 @@ public:
 GLFWInput(GLFWwindow *_window)
   :window(_window)
   {
-    mouseHandler = new MouseHandler(window);
+    mouseHandler   = new MouseHandler(window);
     keyboadHandler = new KeyboadHandler();
   }
   
@@ -29,6 +29,11 @@ GLFWInput(GLFWwindow *_window)
   {
     return keyboadHandler->isKeyPressed(keyCode);
   }
+
+  int getKeyState(int keyCode)
+  {
+    return keyboadHandler->getKeyState(keyCode);
+  }  
   
   const vector<KeyEvent*>& getKeyEvents()
   {
