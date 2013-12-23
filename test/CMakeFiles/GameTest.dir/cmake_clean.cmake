@@ -1,4 +1,7 @@
 FILE(REMOVE_RECURSE
+  "CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o"
+  "CMakeFiles/GameTest.dir/Assets.cpp.o"
+  "CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o"
   "CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o"
   "CMakeFiles/GameTest.dir/TestListsScene.cpp.o"
   "CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.o"

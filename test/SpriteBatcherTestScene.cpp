@@ -1,5 +1,6 @@
 #include "SpriteBatcherTestScene.h"
 #include "TestListsScene.h"
+#include "Assets.h"
 
 SpriteBatcherTestScene::SpriteBatcherTestScene(GLFWGame *glfwGame)
   :GLFWScene(glfwGame),
@@ -8,8 +9,6 @@ SpriteBatcherTestScene::SpriteBatcherTestScene(GLFWGame *glfwGame)
 {    
   camera = new Camera2D(glfwGame->getWindow(), SpriteBatcherTestScene::WIDTH, SpriteBatcherTestScene::HEIGHT);
   batcher = new SpriteBatcher(100); //最大100
-  texture = new GLFWTexture("textureAtlas.png");
-  region = new TextureRegion(texture, 0, 0, 256, 256);
 }
 
 void SpriteBatcherTestScene::update(float deltaTime)
@@ -27,9 +26,18 @@ void SpriteBatcherTestScene::update(float deltaTime)
 void SpriteBatcherTestScene::render(float deltaTime)
 {   
   camera->setViewportAndMatrices();
-  batcher->beginBatch(texture);
-  batcher->drawSprite(0, 0, WIDTH, HEIGHT, region);
-  batcher->endBatch();
+  
+  batcher->beginBatch(Assets::textureAtlas);  //このテクスチャアトラスを使う宣言
+  float dx = WIDTH/10;
+  float dy = HEIGHT/10;  
+  for(int i=-5; i<5; i++)
+  {    
+    for(int j=-5; j<5; j++)
+    {
+      batcher->drawSprite((i+0.5)*dx, (j+0.5)*dy, dx, dy, Assets::virus);  //テクスチャの1部分(リージョン)を描画すると伝える
+    }
+  } 
+  batcher->endBatch();  //最後に一括してGPUに送る
 }
   
 

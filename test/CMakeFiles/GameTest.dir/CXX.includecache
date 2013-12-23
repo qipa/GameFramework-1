@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+../include/glfw/GLFWTexture.h
+GLFW/glfw3.h
+../include/glfw/GLFW/glfw3.h
+../Texture.h
+../include/Texture.h
+
 /Users/REN/git/GameFramework/include/Audio.h
 string
 -
@@ -22,6 +28,10 @@ vector
 GLFW/glfw3.h
 /Users/REN/git/GameFramework/include/GLFW/glfw3.h
 
+/Users/REN/git/GameFramework/include/Lock.h
+pthread.h
+-
+
 /Users/REN/git/GameFramework/include/Pool.h
 stack
 -
@@ -35,40 +45,6 @@ GLFW/glfw3.h
 /Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
 ../math/Vector2.h
 /Users/REN/git/GameFramework/include/math/Vector2.h
-
-/Users/REN/git/GameFramework/include/glfw/Camera3D.h
-GL/freeglut.h
-/Users/REN/git/GameFramework/include/glfw/GL/freeglut.h
-GLFW/glfw3.h
-/Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
-../math/Vector3.h
-/Users/REN/git/GameFramework/include/math/Vector3.h
-iostream
--
-
-/Users/REN/git/GameFramework/include/glfw/GL/freeglut.h
-freeglut_std.h
-/Users/REN/git/GameFramework/include/glfw/GL/freeglut_std.h
-freeglut_ext.h
-/Users/REN/git/GameFramework/include/glfw/GL/freeglut_ext.h
-
-/Users/REN/git/GameFramework/include/glfw/GL/freeglut_ext.h
-stdarg.h
--
-
-/Users/REN/git/GameFramework/include/glfw/GL/freeglut_std.h
-windows.h
--
-OpenGL/gl.h
--
-OpenGL/glu.h
--
-GL/gl.h
--
-GL/glu.h
--
-stdlib.h
--
 
 /Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
 stddef.h
@@ -141,6 +117,8 @@ GLFW/glfw3.h
 /Users/REN/git/GameFramework/include/Input.h
 ../Pool.h
 /Users/REN/git/GameFramework/include/Pool.h
+../Lock.h
+/Users/REN/git/GameFramework/include/Lock.h
 vector
 -
 pthread.h
@@ -151,6 +129,8 @@ pthread.h
 /Users/REN/git/GameFramework/include/Input.h
 ../Pool.h
 /Users/REN/git/GameFramework/include/Pool.h
+../Lock.h
+/Users/REN/git/GameFramework/include/Lock.h
 GLFW/glfw3.h
 /Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
 pthread.h
@@ -168,11 +148,9 @@ string
 iostream
 -
 
-/Users/REN/git/GameFramework/include/math/Vector3.h
-cmath
+/Users/REN/git/GameFramework/test/Assets.h
+GLFWTexture.h
 -
-Vector2.h
-/Users/REN/git/GameFramework/include/math/Vector2.h
 
 /Users/REN/git/GameFramework/test/Camera2DTestScene.h
 ../include/glfw/GLFWScene.h
@@ -180,25 +158,13 @@ Vector2.h
 ../include/glfw/Camera2D.h
 /Users/REN/git/GameFramework/include/glfw/Camera2D.h
 
-/Users/REN/git/GameFramework/test/Camera3DTestScene.h
-../include/glfw/GLFWScene.h
-/Users/REN/git/GameFramework/include/glfw/GLFWScene.h
-../include/glfw/GLFW/glfw3.h
-/Users/REN/git/GameFramework/include/glfw/GLFW/glfw3.h
-../include/glfw/Camera3D.h
-/Users/REN/git/GameFramework/include/glfw/Camera3D.h
-../include/glfw/Camera2D.h
-/Users/REN/git/GameFramework/include/glfw/Camera2D.h
-SimpleObjectFactory.h
-/Users/REN/git/GameFramework/test/SimpleObjectFactory.h
-
-/Users/REN/git/GameFramework/test/SimpleObjectFactory.h
-
 /Users/REN/git/GameFramework/test/SpriteBatcherTestScene.cpp
 SpriteBatcherTestScene.h
 /Users/REN/git/GameFramework/test/SpriteBatcherTestScene.h
 TestListsScene.h
 /Users/REN/git/GameFramework/test/TestListsScene.h
+Assets.h
+/Users/REN/git/GameFramework/test/Assets.h
 
 /Users/REN/git/GameFramework/test/SpriteBatcherTestScene.h
 ../include/glfw/GLFWScene.h
@@ -209,20 +175,6 @@ TestListsScene.h
 /Users/REN/git/GameFramework/include/glfw/Camera2D.h
 ../include/glfw/GLFWTexture.h
 /Users/REN/git/GameFramework/include/glfw/GLFWTexture.h
-
-/Users/REN/git/GameFramework/test/TestListsScene.cpp
-../include/glfw/GL/freeglut.h
-/Users/REN/git/GameFramework/include/glfw/GL/freeglut.h
-TestListsScene.h
-/Users/REN/git/GameFramework/test/TestListsScene.h
-SpriteBatcherTestScene.h
-/Users/REN/git/GameFramework/test/SpriteBatcherTestScene.h
-Camera2DTestScene.h
-/Users/REN/git/GameFramework/test/Camera2DTestScene.h
-Camera3DTestScene.h
-/Users/REN/git/GameFramework/test/Camera3DTestScene.h
-string
--
 
 /Users/REN/git/GameFramework/test/TestListsScene.h
 ../include/glfw/GLFWScene.h

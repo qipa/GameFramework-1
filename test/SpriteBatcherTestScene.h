@@ -13,8 +13,6 @@ class SpriteBatcherTestScene:public GLFWScene
 
   Camera2D *camera;
   SpriteBatcher *batcher;
-  GLFWTexture *texture;
-  TextureRegion *region;
   
 public:
   SpriteBatcherTestScene(GLFWGame *glfwGame);

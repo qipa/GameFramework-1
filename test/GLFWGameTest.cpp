@@ -8,7 +8,8 @@
 #include <time.h>
 #include <sys/time.h>
 #include "TestListsScene.h"
-#include "ColorTest.h"
+#include "XfileModelTestScene.h"
+#include "Assets.h"
 using namespace std;
 
 //mainで書き換えるのはこのクラスだけ
@@ -18,13 +19,13 @@ public:
   TestGame(GLFWwindow* window)
     :GLFWGame(window)
   {
+    Assets::load();    
     scene = getStartScene();
   }
 
   Scene* getStartScene()
   {
-//return new ColorTestScene(this);    
-return new TestListsScene(this);    
+    return new TestListsScene(this);    
   }
 };
 
@@ -50,12 +51,6 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 static void mouse_callback(GLFWwindow* window, int button, int action, int mods)
 {
   ((GLFWInput*)glfwGetWindowUserPointer(window))->onMouse(button, action, mods);
-}
-
-
-static void cursor_callback(GLFWwindow *window, double x, double y)
-{
-// ((GLFWInput*)glfwGetWindowUserPointer(window))->onCursor(x, y);
 }
 
 #include <unistd.h>

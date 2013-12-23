@@ -55,17 +55,15 @@ public:
   //ループの最初に一回だけ呼び出す
   const vector<KeyEvent*>& getKeyEvents()
   {
-    //他の関数ではkeyEventPoolは当たらないので, ロックする必要なし
+    //他の関数ではkeyEventPoolは見ないので, ロックする必要なし
     for(auto event : keyEvents)
       keyEventPool->freeObject(event);
     
     keyEvents.clear();
 
-    Lock lck(&lock); //ロック デストラクタでアンロックする
-        
+    Lock lck(&lock); //ロック デストラクタでアンロックする        
     keyEvents.insert(keyEvents.end(), keyEventBuffer.begin(), keyEventBuffer.end());
-    keyEventBuffer.clear();    
-
+    keyEventBuffer.clear();
     return keyEvents; 
   }
   

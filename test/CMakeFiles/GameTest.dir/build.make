@@ -52,9 +52,78 @@ include CMakeFiles/GameTest.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/GameTest.dir/flags.make
 
+CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o: CMakeFiles/GameTest.dir/flags.make
+CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o: /Users/REN/git/GameFramework/src/XfileModel.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o -c /Users/REN/git/GameFramework/src/XfileModel.cpp
+
+CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/REN/git/GameFramework/src/XfileModel.cpp > CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.i
+
+CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/REN/git/GameFramework/src/XfileModel.cpp -o CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.s
+
+CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o.requires:
+.PHONY : CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o.requires
+
+CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o.provides: CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o.provides.build
+.PHONY : CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o.provides
+
+CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o.provides.build: CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o
+
+CMakeFiles/GameTest.dir/Assets.cpp.o: CMakeFiles/GameTest.dir/flags.make
+CMakeFiles/GameTest.dir/Assets.cpp.o: Assets.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/Assets.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/Assets.cpp.o -c /Users/REN/git/GameFramework/test/Assets.cpp
+
+CMakeFiles/GameTest.dir/Assets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GameTest.dir/Assets.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/REN/git/GameFramework/test/Assets.cpp > CMakeFiles/GameTest.dir/Assets.cpp.i
+
+CMakeFiles/GameTest.dir/Assets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GameTest.dir/Assets.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/REN/git/GameFramework/test/Assets.cpp -o CMakeFiles/GameTest.dir/Assets.cpp.s
+
+CMakeFiles/GameTest.dir/Assets.cpp.o.requires:
+.PHONY : CMakeFiles/GameTest.dir/Assets.cpp.o.requires
+
+CMakeFiles/GameTest.dir/Assets.cpp.o.provides: CMakeFiles/GameTest.dir/Assets.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Assets.cpp.o.provides.build
+.PHONY : CMakeFiles/GameTest.dir/Assets.cpp.o.provides
+
+CMakeFiles/GameTest.dir/Assets.cpp.o.provides.build: CMakeFiles/GameTest.dir/Assets.cpp.o
+
+CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o: CMakeFiles/GameTest.dir/flags.make
+CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o: XfileModelTestScene.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o -c /Users/REN/git/GameFramework/test/XfileModelTestScene.cpp
+
+CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/REN/git/GameFramework/test/XfileModelTestScene.cpp > CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.i
+
+CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/REN/git/GameFramework/test/XfileModelTestScene.cpp -o CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.s
+
+CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o.requires:
+.PHONY : CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o.requires
+
+CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o.provides: CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o.provides.build
+.PHONY : CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o.provides
+
+CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o.provides.build: CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o
+
 CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: CMakeFiles/GameTest.dir/flags.make
 CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o: GLFWGameTest.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o -c /Users/REN/git/GameFramework/test/GLFWGameTest.cpp
 
@@ -77,7 +146,7 @@ CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o.provides.build: CMakeFiles/GameTest.d
 
 CMakeFiles/GameTest.dir/TestListsScene.cpp.o: CMakeFiles/GameTest.dir/flags.make
 CMakeFiles/GameTest.dir/TestListsScene.cpp.o: TestListsScene.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/TestListsScene.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/TestListsScene.cpp.o -c /Users/REN/git/GameFramework/test/TestListsScene.cpp
 
@@ -100,7 +169,7 @@ CMakeFiles/GameTest.dir/TestListsScene.cpp.o.provides.build: CMakeFiles/GameTest
 
 CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.o: CMakeFiles/GameTest.dir/flags.make
 CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.o: Camera2DTestScene.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.o -c /Users/REN/git/GameFramework/test/Camera2DTestScene.cpp
 
@@ -123,7 +192,7 @@ CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.o.provides.build: CMakeFiles/GameT
 
 CMakeFiles/GameTest.dir/Camera3DTestScene.cpp.o: CMakeFiles/GameTest.dir/flags.make
 CMakeFiles/GameTest.dir/Camera3DTestScene.cpp.o: Camera3DTestScene.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/Camera3DTestScene.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/Camera3DTestScene.cpp.o -c /Users/REN/git/GameFramework/test/Camera3DTestScene.cpp
 
@@ -146,7 +215,7 @@ CMakeFiles/GameTest.dir/Camera3DTestScene.cpp.o.provides.build: CMakeFiles/GameT
 
 CMakeFiles/GameTest.dir/SpriteBatcherTestScene.cpp.o: CMakeFiles/GameTest.dir/flags.make
 CMakeFiles/GameTest.dir/SpriteBatcherTestScene.cpp.o: SpriteBatcherTestScene.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/SpriteBatcherTestScene.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/SpriteBatcherTestScene.cpp.o -c /Users/REN/git/GameFramework/test/SpriteBatcherTestScene.cpp
 
@@ -169,7 +238,7 @@ CMakeFiles/GameTest.dir/SpriteBatcherTestScene.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/GameTest.dir/SimpleObjectFactory.cpp.o: CMakeFiles/GameTest.dir/flags.make
 CMakeFiles/GameTest.dir/SimpleObjectFactory.cpp.o: SimpleObjectFactory.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/REN/git/GameFramework/test/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameTest.dir/SimpleObjectFactory.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameTest.dir/SimpleObjectFactory.cpp.o -c /Users/REN/git/GameFramework/test/SimpleObjectFactory.cpp
 
@@ -192,6 +261,9 @@ CMakeFiles/GameTest.dir/SimpleObjectFactory.cpp.o.provides.build: CMakeFiles/Gam
 
 # Object files for target GameTest
 GameTest_OBJECTS = \
+"CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o" \
+"CMakeFiles/GameTest.dir/Assets.cpp.o" \
+"CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o" \
 "CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o" \
 "CMakeFiles/GameTest.dir/TestListsScene.cpp.o" \
 "CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.o" \
@@ -202,6 +274,9 @@ GameTest_OBJECTS = \
 # External object files for target GameTest
 GameTest_EXTERNAL_OBJECTS =
 
+GameTest: CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o
+GameTest: CMakeFiles/GameTest.dir/Assets.cpp.o
+GameTest: CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o
 GameTest: CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o
 GameTest: CMakeFiles/GameTest.dir/TestListsScene.cpp.o
 GameTest: CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.o
@@ -210,7 +285,6 @@ GameTest: CMakeFiles/GameTest.dir/SpriteBatcherTestScene.cpp.o
 GameTest: CMakeFiles/GameTest.dir/SimpleObjectFactory.cpp.o
 GameTest: CMakeFiles/GameTest.dir/build.make
 GameTest: /usr/local/Cellar/glfw3/3.0.3/lib/libglfw3.dylib
-GameTest: /usr/lib/libGLEW.dylib
 GameTest: CMakeFiles/GameTest.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable GameTest"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GameTest.dir/link.txt --verbose=$(VERBOSE)
@@ -219,6 +293,9 @@ GameTest: CMakeFiles/GameTest.dir/link.txt
 CMakeFiles/GameTest.dir/build: GameTest
 .PHONY : CMakeFiles/GameTest.dir/build
 
+CMakeFiles/GameTest.dir/requires: CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o.requires
+CMakeFiles/GameTest.dir/requires: CMakeFiles/GameTest.dir/Assets.cpp.o.requires
+CMakeFiles/GameTest.dir/requires: CMakeFiles/GameTest.dir/XfileModelTestScene.cpp.o.requires
 CMakeFiles/GameTest.dir/requires: CMakeFiles/GameTest.dir/GLFWGameTest.cpp.o.requires
 CMakeFiles/GameTest.dir/requires: CMakeFiles/GameTest.dir/TestListsScene.cpp.o.requires
 CMakeFiles/GameTest.dir/requires: CMakeFiles/GameTest.dir/Camera2DTestScene.cpp.o.requires

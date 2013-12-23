@@ -19,7 +19,7 @@ Camera3DTestScene::Camera3DTestScene(GLFWGame* glfwGame)
   glfwGetFramebufferSize(glfwGame->getWindow(), &width, &height);
   camera2->setViewportWidth(width/4);
   camera2->setViewportHeight(height/4);
-  camera2->setViewportPosition(-width/4*3, height/4*3);    
+  camera2->setViewportPosition(width/8, height/8*7);    
   
   theta = phi = 0;
   pos.set(0,0,0);
@@ -109,7 +109,7 @@ void Camera3DTestScene::render(float deltaTime)
   glPopAttrib();
 
   camera2->setViewportAndMatrices();
-  glRasterPos2f(0,0);
+  glRasterPos2f(-Camera3DTestScene::WIDTH/2,Camera3DTestScene::HEIGHT/3);
   string str = "push Enter to back Title";
   for(int i=0; i<str.size(); i++)
     glutBitmapCharacter(GLUT_BITMAP_9_BY_15, str[i]);  
