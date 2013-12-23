@@ -25,10 +25,10 @@ GLFWGame::~GLFWGame()
   delete input;
   /*
   delete fileIO;
-
   delete audio;
-  delete scene;
   */
+  scene->dispose();  
+  delete scene;
 };
   
 bool GLFWGame::setScene(Scene *scene)
@@ -42,7 +42,7 @@ bool GLFWGame::setScene(Scene *scene)
   //既に別の所から次のシーンを指定されていたら, 除外する
   if(this->nextScene != NULL)
   {
-    delete scene; //削除しておく todo 呼び出し側でするべき?
+    delete scene; //削除しておく
     return false;
   }
 
@@ -54,10 +54,13 @@ void GLFWGame::loop()
 {
   float deltaTime = elapsedTime[1] - elapsedTime[0];
   elapsedTime[0] = glfwGetTime();
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   scene->update(deltaTime);
   scene->render(deltaTime);
-  elapsedTime[1] = glfwGetTime();
   replaceScene();
+  glfwSwapBuffers(window); //絶対必要
+  glfwPollEvents();        //絶対必要
+  elapsedTime[1] = glfwGetTime();
 };
 
 void GLFWGame::replaceScene()

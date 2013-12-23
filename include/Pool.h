@@ -19,6 +19,9 @@ public:
 template<class T>
 class Pool
 {
+  const int maxSize;
+  stack<T*> freeObjects;
+  PoolObjectFactory<T> *const factory;  
 public:  
   Pool( PoolObjectFactory<T> *_factory, int _maxSize)
     :maxSize(_maxSize), factory(_factory)
@@ -61,10 +64,6 @@ public:
       delete object;    //再大容量を超えた場合はしょうがないので削除
   }
 
-private:
-  stack<T*> freeObjects;
-  PoolObjectFactory<T> *const factory;
-  const int maxSize;
 };
 
 #endif

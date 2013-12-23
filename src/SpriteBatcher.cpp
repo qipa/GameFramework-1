@@ -43,6 +43,8 @@ void SpriteBatcher::endBatch() const
   glDrawElements(GL_TRIANGLES, 6*numSprite, GL_UNSIGNED_INT, indicesBuffer);
 
   glBindTexture(GL_TEXTURE_2D, 0);
+  glDisable(GL_BLEND);
+  glDisable(GL_ALPHA_TEST); //アルファテスト開始  
 }
 
 

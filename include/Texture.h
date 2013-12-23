@@ -15,7 +15,7 @@ public:
   virtual ~Texture(){ }  
   virtual void load(const char*) = 0;
   virtual void bind() const = 0;
-  
+  virtual void unbind() const = 0;
   virtual unsigned getWidth() const
   {
     return width;
@@ -40,6 +40,12 @@ public:
     :texture(_texture),
     u1(        1.0*x/_texture->getWidth()), v1(          1.0*y/_texture->getHeight()),
     u2(1.0*(x+width)/_texture->getWidth()), v2( 1.0*(y+height)/_texture->getHeight()), ratio(height/width)
+  { }
+
+TextureRegion(const Texture *_texture)
+    :texture(_texture),
+    u1(0), v1(0),
+    u2(1), v2(1), ratio(_texture->getHeight()/(float)texture->getWidth())
   { }
 };
 

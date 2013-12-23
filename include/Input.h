@@ -36,6 +36,7 @@ class Input
 {
 public:
   virtual bool isKeyPressed(int keyCode) = 0;
+  virtual int getKeyState(int keyCode) = 0;
   virtual MouseEvent* const getMouseEvent() = 0;
   virtual const vector<KeyEvent*>& getKeyEvents() = 0;
 

@@ -20,7 +20,7 @@ void GLFWTexture::load(const char *fileName)
     
   if(error != 0)
   {
-    fprintf(stderr, "can not real file %s\n", fileName);
+    fprintf(stderr, "can not read file %s\n", fileName);
     exit(2);
   }
 
@@ -60,5 +60,11 @@ inline void GLFWTexture::bind() const
 {
   glBindTexture(GL_TEXTURE_2D, texId);
 }
+
+inline void GLFWTexture::unbind() const
+{
+  glBindTexture(GL_TEXTURE_2D, 0);  
+}
+
 
 
