@@ -1,6 +1,5 @@
-#include "../include/glfw/GL/freeglut.h"
-#include "../include/glfw/GLFWGame.h"
-#include "../include/glfw/GLFWInput.h"
+#include <glfw/GLFWGame.h>
+#include <glfw/GLFWInput.h>
 #include <algorithm>
 #include <cstdlib>
 #include <cstdio>
@@ -83,12 +82,12 @@ int main()
   
   while(!glfwWindowShouldClose(window))
   {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  loopで書いてる
     
     game->loop();
     
-    glfwSwapBuffers(window); //絶対必要
-    glfwPollEvents();        //絶対必要
+    //glfwSwapBuffers(window); //絶対必要 loopで書いてる
+    //glfwPollEvents();        //絶対必要 loopで書いてる
   }
   
   glfwDestroyWindow(window);

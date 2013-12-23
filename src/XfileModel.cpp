@@ -1,6 +1,5 @@
 #include <XfileModel.h>
 #include <GLFWTexture.h>
-#include <GL/freeglut.h>
 #include <iostream>
 #include <regex>
 #include <string>

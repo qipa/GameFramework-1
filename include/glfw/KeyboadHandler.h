@@ -6,7 +6,7 @@
 #include "../Lock.h"
 #include <vector>
 #include <pthread.h>
-
+#include <cstring>
 class KeyboadHandler
 {
   class KeyEventFactory:public PoolObjectFactory<KeyEvent>
@@ -31,6 +31,10 @@ public:
   KeyboadHandler()
   {
     keyEventPool = new Pool<KeyEvent>(new KeyEventFactory(), 30);
+    for(int i=0; i<350 ;i++)
+      pressedKeys[i] = false;
+    
+    
     pthread_mutex_init(&lock, NULL);
   }
   

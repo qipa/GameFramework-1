@@ -1,11 +1,9 @@
-
-#include "../include/glfw/GL/freeglut.h"
 #include "TestListsScene.h"
 #include "SpriteBatcherTestScene.h"
 #include "Camera2DTestScene.h"
 #include "Camera3DTestScene.h"
 #include "XfileModelTestScene.h"
-
+#include <glfw/GL/freeglut.h>
 #include <string>
 using namespace std;
 

@@ -1,7 +1,7 @@
 #ifndef X_FILE_MODEL_H_2013_12_22
 #define X_FILE_MODEL_H_2013_12_22
 #include <vector>
-#include <GL/glut.h>
+//#include <GL/glut.h>
 #include "GLFWTexture.h"
 #include <string>
 #include <map>

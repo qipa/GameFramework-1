@@ -1,7 +1,7 @@
 #ifndef SCENE_H_2013_11_19
 #define SCENE_H_2013_11_19
 
-class Game;
+class Game;  //前方宣言
 
 class Scene
 {
