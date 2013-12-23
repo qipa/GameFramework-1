@@ -2,3 +2,6 @@ include/
 test/CMake*
 test/cmake*
 src/CMake*
+src/Makefile
+src/include_src_dir
+
