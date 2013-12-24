@@ -9,19 +9,17 @@ class Font :public FilePath
 {
 protected:
   string fileName;
-float size;
+  float size;
   virtual void load(string name) = 0;
 public:
-  Font(string _fileName)
-    :fileName(_fileName), size(3.0){  }
-
-    ~Font() { }
-      
+Font(string _fileName)
+  :fileName(_fileName), size(3.0){  }
+  ~Font() { }      
   virtual void render(string str) const = 0;
-void setSize(float size)
-{
-this->size = size;
-}
+  void setSize(float size)
+  {
+    this->size = size;
+  }
 
 };
 #endif

@@ -11,9 +11,9 @@ class FilePath
   {
     static string path = "";
     return path;    
-  }  
+  }
 public:
-  FilePath() {   }    
+  FilePath()  {  }
   ~FilePath() {  }
   void setPath(string path)
   {

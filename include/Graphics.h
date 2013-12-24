@@ -11,6 +11,6 @@ public:
     RGB565,
   };
 
-  virtual Pixmap newPixmap(String fileName, PixmapFormat format)=0;
+  virtual Pixmap newPixmap(string fileName, PixmapFormat format)=0;
 };
 #endif

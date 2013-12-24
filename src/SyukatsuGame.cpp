@@ -19,8 +19,7 @@ SyukatsuGame::SyukatsuGame(GLFWwindow* _window)
   
 SyukatsuGame::~SyukatsuGame()
 {
-  //todo
-  
+  //todo  
   delete input;
   /*
   delete fileIO;

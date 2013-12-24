@@ -1,6 +1,7 @@
 #ifndef AUDIO_H_2013_12_17
 #define AUDIO_H_2013_12_17
 #include <string>
+using namespace std;
 
 class Audio
 {
