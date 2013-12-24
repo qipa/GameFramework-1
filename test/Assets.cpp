@@ -1,19 +1,23 @@
 #include "Assets.h"
-#include <GLFWTexture.h>
+#include <syukatsu/SyukatsuTexture.h>
+#include <syukatsu/SyukatsuFont.h>
 
-GLFWTexture   *Assets::textureAtlas = NULL;
+Texture   *Assets::textureAtlas = NULL;
 TextureRegion *Assets::virus = NULL;
+Font* Assets::mincho = NULL;
 
 void Assets::load()
 {
-  textureAtlas = new GLFWTexture("textureAtlas.png");
+  textureAtlas = new SyukatsuTexture("textureAtlas.png");
   int size = 64;  
-  virus = new TextureRegion(textureAtlas, 7*size, 10*size, 2*size, 2*size);  
+  virus = new TextureRegion(textureAtlas, 7*size, 10*size, 2*size, 2*size);
+  mincho = new SyukatsuFont("UtsukushiMincho.ttf");
 }
 
 void Assets::dispose()
 {
   delete textureAtlas;
-  delete virus;  
+  delete virus;
+  delete mincho;  
 }
 

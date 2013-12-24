@@ -1,18 +1,18 @@
 #include <XfileModel.h>
-#include <GLFWTexture.h>
+#include <SyukatsuTexture.h>
 #include <iostream>
 #include <regex>
 #include <string>
 #include <cstring>
 using namespace std;
 
-XfileModel::XfileModel(const char *fileName, float size)
+XfileModel::XfileModel(const string fileName, float size)
   :Model(fileName)
 {
   load(fileName, size);
 }
 
-void XfileModel::load(const char *fileName, float size)
+void XfileModel::load(const string fileName, float size)
 {
   Vector3f vec3d;
   Vector4f vec4d;
@@ -33,9 +33,11 @@ void XfileModel::load(const char *fileName, float size)
   //Xファイルを開いて内容を読み込む
   FILE* fp=NULL;
 
-  if( (fp = fopen(fileName, "rt")) == NULL)
+  string name = getPath() + fileName;
+  
+  if( (fp = fopen(name.c_str(), "rt")) == NULL)
   {
-    cout << "can not open file" << endl;
+    fprintf(stderr, "can not open file %s\n", name.c_str());
     return;
   }
 
@@ -90,7 +92,7 @@ void XfileModel::load(const char *fileName, float size)
         texName = res.str().substr(1, res.str().size()-2);                
         
         if(textureList.find(texName) == textureList.end())
-          textureList[texName] = new GLFWTexture(texName.c_str());
+          textureList[texName] = new SyukatsuTexture(texName.c_str());
 
         mtl.texture = textureList[texName];
       }

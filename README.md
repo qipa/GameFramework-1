@@ -1,5 +1,13 @@
 GameFramework
 =============
+
+必要なライブラリ
+freeglut ?
+glfw3
+glew たぶん必要ない
+freetype2
+FTGL
+
 includeフォルダ:
 ヘッダファイル置き場
 include直下には, 基本的なインターフェースだけおいてある.

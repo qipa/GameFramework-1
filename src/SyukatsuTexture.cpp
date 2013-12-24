@@ -1,26 +1,29 @@
 #include <GLFW/glfw3.h>
-#include <GLFWTexture.h>
+#include <SyukatsuTexture.h>
 #include <lodepng.h>
 #include <vector>
 #include <cstdlib>
 using namespace std;
 
-GLFWTexture::GLFWTexture(const char *fileName)
+SyukatsuTexture::SyukatsuTexture(const string fileName)
   :Texture(fileName)
 {
   load(fileName);
 }
 
-void GLFWTexture::load(const char *fileName)
+void SyukatsuTexture::load(const string fileName)
 {
   vector<unsigned char> raw_image;
   unsigned int width, height;
-    
-  unsigned int error = lodepng::decode(raw_image, width, height, fileName);    
-    
+
+  string name = getPath()+fileName;  
+  unsigned int error = lodepng::decode(raw_image, width, height, name.c_str());   
+
+  printf("%s\n", name.c_str());  
+  
   if(error != 0)
   {
-    fprintf(stderr, "can not read file %s\n", fileName);
+    fprintf(stderr, "can not read file %s\n", name.c_str());
     exit(2);
   }
 
@@ -56,15 +59,12 @@ void GLFWTexture::load(const char *fileName)
   glBindTexture(GL_TEXTURE_2D, 0);   
 }
 
-inline void GLFWTexture::bind() const
+inline void SyukatsuTexture::bind() const
 {
   glBindTexture(GL_TEXTURE_2D, texId);
 }
 
-inline void GLFWTexture::unbind() const
+inline void SyukatsuTexture::unbind() const
 {
   glBindTexture(GL_TEXTURE_2D, 0);  
 }
-
-
-

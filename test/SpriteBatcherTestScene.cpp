@@ -2,31 +2,30 @@
 #include "TestListsScene.h"
 #include "Assets.h"
 
-SpriteBatcherTestScene::SpriteBatcherTestScene(GLFWGame *glfwGame)
-  :GLFWScene(glfwGame),
+SpriteBatcherTestScene::SpriteBatcherTestScene(SyukatsuGame *game)
+  :SyukatsuScene(game),
    WIDTH(4.8),
    HEIGHT(3.2)
-{    
-  camera = new Camera2D(glfwGame->getWindow(), SpriteBatcherTestScene::WIDTH, SpriteBatcherTestScene::HEIGHT);
+{
+  camera = new Camera2D(game->getWindow(), SpriteBatcherTestScene::WIDTH, SpriteBatcherTestScene::HEIGHT);
   batcher = new SpriteBatcher(100); //最大100
 }
 
 void SpriteBatcherTestScene::update(float deltaTime)
 {
-  auto keyEvents = glfwGame->getInput()->getKeyEvents();
+  auto keyEvents = game->getInput()->getKeyEvents();
   for(auto event : keyEvents)
   {
     if(event->action != GLFW_PRESS || event->keyCode != GLFW_KEY_ENTER)
       continue;
-    glfwGame->setScene(new TestListsScene(glfwGame));
+    syukatsuGame->setScene(new TestListsScene(syukatsuGame));
     return;    
   }  
 }
 
 void SpriteBatcherTestScene::render(float deltaTime)
 {   
-  camera->setViewportAndMatrices();
-  
+  camera->setViewportAndMatrices();  
   batcher->beginBatch(Assets::textureAtlas);  //このテクスチャアトラスを使う宣言
   float dx = WIDTH/10;
   float dy = HEIGHT/10;  

@@ -1,5 +1,5 @@
-#include <glfw/GLFWGame.h>
-#include <glfw/GLFWInput.h>
+#include <syukatsu/SyukatsuGame.h>
+#include <syukatsu/SyukatsuInput.h>
 #include <algorithm>
 #include <cstdlib>
 #include <cstdio>
@@ -7,16 +7,15 @@
 #include <time.h>
 #include <sys/time.h>
 #include "TestListsScene.h"
-#include "XfileModelTestScene.h"
 #include "Assets.h"
 using namespace std;
 
 //mainで書き換えるのはこのクラスだけ
-class TestGame:public GLFWGame
+class TestGame:public SyukatsuGame
 {
 public:
   TestGame(GLFWwindow* window)
-    :GLFWGame(window)
+    :SyukatsuGame(window)
   {
     Assets::load();    
     scene = getStartScene();
@@ -44,12 +43,12 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
   //デバッグ用 F1で強制終了
   if (key == GLFW_KEY_F1 && action == GLFW_PRESS)    exit(2);
 
-  ((GLFWInput*)glfwGetWindowUserPointer(window))->onKey(key, action, mods);
+  ((SyukatsuInput*)glfwGetWindowUserPointer(window))->onKey(key, action, mods);
 }
 
 static void mouse_callback(GLFWwindow* window, int button, int action, int mods)
 {
-  ((GLFWInput*)glfwGetWindowUserPointer(window))->onMouse(button, action, mods);
+  ((SyukatsuInput*)glfwGetWindowUserPointer(window))->onMouse(button, action, mods);
 }
 
 #include <unistd.h>
@@ -62,8 +61,9 @@ int main()
     exit(EXIT_FAILURE);
   }
 
-//  GLFWwindow* window = glfwCreateWindow(640, 480, "example", glfwGetPrimaryMonitor(), NULL);  //フルスクリーン
+//GLFWwindow* window = glfwCreateWindow(640, 480, "example", glfwGetPrimaryMonitor(), NULL);  //フルスクリーン
   GLFWwindow* window = glfwCreateWindow(640, 480, "example", NULL, NULL);
+  
   if(!window)
   {
     glfwTerminate();
@@ -82,10 +82,8 @@ int main()
   
   while(!glfwWindowShouldClose(window))
   {
-    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  loopで書いてる
-    
-    game->loop();
-    
+    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  loopで書いてる    
+    game->loop();    
     //glfwSwapBuffers(window); //絶対必要 loopで書いてる
     //glfwPollEvents();        //絶対必要 loopで書いてる
   }

@@ -1,21 +1,30 @@
 #ifndef MODEL_H_2013_12_22
 #define MODEL_H_2013_12_22
 
+#include "FilePath.h"
 #include <string>
 using namespace std;
 
-class Model
+class Model: public FilePath
 {
-protected:
-  string fileName;  
+protected:  
+  const string fileName;  
   Texture *texture;  
 public:
-  Model(const char *_fileName)
+  Model(const string _fileName)
     :fileName(_fileName){  }
-  ~Model(){  }  
+  ~Model(){  }
+  
   virtual void render() const = 0;
-  virtual void load(const char *, float) = 0;
-  virtual void dispose() = 0;  
+  virtual void load(const string, float) = 0;
+  virtual void dispose() = 0;
+private:
+  string& Path()
+  {
+    static string path = "";
+    return path;    
+  }
+  
 };
 
 #endif

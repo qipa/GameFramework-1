@@ -1,13 +1,13 @@
 #ifndef TEST_SCENE1_H_2013_12_20
 #define TEST_SCENE1_H_2013_12_20
 
-#include "../include/glfw/GLFWScene.h"
-#include "../include/glfw/GLFW/glfw3.h"
-#include "../include/glfw/Camera3D.h"
-#include "../include/glfw/Camera2D.h"
+#include <syukatsu/GLFW/glfw3.h>
+#include <syukatsu/SyukatsuScene.h>
+#include <syukatsu/Camera3D.h>
+#include <syukatsu/Camera2D.h>
 #include "SimpleObjectFactory.h"
 
-class Camera3DTestScene :public GLFWScene
+class Camera3DTestScene :public SyukatsuScene
 {
   static constexpr float WIDTH  = 4.8;
   static constexpr float HEIGHT = 3.2;
@@ -19,16 +19,11 @@ class Camera3DTestScene :public GLFWScene
   const int cellNum;
   float theta, phi;
 public:
-  Camera3DTestScene(GLFWGame* glfwGame);  
-
-  ~Camera3DTestScene(){}
-  
-  void update(float deltaTime);   
-  
-  void render(float deltaTime);  
-  
-  void reshape(int width, int height) {  }
-  
+  Camera3DTestScene(SyukatsuGame* game);  
+  ~Camera3DTestScene(){}  
+  void update(float deltaTime);     
+  void render(float deltaTime);    
+  void reshape(int width, int height) {  }  
   void dispose() {  }
 };
 

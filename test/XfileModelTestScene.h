@@ -1,15 +1,15 @@
 #ifndef XFILE_MODEL_TEST_SCENE_H_2013_12_22
 #define XFILE_MODEL_TEST_SCENE_H_2013_12_22
 
-#include "../include/glfw/GLFWScene.h"
-#include "../include/glfw/Camera3D.h"
-#include "../include/glfw/Camera2D.h"
+#include <syukatsu/SyukatsuScene.h>
+#include <syukatsu/Camera3D.h>
+#include <syukatsu/Camera2D.h>
+#include <syukatsu/XfileModel.h>
+#include <syukatsu/SpriteBatcher.h>
 
-#include "../include/glfw/XfileModel.h"
-#include "../include/glfw/SpriteBatcher.h"
 #include "SimpleObjectFactory.h"
 
-class XfileModelTestScene:public GLFWScene
+class XfileModelTestScene:public SyukatsuScene
 {
   Camera3D *camera;
   Camera2D *camera2;
@@ -20,7 +20,7 @@ class XfileModelTestScene:public GLFWScene
 
   float theta, phi;  
 public:
-  XfileModelTestScene(GLFWGame *glfwGame);
+  XfileModelTestScene(SyukatsuGame *game);
   ~XfileModelTestScene() {   }    
   void update(float deltaTime);
   void render(float deltaTime);

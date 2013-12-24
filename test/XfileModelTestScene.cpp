@@ -1,24 +1,24 @@
 #include "XfileModelTestScene.h"
 #include "TestListsScene.h"
 
-XfileModelTestScene::XfileModelTestScene(GLFWGame *glfwGame)
-  :GLFWScene(glfwGame)
+XfileModelTestScene::XfileModelTestScene(SyukatsuGame *game)
+  :SyukatsuScene(game)
 {
-  camera = new Camera3D(glfwGame->getWindow(), 1, 1000, 45);
+  camera = new Camera3D(syukatsuGame->getWindow(), 1, 1000, 45);
   camera->setPosition( Vector3(500, 500, 500) );
   camera->setLook(Vector3(0,0,0));
 
-  camera2 = new Camera2D(glfwGame->getWindow(), 4, 4);
+  camera2 = new Camera2D(syukatsuGame->getWindow(), 4, 4);
 
   int width, height;
-  glfwGetFramebufferSize(glfwGame->getWindow(), &width, &height);  
+  glfwGetFramebufferSize(syukatsuGame->getWindow(), &width, &height);  
   camera2->setViewportWidth(width/4);
   camera2->setViewportHeight(height/4);
   camera2->setViewportPosition(width/8, height/8);
   batcher = new SpriteBatcher(10);
 
   model = new XfileModel("sampleModel.x", 1);
-  texture = new GLFWTexture("mone._tex.png");
+  texture = new SyukatsuTexture("mone._tex.png");
   region = new TextureRegion(texture);
 
   theta = phi = 0;  
@@ -26,14 +26,14 @@ XfileModelTestScene::XfileModelTestScene(GLFWGame *glfwGame)
 
 void XfileModelTestScene::update(float deltaTime)
 {
-  auto keyEvents = glfwGame->getInput()->getKeyEvents();
+  auto keyEvents = syukatsuGame->getInput()->getKeyEvents();
   for (auto event : keyEvents)
   { 
     switch(event->keyCode)
     {
     case GLFW_KEY_ENTER:
       if(event->action != GLFW_PRESS)  continue;
-      glfwGame->setScene(new TestListsScene(glfwGame));
+      syukatsuGame->setScene(new TestListsScene(syukatsuGame));
       return;
     case GLFW_KEY_LEFT:
       theta -= 100*deltaTime;

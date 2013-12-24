@@ -1,5 +1,5 @@
 #include <Camera3D.h>
-
+#include <GL/freeglut.h>
 Camera3D::Camera3D(GLFWwindow *_window, float _frustumNear, float _frustumFar, float _frustumFOVY)
   :window(_window)
   ,position(Vector3(0,0,0))
@@ -30,16 +30,21 @@ Camera3D::Camera3D(GLFWwindow *_window, Vector3 _position, Vector3 _look, float 
 
 void Camera3D::setViewportAndMatrices() const
 {    
-  glViewport(viewportX-viewportWidth/2, viewportY-viewportHeight/2, viewportWidth, viewportHeight);  
-
+  glViewport(viewportX-viewportWidth/2, viewportY-viewportHeight/2, viewportWidth, viewportHeight);
+  double ratio = viewportWidth/(float)viewportHeight;  
   glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();  
-  perspective();    
+  glLoadIdentity();
+  gluPerspective(frustumFOVY, ratio, frustumNear, frustumFar);  
+  //perspective();    
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  lookAt();
+  gluLookAt(position.x, position.y, position.z, look.x, look.y, look.z, up.x, up.y, up.z);  
+  //lookAt();
 }
-  
+
+#include <iostream>
+using namespace std;
+
 Vector3 Camera3D::screenToWorld(const Vector2 &touch) const
 {
   int width, height;           
@@ -53,20 +58,23 @@ Vector3 Camera3D::screenToWorld(const Vector2 &touch) const
 
   //near平面における画面のサイズ
   float nearHeight = 2*frustumNear*tan(0.5*frustumFOVY*Vector3::TO_RADIANS);
-  float nearWidth  = nearHeight*ratio;    
-    
-  auto axisZ = look - position;                  //カメラを中心としたZ軸
-  axisZ.normalize();
+  float nearWidth  = nearHeight*ratio;
+
+  auto axisZ = look - position;           //カメラを中心としたZ軸
+  axisZ.normalize(); 
   Vector3 axisY = up - axisZ.dot(up)*axisZ; //screenYに対応 Y軸
   axisY.normalize();
   Vector3 axisX = axisZ.cross(axisY);       //screenXに対応 X軸
-  axisX.normalize();
-
-  return axisY*screenY*nearHeight + axisX*screenX*nearWidth + axisZ*frustumNear;
+  axisX.normalize();  
+  Vector3 direction = axisY*screenY*nearHeight + axisX*screenX*nearWidth + axisZ*frustumNear;  
+  direction.normalize();
+  
+  return direction;  
 }
 
 void Camera3D::perspective() const
 {
+  //todo lookAtかどっちかに間違いがある
   double ratio = viewportWidth/(float)viewportHeight;  
   double xmin, xmax, ymin, ymax;
   ymax = frustumNear * tan(frustumFOVY * M_PI / 360.0);
@@ -78,6 +86,7 @@ void Camera3D::perspective() const
   
 void Camera3D::lookAt() const
 {
+  //todo perspectiveかどっちかに間違いがある
   Vector3 forward = look - position;
   forward.normalize();
     
@@ -86,7 +95,8 @@ void Camera3D::lookAt() const
 
   Vector3 side = forward.cross(up);
   up = side.cross(forward);
-
+  up.normalize();  
+  
   GLfloat m[4][4] = {{1, 0, 0, 0},
                      {0, 1, 0, 0},
                      {0, 0, 1, 0},

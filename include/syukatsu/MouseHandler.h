@@ -10,11 +10,11 @@
 
 class MouseHandler
 {
-GLFWwindow *window;
+  GLFWwindow *window;
   MouseEvent *mouseEvent, *mouseEventBuffer;
   pthread_mutex_t lock;
 public:
-  MouseHandler(GLFWwindow *_window)
+MouseHandler(GLFWwindow *_window)
   :window(_window)
   {
     pthread_mutex_init(&lock, NULL);
@@ -24,13 +24,13 @@ public:
 
   ~MouseHandler()
   {
-Lock lck(&lock);
+    Lock lck(&lock);
     delete mouseEvent;
   }
   
   MouseEvent* const getMouseEvent()
   {
-Lock lck(&lock);
+    Lock lck(&lock);
 
     mouseEvent->button = mouseEventBuffer->button;
     mouseEvent->action = mouseEventBuffer->action;   
@@ -41,7 +41,7 @@ Lock lck(&lock);
 
   void onEvent(int button, int action, int mods)
   {
-Lock lck(&lock);
+    Lock lck(&lock);
     mouseEventBuffer->button = button;
     mouseEventBuffer->action = action;
   }

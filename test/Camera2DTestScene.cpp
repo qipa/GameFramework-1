@@ -1,18 +1,18 @@
 #include "Camera2DTestScene.h"
 #include "TestListsScene.h"
-#include "../include/glfw/GLFW/glfw3.h"
 #include "SimpleObjectFactory.h"
+#include <syukatsu/GLFW/glfw3.h>
 
-Camera2DTestScene::Camera2DTestScene(GLFWGame* glfwGame)
-  :GLFWScene(glfwGame)
+Camera2DTestScene::Camera2DTestScene(SyukatsuGame* game)
+  :SyukatsuScene(game)
   ,WIDTH(4.8)
   ,HEIGHT(3.2)
 {
-  camera  = new Camera2D(glfwGame->getWindow(), WIDTH, HEIGHT);    //ワールド座標におけるカメラの視野の横幅を2.0, 縦幅を2.0と設定
-  camera2 = new Camera2D(glfwGame->getWindow(), WIDTH, HEIGHT);    //ワールド座標におけるカメラの視野の横幅を2.0, 縦幅を2.0と設定
+  camera  = new Camera2D(syukatsuGame->getWindow(), WIDTH, HEIGHT);    //ワールド座標におけるカメラの視野の横幅を2.0, 縦幅を2.0と設定
+  camera2 = new Camera2D(syukatsuGame->getWindow(), WIDTH, HEIGHT);    //ワールド座標におけるカメラの視野の横幅を2.0, 縦幅を2.0と設定
   
   int width, height;
-  glfwGetFramebufferSize(glfwGame->getWindow(), &width, &height); //windowサイズを取得
+  glfwGetFramebufferSize(syukatsuGame->getWindow(), &width, &height); //windowサイズを取得
 
   //左半分
   camera->setViewportWidth(width/2);
@@ -61,17 +61,17 @@ void Camera2DTestScene::render(float deltaTime)
 
 void Camera2DTestScene::update(float deltaTime)
 {
-  auto keyEvents = glfwGame->getInput()->getKeyEvents();
+  auto keyEvents = game->getInput()->getKeyEvents();
   
   for (auto event : keyEvents)
   {
     if(event->action != GLFW_PRESS || event->keyCode != GLFW_KEY_ENTER)
       continue;    
-    glfwGame->setScene(new TestListsScene(glfwGame));   
+    syukatsuGame->setScene(new TestListsScene(syukatsuGame));   
     return;
   }
 
-  auto mouse = glfwGame->getInput()->getMouseEvent();
+  auto mouse = syukatsuGame->getInput()->getMouseEvent();
   auto touch = Vector2();
   touch.set(mouse->x, mouse->y);
   pos = camera->screenToWorld(touch);  //camera1から見た,マウスの場所

@@ -282,30 +282,6 @@ TestListsScene.cpp.s:
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/TestListsScene.cpp.s
 .PHONY : TestListsScene.cpp.s
 
-Users/REN/git/GameFramework/src/XfileModel.o: Users/REN/git/GameFramework/src/XfileModel.cpp.o
-.PHONY : Users/REN/git/GameFramework/src/XfileModel.o
-
-# target to build an object file
-Users/REN/git/GameFramework/src/XfileModel.cpp.o:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.o
-.PHONY : Users/REN/git/GameFramework/src/XfileModel.cpp.o
-
-Users/REN/git/GameFramework/src/XfileModel.i: Users/REN/git/GameFramework/src/XfileModel.cpp.i
-.PHONY : Users/REN/git/GameFramework/src/XfileModel.i
-
-# target to preprocess a source file
-Users/REN/git/GameFramework/src/XfileModel.cpp.i:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.i
-.PHONY : Users/REN/git/GameFramework/src/XfileModel.cpp.i
-
-Users/REN/git/GameFramework/src/XfileModel.s: Users/REN/git/GameFramework/src/XfileModel.cpp.s
-.PHONY : Users/REN/git/GameFramework/src/XfileModel.s
-
-# target to generate assembly for a file
-Users/REN/git/GameFramework/src/XfileModel.cpp.s:
-	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Users/REN/git/GameFramework/src/XfileModel.cpp.s
-.PHONY : Users/REN/git/GameFramework/src/XfileModel.cpp.s
-
 XfileModelTestScene.o: XfileModelTestScene.cpp.o
 .PHONY : XfileModelTestScene.o
 
@@ -360,9 +336,6 @@ help:
 	@echo "... TestListsScene.o"
 	@echo "... TestListsScene.i"
 	@echo "... TestListsScene.s"
-	@echo "... Users/REN/git/GameFramework/src/XfileModel.o"
-	@echo "... Users/REN/git/GameFramework/src/XfileModel.i"
-	@echo "... Users/REN/git/GameFramework/src/XfileModel.s"
 	@echo "... XfileModelTestScene.o"
 	@echo "... XfileModelTestScene.i"
 	@echo "... XfileModelTestScene.s"

@@ -1,17 +1,17 @@
-#ifndef GLFW_TEXTURE_H_2013_11_19
-#define GLFW_TEXTURE_H_2013_11_19
+#ifndef SYUKATSU_TEXTURE_H_2013_11_19
+#define SYUKATSU_TEXTURE_H_2013_11_19
 
 #include "GLFW/glfw3.h"
 #include "../Texture.h"
 
 //ç°ÇÃèä.pngÉIÉìÉäÅ[
-class GLFWTexture:public Texture
+class SyukatsuTexture:public Texture
 {
   unsigned char *image;
   GLuint texId;
 public:
-  GLFWTexture(const char* fileName);  
-  void load(const char* fileName);
+  SyukatsuTexture(const string fileName);  
+  void load(const string fileName);
   void bind()const;
   void unbind()const;  
 };

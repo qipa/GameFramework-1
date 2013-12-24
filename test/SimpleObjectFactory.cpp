@@ -1,5 +1,5 @@
 #include "SimpleObjectFactory.h"
-#include "../include/glfw/GL/freeglut.h"
+#include <syukatsu/GL/freeglut.h>
 
 void drawGrid(const float xNum,const float zNum,const float size)
 {

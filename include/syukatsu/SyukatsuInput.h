@@ -1,25 +1,25 @@
-#ifndef GLFWInput_H_2013_12_16
-#define GLFWInput_H_2013_12_16
+#ifndef SYUKATSU_INPUT_H_2013_12_16
+#define SYUKATSU_INPUT_H_2013_12_16
+#include "GLFW/glfw3.h"
 
 #include "../Input.h"
-#include "GLFW/glfw3.h"
 #include "KeyboadHandler.h"
 #include "MouseHandler.h"
 
-class GLFWInput : public Input
+class SyukatsuInput : public Input
 {
   GLFWwindow *window;
   MouseHandler   *mouseHandler;
   KeyboadHandler *keyboadHandler;  
 public:
-GLFWInput(GLFWwindow *_window)
+SyukatsuInput(GLFWwindow *_window)
   :window(_window)
   {
     mouseHandler   = new MouseHandler(window);
     keyboadHandler = new KeyboadHandler();
   }
   
-  ~GLFWInput()
+  ~SyukatsuInput()
   {
     delete mouseHandler;
     delete keyboadHandler;

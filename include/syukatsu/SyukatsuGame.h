@@ -1,15 +1,14 @@
-#ifndef GLFW_GAME_H_2013_12_17
-#define GLFW_GAME_H_2013_12_17
+#ifndef SYUKATSU_GAME_H_2013_12_17
+#define SYUKATSU_GAME_H_2013_12_17
+#include "GLFW/glfw3.h"
 
 #include "../Game.h"
 #include "../Scene.h"
+#include "SyukatsuInput.h"
+#include "SyukatsuFileIO.h"
+#include "SyukatsuAudio.h"
 
-#include "GLFW/glfw3.h"
-#include "GLFWInput.h"
-#include "GLFWFileIO.h"
-#include "GLFWAudio.h"
-
-class GLFWGame: public Game
+class SyukatsuGame: public Game
 {
 protected:
   GLFWwindow *window;
@@ -17,13 +16,12 @@ protected:
   FileIO *fileIO;
   Audio *audio;
   Scene *scene,*nextScene;
-  float elapsedTime[2];
-  
+  float elapsedTime[2];  
   void replaceScene();  //次のシーンがあれば入れ替える
-public:
-  GLFWGame(GLFWwindow*);
   
-  virtual ~GLFWGame();
+public:
+  SyukatsuGame(GLFWwindow*);  
+  virtual ~SyukatsuGame();
 
   void loop();
   bool setScene(Scene *scene);

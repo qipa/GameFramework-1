@@ -1,22 +1,22 @@
 #include "Camera3DTestScene.h"
 #include "TestListsScene.h"
-#include "../include/GLFW/GL/freeglut.h"
+#include <syukatsu/GL/freeglut.h>
 #include <string>
 using namespace std;
 
-Camera3DTestScene::Camera3DTestScene(GLFWGame* glfwGame)
-  :GLFWScene(glfwGame)
+Camera3DTestScene::Camera3DTestScene(SyukatsuGame* game)
+  :SyukatsuScene(game)
   ,cellSize(10)
   ,cellNum(10)
 {
-  camera = new Camera3D(glfwGame->getWindow(), 1, 1000, 45); //near, far, 視野角
+  camera = new Camera3D(syukatsuGame->getWindow(), 1, 1000, 45); //near, far, 視野角
   camera->setPosition( Vector3(100, 0, 0) );
   camera->setLook(Vector3(0,0,0));
 
-  camera2 = new Camera2D(glfwGame->getWindow(), Camera3DTestScene::WIDTH, Camera3DTestScene::HEIGHT);
+  camera2 = new Camera2D(syukatsuGame->getWindow(), Camera3DTestScene::WIDTH, Camera3DTestScene::HEIGHT);
   //2D画面の位置  
   int width, height;
-  glfwGetFramebufferSize(glfwGame->getWindow(), &width, &height);
+  glfwGetFramebufferSize(syukatsuGame->getWindow(), &width, &height);
   camera2->setViewportWidth(width/4);
   camera2->setViewportHeight(height/4);
   camera2->setViewportPosition(width/8, height/8*7);    
@@ -27,28 +27,30 @@ Camera3DTestScene::Camera3DTestScene(GLFWGame* glfwGame)
 
 void Camera3DTestScene::update(float deltaTime)
 {
-  auto keyEvents = glfwGame->getInput()->getKeyEvents();
+  auto keyEvents = game->getInput()->getKeyEvents();
+  const float speed = 2*M_PI;
+  
   for (auto event : keyEvents)
   { 
     switch(event->keyCode)
     {
     case GLFW_KEY_ENTER:
       if(event->action != GLFW_PRESS)  continue;
-      glfwGame->setScene(new TestListsScene(glfwGame));
+      syukatsuGame->setScene(new TestListsScene(syukatsuGame));
       return;
     case GLFW_KEY_LEFT:
-      theta -= 100*deltaTime;
+      theta += speed*deltaTime;
       if(theta<0) theta+=2*M_PI;
       break;
     case GLFW_KEY_RIGHT:
-      theta += 100*deltaTime;
+      theta -= speed*deltaTime;
       if(theta>2*M_PI) theta-=2*M_PI;
       break;
     case GLFW_KEY_UP:
-      phi = min(phi+100*deltaTime, (float)M_PI/3.8f);
+      phi = min(phi+speed*deltaTime, (float)M_PI/3.8f);
       break;
     case GLFW_KEY_DOWN:
-      phi = min(phi-100*deltaTime, 0.0f);
+      phi = min(phi-speed*deltaTime, 0.0f);
       break;
     case GLFW_KEY_T:
       theta = 0;
@@ -61,7 +63,7 @@ void Camera3DTestScene::update(float deltaTime)
   float R = 100;
   camera->setPosition(Vector3(R*cos(phi)*cos(theta), R*sin(phi), R*cos(phi)*sin(theta)));
 
-  auto mouse = glfwGame->getInput()->getMouseEvent();
+  auto mouse = game->getInput()->getMouseEvent();
   auto touch = Vector2();
 
   touch.set(mouse->x, mouse->y);
@@ -110,9 +112,5 @@ void Camera3DTestScene::render(float deltaTime)
 
   camera2->setViewportAndMatrices();
   glRasterPos2f(-Camera3DTestScene::WIDTH/2,Camera3DTestScene::HEIGHT/3);
-  string str = "push Enter to back Title";
-  for(int i=0; i<str.size(); i++)
-    glutBitmapCharacter(GLUT_BITMAP_9_BY_15, str[i]);  
-  
 }
 

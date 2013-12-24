@@ -1,10 +1,10 @@
 #include <GLFW/glfw3.h>
-#include <GLFWGame.h>
-#include <GLFWInput.h>
-#include <GLFWFileIO.h>
-#include <GLFWAudio.h>
+#include <SyukatsuGame.h>
+#include <SyukatsuInput.h>
+#include <SyukatsuFileIO.h>
+#include <SyukatsuAudio.h>
 
-GLFWGame::GLFWGame(GLFWwindow* _window)
+SyukatsuGame::SyukatsuGame(GLFWwindow* _window)
   :window(_window)
 {
   scene = NULL;
@@ -12,13 +12,12 @@ GLFWGame::GLFWGame(GLFWwindow* _window)
   elapsedTime[0] = glfwGetTime();
   elapsedTime[1] = glfwGetTime();    
 
-  
-  input = new GLFWInput(window);
+  input = new SyukatsuInput(window);
   fileIO = NULL;
   audio = NULL;  
 };
   
-GLFWGame::~GLFWGame()
+SyukatsuGame::~SyukatsuGame()
 {
   //todo
   
@@ -31,7 +30,7 @@ GLFWGame::~GLFWGame()
   delete scene;
 };
   
-bool GLFWGame::setScene(Scene *scene)
+bool SyukatsuGame::setScene(Scene *scene)
 {
   //NULLを指定しようとしたらfalse
   if(scene == NULL)
@@ -50,7 +49,7 @@ bool GLFWGame::setScene(Scene *scene)
   return true;
 }
 
-void GLFWGame::loop()
+void SyukatsuGame::loop()
 {
   float deltaTime = elapsedTime[1] - elapsedTime[0];
   elapsedTime[0] = glfwGetTime();
@@ -63,7 +62,7 @@ void GLFWGame::loop()
   elapsedTime[1] = glfwGetTime();
 };
 
-void GLFWGame::replaceScene()
+void SyukatsuGame::replaceScene()
 {
   //シーンを切り変える
   if(nextScene != NULL)

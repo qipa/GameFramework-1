@@ -1,19 +1,20 @@
 #ifndef TEXTURE_H_2013_11_19
 #define TEXTURE_H_2013_11_19
 
-class Texture
+#include "FilePath.h"
+class Texture:public FilePath
 {
 protected:
-  const char *fileName;
+  const string fileName;
   unsigned int width;  //pixel size (must be power of 2)
   unsigned int height;
 public:
-  Texture(const char *_fileName)
+  Texture(const string _fileName)
     :fileName(_fileName)
   { }  
   virtual ~Texture(){ }
   
-  virtual void load(const char*) = 0;
+  virtual void load(string) = 0;
   virtual void bind() const = 0;
   virtual void unbind() const = 0;
   unsigned getWidth()  const  {  return width;  }  
