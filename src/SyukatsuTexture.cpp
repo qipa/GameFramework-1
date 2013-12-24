@@ -18,8 +18,6 @@ void SyukatsuTexture::load(const string fileName)
 
   string name = getPath()+fileName;  
   unsigned int error = lodepng::decode(raw_image, width, height, name.c_str());   
-
-  printf("%s\n", name.c_str());  
   
   if(error != 0)
   {
