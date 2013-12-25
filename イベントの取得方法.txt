@@ -1,0 +1,16 @@
+キーボードイベントの取得:
+vector<KeyEvent*> events = syukatsuGame->getInput()->getKeyboadEvents();
+をsyukatsuSceneクラスのupdateで最初に１度だけ呼び出す. 
+一度呼び出すと中のバッファがクリアされるため, ループ中最初に一回だけ呼び出す事.
+keyEventクラスについては include/Input.h を参照
+
+別にキーボードイベントを取得するには,以下の関数を使う
+isKeyPressed(int keyCode) :  keyCodeが押されているかがboolで返る
+getKeyState(int keyCode)  :  keyCodeの状態がintで返る(GLFW_PRESS, GLFE_RELAESE, GLFW_REPEAT)
+ぶっちゃけ, getKeyStateがあればisKeyStateはいらないと思うが, まだgetKeyStateは実装していないので......
+
+
+マウスイベントの取得:
+MouseEvent* event = syukatsuGame->getInput()->getMouseEvent();
+を呼び出す. 何度呼び出しても良い
+MouseEventクラスに関しても, include/Input.hを参照

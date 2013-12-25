@@ -12,9 +12,8 @@ public:
   static const int KEY_DOWN = 0;
   static const int kEY_UP = 1;
 
-  int action;
-  int keyCode;
-  char keyChar;
+  int action;    //押したか離したか
+  int keyCode;   //押したキー
 };
 
 class MouseEvent
@@ -27,9 +26,9 @@ public:
   static const int MOUSE_LEFT  = 0;
   static const int MOUSE_RIGHT = 1;
     
-  int action;
-  int button;
-  double x, y;
+  int action;  //押した, 離した, ドラッグ
+  int button;  //右クリックか左クリックか
+  float x, y;  //マウスの位置
 };
 
 class Input
