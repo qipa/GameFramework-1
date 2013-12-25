@@ -5,7 +5,6 @@
 #include "../Pool.h"
 #include "../Lock.h"
 #include "GLFW/glfw3.h"
-
 #include <pthread.h>
 
 class MouseHandler
@@ -31,10 +30,13 @@ MouseHandler(GLFWwindow *_window)
   MouseEvent* const getMouseEvent()
   {
     Lock lck(&lock);
-
     mouseEvent->button = mouseEventBuffer->button;
-    mouseEvent->action = mouseEventBuffer->action;   
-    glfwGetCursorPos(window, &mouseEvent->x, &mouseEvent->y);    
+    mouseEvent->action = mouseEventBuffer->action;
+    
+    glfwGetCursorPos(window, &mouseEvent->x, &mouseEvent->y);
+    
+    if(mouseEventBuffer->action == GLFW_PRESS)
+      mouseEventBuffer->action = GLFW_REPEAT;
     
     return mouseEvent;
   }
