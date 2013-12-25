@@ -8,27 +8,28 @@ using namespace std;
 
 class KeyEvent
 {
-public:
-  static const int KEY_DOWN = 0;
-  static const int kEY_UP = 1;
-
+public:  
+  static const int KEY_UP   = 0;
+  static const int kEY_DOWN = 1;
+  static const int kEY_REPEAT = 2;
   int action;    //押したか離したか
   int keyCode;   //押したキー
+  int modifier;  //Shift, Ctrl, Alt, Superキー用  
 };
 
 class MouseEvent
 {
 public:
-  static const int MOUSE_DOWN   = 0;  
-  static const int MOUSE_UP     = 1;
+  static const int MOUSE_UP     = 0;
+  static const int MOUSE_DOWN   = 1;  
   static const int MOUSE_DRAGGED= 2;
-
   static const int MOUSE_LEFT  = 0;
   static const int MOUSE_RIGHT = 1;
     
   int action;  //押した, 離した, ドラッグ
   int button;  //右クリックか左クリックか
-  float x, y;  //マウスの位置
+  int modifier;  //シフトキーとかそこらへんを押しているか
+  double x, y;  //マウスの位置
 };
 
 class Input

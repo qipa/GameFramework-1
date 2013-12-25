@@ -7,7 +7,7 @@
 #include "MouseHandler.h"
 
 class SyukatsuInput : public Input
-{
+{  
   GLFWwindow *window;
   MouseHandler   *mouseHandler;
   KeyboadHandler *keyboadHandler;  

@@ -5,8 +5,11 @@
 #include "../Pool.h"
 #include "../Lock.h"
 #include <vector>
+#include <map>
 #include <pthread.h>
 #include <cstring>
+using namespace std;
+
 class KeyboadHandler
 {
   class KeyEventFactory:public PoolObjectFactory<KeyEvent>
@@ -15,12 +18,12 @@ class KeyboadHandler
     {
       return new KeyEvent();
     }
-  };
-  
+  };  
   bool pressedKeys[350];
   Pool<KeyEvent> *keyEventPool;
   vector<KeyEvent*> keyEvents;
   vector<KeyEvent*> keyEventBuffer;
+map<int, int> keyActions;
   pthread_mutex_t lock;  
 public:
   
@@ -49,7 +52,6 @@ public:
     Lock lck(&lock);
     return pressedKeys[keyCode];    
   }
-  
 
   //ループの最初に一回だけ呼び出す
   const vector<KeyEvent*>& getKeyEvents()
@@ -68,6 +70,7 @@ public:
   
   void onEvent(int keyCode, int action, int mods)
   {
+    //KeyEventで定義している定数ががGLFWの定数と同じなのでそのまま代入
     KeyEvent *event = keyEventPool->newObject();
     event->keyCode = keyCode;
     event->action = action;
@@ -76,6 +79,7 @@ public:
 
     if(keyCode>=0 && keyCode<350)
       pressedKeys[keyCode] = action;
+keyActions[keyCode] = action;
     
     keyEventBuffer.push_back(event);
   }
