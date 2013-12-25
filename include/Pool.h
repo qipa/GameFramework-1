@@ -6,13 +6,14 @@ using namespace std;
 
 //メモリプールのクラス
 //PoolObjectFactoryクラスを継承して, 必要なクラスを生成するFactoryクラスを作成し, 引数として送る
+
 template<class T>
 class PoolObjectFactory
 {
 public:
   PoolObjectFactory(){}
   virtual ~PoolObjectFactory(){}
-  virtual inline T* createObject()=0;                  //クラスを生成する
+  virtual T* createObject()=0;                  //クラスを生成する
 };
 
 template<class T>
@@ -61,7 +62,6 @@ public:
     else
       delete object;    //再大容量を超えた場合はしょうがないので削除
   }
-
 };
 
 #endif

@@ -15,10 +15,6 @@ class KeyboadHandler
     {
       return new KeyEvent();
     }
-
-    void initializeObject(KeyEvent* object)
-    {      
-    }
   };
   
   bool pressedKeys[350];
@@ -32,8 +28,7 @@ public:
   {
     keyEventPool = new Pool<KeyEvent>(new KeyEventFactory(), 30);
     for(int i=0; i<350 ;i++)
-      pressedKeys[i] = false;
-    
+      pressedKeys[i] = false;    
     
     pthread_mutex_init(&lock, NULL);
   }

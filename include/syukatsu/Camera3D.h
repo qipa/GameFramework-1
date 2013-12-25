@@ -25,7 +25,8 @@ class Camera3D
 public:
   Camera3D(GLFWwindow *_window, float _frustumNear, float _frustumFar, float _frustumFOVY);  
   Camera3D(GLFWwindow *_window, Vector3 _position, Vector3 _look, float _frustumNear, float _frustumFar, float _frustumFOVY);
-  
+  ~Camera3D() {  }  
+    
   void setViewportAndMatrices() const;  
   
   Vector3 screenToWorld(const Vector2 &touch) const;
@@ -55,20 +56,37 @@ public:
   }
   
   //:画面の場所, サイズを変える  
-  void setViewportWidth(const float &width)
+  void setViewportWidth(const int &width)
   {
     viewportWidth = width;
   }
   
-  void setViewportHeight(const float &height)
+  void setViewportHeight(const int &height)
   {
     viewportHeight = height;
   }
+
+  int getViewportWidth() const
+  {
+    return viewportWidth;    
+  }
+
+  int getViewportHeight() const
+  {
+    return viewportHeight;    
+  }  
   
   void setViewportPosition(const int &x, const int &y)
   {
     viewportX = x;
     viewportY = y;
   }
+
+  Vector2 getViewportPosition() const
+  {
+    return Vector2(viewportX, viewportY);    
+  }
+  
+
 };
 #endif
