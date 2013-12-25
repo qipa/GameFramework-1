@@ -56,6 +56,7 @@ void SyukatsuGame::loop()
   scene->update(deltaTime);
   scene->render(deltaTime);
   replaceScene();
+  glFlush();  
   glfwSwapBuffers(window); //絶対必要
   glfwPollEvents();        //絶対必要
   elapsedTime[1] = glfwGetTime();
