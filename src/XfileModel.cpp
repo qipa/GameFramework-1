@@ -17,7 +17,6 @@ XfileModel::~XfileModel()
   
 }
 
-
 void XfileModel::load(const string fileName, float size)
 {
   Vector3f vec3d;
@@ -236,8 +235,7 @@ void XfileModel::load(const string fileName, float size)
         j+=5;
       }
     }
-  }
- 
+  } 
   return;
 }
 

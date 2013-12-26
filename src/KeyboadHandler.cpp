@@ -30,7 +30,7 @@ bool KeyboadHandler::isKeyPressed(int keyCode)
 
 int KeyboadHandler::getKeyState(int keyCode)
 {
-  Lock lck(&lock);
+  Lock lck(&lock);  
   if(keyCode < 0 || keyCode>=keyMapSize)
     return GLFW_KEY_UNKNOWN;
   

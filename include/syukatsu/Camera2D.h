@@ -34,7 +34,23 @@ public:
     viewportX = x;
     viewportY = y;
   }
+  
+  int getViewportWidth() const
+  {
+    return viewportWidth;    
+  }
 
+  int getViewportHeight() const
+  {
+    return viewportHeight;    
+  }
+
+  Vector2 getViewportPosition() const
+  {
+    return Vector2(viewportX, viewportY);    
+  }
+  
+  
   void setViewportAndMatrices() const;  
   Vector2 screenToWorld(const Vector2 &touch) const;  
 };
