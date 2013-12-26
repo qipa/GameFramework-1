@@ -1,6 +1,7 @@
 #ifndef POOL_H_2013_12_16
 #define POOL_H_2013_12_16
 
+#include <cstddef>
 #include <stack>
 using namespace std;
 
