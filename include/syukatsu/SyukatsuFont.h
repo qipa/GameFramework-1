@@ -10,7 +10,8 @@ class SyukatsuFont: public Font
 public:
   SyukatsuFont(const string fileName);
   ~SyukatsuFont();
-  void render(string text) const;  
+  void render(string text) const;
+  void setSize(float size);  
 };
 
 #endif

@@ -16,7 +16,7 @@ Font(string _fileName)
   :fileName(_fileName), size(3.0){  }
   ~Font() { }      
   virtual void render(string str) const = 0;
-  void setSize(float size)
+  virtual void setSize(float size)
   {
     this->size = size;
   }

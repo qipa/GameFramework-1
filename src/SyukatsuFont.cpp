@@ -34,13 +34,24 @@ void SyukatsuFont::load(const string fileName)
 
   if(!font->FaceSize(size))
   {
-    cout << "can not set charmap to " << name << endl;
+    cout << "can not set size to " << name << endl;
     exit(2);
   }
 }
 
 void SyukatsuFont::render(const string text) const
-{
+{  
   font->Render(text.c_str()); 
 }
+
+void SyukatsuFont::setSize(float size)
+{
+  this->size = size;  
+  if(!font->FaceSize(size))
+  {
+    cout << "can not set size" << endl;
+    exit(2);
+  }  
+}
+
 
