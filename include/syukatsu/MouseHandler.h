@@ -13,45 +13,11 @@ class MouseHandler
   MouseEvent *mouseEvent, *mouseEventBuffer;
   pthread_mutex_t lock;
 public:
-MouseHandler(GLFWwindow *_window)
-  :window(_window)
-  {
-    pthread_mutex_init(&lock, NULL);
-    mouseEvent = new MouseEvent();
-    mouseEventBuffer = new MouseEvent();
-  }
-
-  ~MouseHandler()
-  {
-    Lock lck(&lock);
-    delete mouseEvent;
-  }
-  
-  MouseEvent* const getMouseEvent()
-  {
-    Lock lck(&lock);
-    mouseEvent->button = mouseEventBuffer->button;
-    mouseEvent->action = mouseEventBuffer->action;
-    
-    glfwGetCursorPos(window, &mouseEvent->x, &mouseEvent->y);
-    
-    if(mouseEventBuffer->action == GLFW_PRESS)
-      mouseEventBuffer->action = GLFW_REPEAT;
-    
-    return mouseEvent;
-  }
-
-  void onEvent(int button, int action, int mods)
-  {
-    Lock lck(&lock);
-    mouseEventBuffer->button = button;
-    mouseEventBuffer->action = action;
-  }
-
-  void onCursorEvent(double x, double y)
-  {
-    
-  }
+  MouseHandler(GLFWwindow *_window);  
+  ~MouseHandler();  
+  MouseEvent* const getMouseEvent();
+  void onEvent(int button, int action, int mods);
+  void update();  
 };
 
 #endif

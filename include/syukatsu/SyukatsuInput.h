@@ -24,6 +24,12 @@ SyukatsuInput(GLFWwindow *_window)
     delete mouseHandler;
     delete keyboadHandler;
   }
+
+  void update()
+  {
+    keyboadHandler->update();
+    mouseHandler->update();    
+  }  
   
   bool isKeyPressed(int keyCode)
   {

@@ -3,6 +3,7 @@
 #include <SyukatsuInput.h>
 #include <SyukatsuFileIO.h>
 #include <SyukatsuAudio.h>
+#include <SyukatsuScene.h>
 
 SyukatsuGame::SyukatsuGame(GLFWwindow* _window)
   :window(_window)
@@ -52,9 +53,12 @@ void SyukatsuGame::loop()
 {
   float deltaTime = elapsedTime[1] - elapsedTime[0];
   elapsedTime[0] = glfwGetTime();
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  input->update();  
   scene->update(deltaTime);
+  
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
   scene->render(deltaTime);
+  
   replaceScene();
   glFlush();  
   glfwSwapBuffers(window); //絶対必要
@@ -71,4 +75,36 @@ void SyukatsuGame::replaceScene()
     scene = nextScene;
     nextScene = NULL;
   }
+}
+
+Input* SyukatsuGame::getInput() const
+{
+  return input;
+}
+
+FileIO* SyukatsuGame::getFileIO() const
+{
+  return fileIO;
+}
+
+Audio* SyukatsuGame::getAudio()  const
+{
+  return audio;
+}
+
+//グラフィックはglfwをそのままたたくからいらない
+Graphics* SyukatsuGame::getGraphics() const
+{
+  return NULL;
+}
+  
+const Scene* SyukatsuGame::getCurrentScene() const
+{
+  return scene;
+}
+
+//glfwの関数を扱う関係でconstにできない
+GLFWwindow* SyukatsuGame::getWindow() const
+{
+  return window;
 }

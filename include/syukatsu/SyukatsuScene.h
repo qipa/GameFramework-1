@@ -12,8 +12,7 @@ public:
   SyukatsuScene(SyukatsuGame *game)
     :Scene(game)
     ,syukatsuGame(game)
-  {
-    
+  {    
   }  
   virtual void update(float deltaTime) = 0;
   virtual void render(float deltaTime) = 0;

@@ -5,7 +5,6 @@
 #include "../Pool.h"
 #include "../Lock.h"
 #include <vector>
-#include <map>
 #include <pthread.h>
 #include <cstring>
 using namespace std;
@@ -18,72 +17,24 @@ class KeyboadHandler
     {
       return new KeyEvent();
     }
-  };  
-  bool pressedKeys[350];
+  };
+
+  static constexpr int keyMapSize = 350; //GLFWのキー定数の最大数
+  bool pressedKeys[keyMapSize];
+
   Pool<KeyEvent> *keyEventPool;
   vector<KeyEvent*> keyEvents;
   vector<KeyEvent*> keyEventBuffer;
-map<int, int> keyActions;
-  pthread_mutex_t lock;  
-public:
-  
-  KeyboadHandler()
-  {
-    keyEventPool = new Pool<KeyEvent>(new KeyEventFactory(), 30);
-    for(int i=0; i<350 ;i++)
-      pressedKeys[i] = false;    
-    
-    pthread_mutex_init(&lock, NULL);
-  }
-  
-  ~KeyboadHandler()
-  {
-    delete keyEventPool;
-  }
-  
-  bool isKeyPressed(int keyCode)
-  {
-    Lock lck(&lock); //ロック
-    return pressedKeys[keyCode] == GLFW_PRESS;
-  }
+  pthread_mutex_t lock;
 
-  int getKeyState(int keyCode)
-  {
-    Lock lck(&lock);
-    return pressedKeys[keyCode];    
-  }
-
-  //ループの最初に一回だけ呼び出す
-  const vector<KeyEvent*>& getKeyEvents()
-  {
-    //他の関数ではkeyEventPoolは見ないので, ロックする必要なし
-    for(auto event : keyEvents)
-      keyEventPool->freeObject(event);
-    
-    keyEvents.clear();
-
-    Lock lck(&lock); //ロック デストラクタでアンロックする        
-    keyEvents.insert(keyEvents.end(), keyEventBuffer.begin(), keyEventBuffer.end());
-    keyEventBuffer.clear();
-    return keyEvents; 
-  }
-  
-  void onEvent(int keyCode, int action, int mods)
-  {
-    //KeyEventで定義している定数ががGLFWの定数と同じなのでそのまま代入
-    KeyEvent *event = keyEventPool->newObject();
-    event->keyCode = keyCode;
-    event->action = action;
-
-    Lock lck(&lock); //ロック
-
-    if(keyCode>=0 && keyCode<350)
-      pressedKeys[keyCode] = action;
-keyActions[keyCode] = action;
-    
-    keyEventBuffer.push_back(event);
-  }
-  
+public:  
+  KeyboadHandler();   
+  ~KeyboadHandler();  
+  bool isKeyPressed(int keyCode);  
+  int getKeyState(int keyCode);
+  const vector<KeyEvent*>& getKeyEvents();  
+  void onEvent(int keyCode, int action, int mods);
+void update();
 };
 
 #endif
