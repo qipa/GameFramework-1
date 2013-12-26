@@ -1,8 +1,7 @@
 test/CMake*
 test/cmake*
 test/Makefile
-src/CMakeCache*
-src/CMakeFile*
+src/CMake*
 src/cmake_*
 src/Makefile
 src/include_src_dir
