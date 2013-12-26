@@ -5,30 +5,35 @@
 #include "../Input.h"
 #include "KeyboadHandler.h"
 #include "MouseHandler.h"
+#include "ScrollHandler.h"
 
 class SyukatsuInput : public Input
 {  
   GLFWwindow *window;
   MouseHandler   *mouseHandler;
-  KeyboadHandler *keyboadHandler;  
+  KeyboadHandler *keyboadHandler;
+  ScrollHandler   *scrollHandler;  
 public:
 SyukatsuInput(GLFWwindow *_window)
   :window(_window)
   {
     mouseHandler   = new MouseHandler(window);
     keyboadHandler = new KeyboadHandler();
+scrollHandler = new ScrollHandler();
   }
   
   ~SyukatsuInput()
   {
     delete mouseHandler;
     delete keyboadHandler;
+delete scrollHandler;
   }
 
   void update()
   {
     keyboadHandler->update();
-    mouseHandler->update();    
+    mouseHandler->update();
+scrollHandler->update();
   }  
   
   bool isKeyPressed(int keyCode)
@@ -51,6 +56,12 @@ SyukatsuInput(GLFWwindow *_window)
     return mouseHandler->getMouseEvent();
   }
 
+ScrollEvent* const getScrollEvent()
+{
+return scrollHandler->getScrollEvent();
+}
+
+
   void getCursorPos(double &x, double &y)
   {
     glfwGetCursorPos(window, &x, &y);
@@ -65,6 +76,12 @@ SyukatsuInput(GLFWwindow *_window)
   {
     keyboadHandler->onEvent(keyCode, action, mods);
   }
+
+void onScroll(double offsetX, double offsetY)
+{
+scrollHandler->onEvent(offsetX, offsetY);
+}
+
 };
 
 #endif

@@ -32,6 +32,13 @@ public:
   double x, y;  //マウスの位置
 };
 
+class ScrollEvent
+{
+public:
+  double offsetX;
+  double offsetY;  
+};
+
 class Input
 {
 public:
@@ -39,6 +46,7 @@ public:
   virtual int getKeyState(int keyCode) = 0;
   virtual MouseEvent* const getMouseEvent() = 0;
   virtual const vector<KeyEvent*>& getKeyEvents() = 0;
+  virtual ScrollEvent* const getScrollEvent() = 0;  
 
   Input(){}
   virtual ~Input(){}
