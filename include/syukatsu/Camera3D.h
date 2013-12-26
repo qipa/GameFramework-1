@@ -54,6 +54,16 @@ public:
   {
     look = _look;
   }
+
+  void setUp(const Vector3 &_up)
+  {
+    up = _up;    
+  }
+
+  Vector3 getUp() const
+  {
+    return up;    
+  }   
   
   //:画面の場所, サイズを変える  
   void setViewportWidth(const int &width)
@@ -85,8 +95,7 @@ public:
   Vector2 getViewportPosition() const
   {
     return Vector2(viewportX, viewportY);    
-  }
-  
+  } 
 
 };
 #endif
