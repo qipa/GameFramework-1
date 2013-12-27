@@ -20,7 +20,7 @@ class KeyboadHandler
   };
 
   static constexpr int keyMapSize = 350; //GLFWのキー定数の最大数
-  bool pressedKeys[keyMapSize];
+  int pressedKeys[keyMapSize];
 
   Pool<KeyEvent> *keyEventPool;
   vector<KeyEvent*> keyEvents;

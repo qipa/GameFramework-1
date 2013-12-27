@@ -6,7 +6,7 @@ KeyboadHandler::KeyboadHandler()
   const int maxKeyEvent = 15;  
   keyEventPool = new Pool<KeyEvent>(new KeyEventFactory(), maxKeyEvent);
   for(int i=0; i<keyMapSize ;i++)
-    pressedKeys[i] = false;    
+    pressedKeys[i] = GLFW_RELEASE;  
 
   keyEvents.reserve(maxKeyEvent);
   keyEventBuffer.reserve(maxKeyEvent);
@@ -53,12 +53,12 @@ void KeyboadHandler::onEvent(int keyCode, int action, int mods)
   event->keyCode = keyCode;
   event->action = action;
   event->modifier = mods;
-  
-  if( keyCode >= 0 && keyCode < keyMapSize)
-    pressedKeys[keyCode] = action;
     
   keyEventBuffer.push_back(event);
 }
+
+#include <iostream>
+using namespace std;
 
 void KeyboadHandler::update()
 {
@@ -68,6 +68,22 @@ void KeyboadHandler::update()
     keyEventPool->freeObject(event);
   keyEvents.clear();
 
+  for(int i=0; i<keyMapSize; i++)
+  {    
+    if(pressedKeys[i] == GLFW_PRESS)
+    {      
+      pressedKeys[i] = GLFW_REPEAT;
+    }
+    
+  }  
+  
+  for( auto event : keyEventBuffer)
+  {
+    pressedKeys[event->keyCode] = event->action;    
+    //pressedKeys[event->keyCode] = pressedKeys[event->keyCode] != GLFW_RELEASE ? GLFW_REPEAT : event->action;
+  }
+  
+  
   keyEvents.insert(keyEvents.end(), keyEventBuffer.begin(), keyEventBuffer.end());
   keyEventBuffer.clear();
 }
