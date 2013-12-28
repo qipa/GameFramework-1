@@ -12,6 +12,7 @@ class SpriteBatcher
   int numSprite;
 public:
   SpriteBatcher(int _maxSprites);
+  ~SpriteBatcher();
   
   void beginBatch(Texture *texture);
   

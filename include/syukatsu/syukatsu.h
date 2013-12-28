@@ -9,6 +9,7 @@
 #include "SyukatsuTexture.h"
 #include "XfileModel.h"
 #include "SpriteBatcher.h"
+#include "SpriteBatcher3D.h"
 #include "Camera2D.h"
 #include "Camera3D.h"
 #endif

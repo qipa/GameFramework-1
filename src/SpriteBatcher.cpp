@@ -20,6 +20,11 @@ SpriteBatcher::SpriteBatcher(int _maxSprites)
     indicesBuffer[i+5] = (j+0);
   }
 }
+SpriteBatcher::~SpriteBatcher()
+{
+  delete verticesBuffer;
+  delete indicesBuffer;  
+}
 
 void SpriteBatcher::beginBatch(Texture *texture)
 {  
@@ -37,7 +42,7 @@ void SpriteBatcher::endBatch() const
   glEnableClientState(GL_VERTEX_ARRAY);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
   
-  glVertexPointer(3,  GL_FLOAT, 4*sizeof(float), verticesBuffer  );
+  glVertexPointer(2,  GL_FLOAT, 4*sizeof(float), verticesBuffer  );
   glTexCoordPointer(2,GL_FLOAT, 4*sizeof(float), verticesBuffer+2);
   
   glDrawElements(GL_TRIANGLES, 6*numSprite, GL_UNSIGNED_INT, indicesBuffer);
