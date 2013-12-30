@@ -7,8 +7,12 @@
 #include "MouseHandler.h"
 #include "ScrollHandler.h"
 
+class SyukatsuGame;
+
 class SyukatsuInput : public Input
-{  
+{
+  friend class SyukatsuGame;
+  
   GLFWwindow *window;
   MouseHandler   *mouseHandler;
   KeyboadHandler *keyboadHandler;
@@ -26,14 +30,14 @@ scrollHandler = new ScrollHandler();
   {
     delete mouseHandler;
     delete keyboadHandler;
-delete scrollHandler;
+    delete scrollHandler;
   }
 
   void update()
   {
     keyboadHandler->update();
     mouseHandler->update();
-scrollHandler->update();
+    scrollHandler->update();
   }  
   
   bool isKeyPressed(int keyCode)
@@ -55,12 +59,11 @@ scrollHandler->update();
   {
     return mouseHandler->getMouseEvent();
   }
-
-ScrollEvent* const getScrollEvent()
-{
-return scrollHandler->getScrollEvent();
-}
-
+  
+  ScrollEvent* const getScrollEvent()
+  {
+    return scrollHandler->getScrollEvent();
+  }
 
   void getCursorPos(double &x, double &y)
   {
@@ -77,11 +80,10 @@ return scrollHandler->getScrollEvent();
     keyboadHandler->onEvent(keyCode, action, mods);
   }
 
-void onScroll(double offsetX, double offsetY)
-{
-scrollHandler->onEvent(offsetX, offsetY);
-}
-
+  void onScroll(double offsetX, double offsetY)
+  {
+    scrollHandler->onEvent(offsetX, offsetY);
+  }
 };
 
 #endif

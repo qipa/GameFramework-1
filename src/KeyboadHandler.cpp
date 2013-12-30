@@ -70,20 +70,14 @@ void KeyboadHandler::update()
 
   for(int i=0; i<keyMapSize; i++)
   {    
-    if(pressedKeys[i] == GLFW_PRESS)
-    {      
+    if(pressedKeys[i] == GLFW_PRESS)    
       pressedKeys[i] = GLFW_REPEAT;
-    }
-    
   }  
   
   for( auto event : keyEventBuffer)
   {
-    pressedKeys[event->keyCode] = event->action;    
-    //pressedKeys[event->keyCode] = pressedKeys[event->keyCode] != GLFW_RELEASE ? GLFW_REPEAT : event->action;
-  }
-  
-  
+    pressedKeys[event->keyCode] = event->action;   
+  }  
   keyEvents.insert(keyEvents.end(), keyEventBuffer.begin(), keyEventBuffer.end());
   keyEventBuffer.clear();
 }

@@ -13,7 +13,6 @@ Camera2D::Camera2D(GLFWwindow *_window, float _frustumWidth, float _frustumHeigh
   viewportY = viewportHeight/2;
 }
   
-
 void Camera2D::setViewportAndMatrices() const
 {
   glViewport(viewportX-viewportWidth/2, viewportY-viewportHeight/2, viewportWidth, viewportHeight);
