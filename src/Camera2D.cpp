@@ -14,7 +14,7 @@ Camera2D::Camera2D(GLFWwindow *_window, float _frustumWidth, float _frustumHeigh
 }
   
 void Camera2D::setViewportAndMatrices() const
-{
+{  
   glViewport(viewportX-viewportWidth/2, viewportY-viewportHeight/2, viewportWidth, viewportHeight);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();

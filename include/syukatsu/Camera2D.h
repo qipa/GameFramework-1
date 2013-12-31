@@ -33,8 +33,7 @@ public:
   {
     viewportX = x;
     viewportY = y;
-  }
-  
+  }  
   int getViewportWidth() const
   {
     return viewportWidth;    
@@ -48,6 +47,28 @@ public:
   Vector2 getViewportPosition() const
   {
     return Vector2(viewportX, viewportY);    
+  }  
+
+  //カメラの居る位置, 視野幅,高さ
+  Vector2 getPosition() const
+  {
+    return position;    
+  }
+
+  void setPosition(const Vector2 &pos)
+  {
+    position = pos;
+  }
+
+  Vector2 getFrustumSize() const
+  {
+    return Vector2(frustumWidth, frustumHeight);    
+  }
+
+  void setFrustumSize(const Vector2 &size)
+  {
+    frustumWidth = size.x;
+    frustumHeight= size.y;    
   }
   
   

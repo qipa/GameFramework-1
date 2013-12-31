@@ -19,5 +19,5 @@ include_directories("../include/Syukatsu/freetype2")
 
 add_library(Syukatsu STATIC ${srcFile})
 
-#install(TARGETS Syukatsu LIBRARY DESTINATION "../lib")
+install(TARGETS Syukatsu DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../lib)
 

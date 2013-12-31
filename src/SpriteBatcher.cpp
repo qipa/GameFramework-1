@@ -55,8 +55,8 @@ void SpriteBatcher::endBatch() const
 
 void SpriteBatcher::drawSprite(const float &x, const float &y, const float &width,const float &height, const TextureRegion *region)
 {
-  float halfWidth  = width/2;
-  float halfHeight = height/2;
+  float halfWidth  = width/2.0;
+  float halfHeight = height/2.0;
   float x1 = x - halfWidth;
   float y1 = y - halfHeight;
 
