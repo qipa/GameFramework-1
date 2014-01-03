@@ -6,6 +6,7 @@
 #include "KeyboadHandler.h"
 #include "MouseHandler.h"
 #include "ScrollHandler.h"
+#include "LeapMotionHandler.h"
 
 class SyukatsuGame;
 
@@ -16,7 +17,9 @@ class SyukatsuInput : public Input
   GLFWwindow *window;
   MouseHandler   *mouseHandler;
   KeyboadHandler *keyboadHandler;
-  ScrollHandler   *scrollHandler;  
+  ScrollHandler   *scrollHandler;
+  LeapMotionHandler *leapMotionHandler;
+  
 public:
 SyukatsuInput(GLFWwindow *_window)
   :window(_window)
@@ -84,6 +87,12 @@ scrollHandler = new ScrollHandler();
   {
     scrollHandler->onEvent(offsetX, offsetY);
   }
+
+  LeapMotionHandler* getLeapMotionHandler() const
+  {
+    return leapMotionHandler;    
+  }
+  
 };
 
 #endif
