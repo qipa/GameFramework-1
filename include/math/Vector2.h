@@ -114,14 +114,16 @@ public:
     return *this;
   }
 	
-  float dist(Vector2 other){
+  float dist(Vector2 other) const
+  {
     float distX = this->x - other.x;
     float distY = this->y - other.y;
 		
     return sqrt(distX*distX + distY*distY); 
   }
 	
-  float dist(float x, float y){
+  float dist(float x, float y) const
+  {
     float distX = this->x - x;
     float distY = this->y - y;
 		
@@ -129,14 +131,16 @@ public:
   }
 
   //2乗距離
-  float distSquared(Vector2 other){
+  float distSquared(Vector2 other) const
+  {
     float distX = this->x - other.x;
     float distY = this->y - other.y;
 		
     return distX*distX + distY*distY; 
   }
 	
-  float distSquared(float x, float y){
+  float distSquared(float x, float y) const
+  {
     float distX = this->x - x;
     float distY = this->y - y;
 		
@@ -144,18 +148,18 @@ public:
   }
 
   //内積
-  float dot(const Vector2 &other)
+  float dot(const Vector2 &other) const
   {
     return this->x*other.x + this->y*other.y;
   }
 
   //外積
-  float cross(const Vector2 &other)
+  float cross(const Vector2 &other) const
   {
     return this->x*other.y - this->y*other.x;
   }
 
-  float angleTo(const Vector2 &other)
+  float angleTo(const Vector2 &other) const
   {
     //thisとotherとの角度(otherがthisより反時計回りだと正)
     float ang1 = this->angle();
@@ -164,7 +168,7 @@ public:
     return ang2-ang1;
   }
 
-  float distanceTo(const Vector2 &other)
+  float distanceTo(const Vector2 &other) const
   {
     float _x = other.x - this->x;
     float _y = other.y - this->y;
