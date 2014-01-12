@@ -28,9 +28,9 @@ SpriteBatcher::~SpriteBatcher()
 
 void SpriteBatcher::beginBatch(Texture *texture)
 {  
-  glEnable(GL_BLEND);
-  glEnable(GL_ALPHA_TEST); //アルファテスト開始  
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//  glEnable(GL_BLEND);
+//  glEnable(GL_ALPHA_TEST); //アルファテスト開始  
+//  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glEnable(GL_TEXTURE_2D);
   texture->bind();  
   numSprite=0;
@@ -48,8 +48,8 @@ void SpriteBatcher::endBatch() const
   glDrawElements(GL_TRIANGLES, 6*numSprite, GL_UNSIGNED_INT, indicesBuffer);
 
   glBindTexture(GL_TEXTURE_2D, 0);
-  glDisable(GL_BLEND);
-  glDisable(GL_ALPHA_TEST); //アルファテスト開始  
+//  glDisable(GL_BLEND);
+//  glDisable(GL_ALPHA_TEST); //アルファテスト開始  
 }
 
 
