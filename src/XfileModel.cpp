@@ -1,7 +1,6 @@
 #include <XfileModel.h>
 #include <SyukatsuTexture.h>
 #include <iostream>
-#include <regex>
 #include <string>
 #include <cstring>
 using namespace std;
@@ -15,6 +14,19 @@ XfileModel::XfileModel(const string fileName, float size)
 XfileModel::~XfileModel()
 {
   
+}
+
+string spliter(string str) 
+{
+  int p = 0; 
+  string res;
+
+  while(str[p] != '\"') { p++; }
+  p++;
+
+  while(str[p] != '\"') { res += str[p]; p++; }
+
+  return res;
 }
 
 void XfileModel::load(const string fileName, float size)
@@ -91,10 +103,8 @@ void XfileModel::load(const string fileName, float size)
         fscanf(fp,"%s",buf); //テクスチャネーム
 
         string texName = buf;
-        regex pat("\".+\"");
-        smatch res;
-        regex_search(texName, res, pat, regex_constants::match_default);
-        texName = res.str().substr(1, res.str().size()-2);                
+
+        texName = spliter(texName);
         
         if(textureList.find(texName) == textureList.end())
           textureList[texName] = new SyukatsuTexture(texName.c_str());
