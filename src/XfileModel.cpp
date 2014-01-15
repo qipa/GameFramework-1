@@ -250,8 +250,9 @@ void XfileModel::load(const string fileName, float size)
 }
 
 //描画
-void XfileModel::render()const
+void XfileModel::render(const float alpha)const
 {
+  glPushAttrib(GL_COLOR_MATERIAL | GL_CURRENT_BIT | GL_ENABLE_BIT);  
   glEnable(GL_TEXTURE_2D);
   glEnable(GL_BLEND);
   glEnable(GL_ALPHA_TEST); //アルファテスト開始
@@ -263,11 +264,27 @@ void XfileModel::render()const
   for(auto mat : Materials)
   {
     glPushMatrix();
-    
-    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT , (const GLfloat*)&mat.materialColor.ambient);
-    glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE , (const GLfloat*)&mat.materialColor.diffuse);
-    glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, (const GLfloat*)&mat.materialColor.specular);
-    glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, mat.shininess);
+
+
+    if(alpha != -1)
+    {
+      Material _mat = mat;
+      _mat.materialColor.ambient.a = alpha;
+      _mat.materialColor.diffuse.a = alpha;
+      _mat.materialColor.specular.a = alpha;
+      glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT , (const GLfloat*)&_mat.materialColor.ambient);
+      glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE , (const GLfloat*)&_mat.materialColor.diffuse);
+      glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, (const GLfloat*)&_mat.materialColor.specular);
+      glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, mat.shininess);
+
+    }
+    else
+    {
+      glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT , (const GLfloat*)&mat.materialColor.ambient);
+      glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE , (const GLfloat*)&mat.materialColor.diffuse);
+      glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, (const GLfloat*)&mat.materialColor.specular);
+      glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, mat.shininess);
+    }
     
     if(mat.texture != NULL){
       mat.texture->bind();
@@ -305,4 +322,5 @@ void XfileModel::render()const
   glDisable(GL_TEXTURE_2D);
   glDisable(GL_BLEND);
   glDisable(GL_ALPHA_TEST); //アルファテスト開始
+  glPopAttrib();  
 }

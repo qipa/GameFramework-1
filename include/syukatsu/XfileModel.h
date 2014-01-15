@@ -102,7 +102,7 @@ public:
   XfileModel(const string, float);
   ~XfileModel();  
   virtual void load(const string, float);
-  virtual void render() const;
+  virtual void render(const float alpha=-1) const;
   virtual void dispose(){};
 };
 
