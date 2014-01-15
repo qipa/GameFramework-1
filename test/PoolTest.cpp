@@ -1,6 +1,8 @@
+/*
 #include "../include/Pool.h"
 #include <iostream>
 using namespace std;
+
 int main()
 {
   class IntFactory: public PoolObjectFactory<int>
@@ -24,3 +26,4 @@ int main()
   
   return 0;
 }
+*/

@@ -5,9 +5,9 @@
 
 class SyukatsuFont: public Font
 {
-  FTFont *font;
   void load(const string fileName);  
 public:
+  FTFont *font;
   SyukatsuFont(const string fileName);
   ~SyukatsuFont();
   void render(string text) const;

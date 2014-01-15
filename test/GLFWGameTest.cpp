@@ -1,5 +1,5 @@
-#include <syukatsu/SyukatsuGame.h>
-#include <syukatsu/SyukatsuInput.h>
+#include <syukatsu/syukatsu.h>
+#include <syukatsu/GL/freeglut.h>
 #include <algorithm>
 #include <cstdlib>
 #include <cstdio>
@@ -8,6 +8,7 @@
 #include <sys/time.h>
 #include "TestListsScene.h"
 #include "Assets.h"
+
 using namespace std;
 
 //mainで書き換えるのはこのクラスだけ

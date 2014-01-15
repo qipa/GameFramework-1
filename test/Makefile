@@ -210,6 +210,54 @@ GLFWGameTest.cpp.s:
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/GLFWGameTest.cpp.s
 .PHONY : GLFWGameTest.cpp.s
 
+KeyboadHandlerTest.o: KeyboadHandlerTest.cpp.o
+.PHONY : KeyboadHandlerTest.o
+
+# target to build an object file
+KeyboadHandlerTest.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/KeyboadHandlerTest.cpp.o
+.PHONY : KeyboadHandlerTest.cpp.o
+
+KeyboadHandlerTest.i: KeyboadHandlerTest.cpp.i
+.PHONY : KeyboadHandlerTest.i
+
+# target to preprocess a source file
+KeyboadHandlerTest.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/KeyboadHandlerTest.cpp.i
+.PHONY : KeyboadHandlerTest.cpp.i
+
+KeyboadHandlerTest.s: KeyboadHandlerTest.cpp.s
+.PHONY : KeyboadHandlerTest.s
+
+# target to generate assembly for a file
+KeyboadHandlerTest.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/KeyboadHandlerTest.cpp.s
+.PHONY : KeyboadHandlerTest.cpp.s
+
+PoolTest.o: PoolTest.cpp.o
+.PHONY : PoolTest.o
+
+# target to build an object file
+PoolTest.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/PoolTest.cpp.o
+.PHONY : PoolTest.cpp.o
+
+PoolTest.i: PoolTest.cpp.i
+.PHONY : PoolTest.i
+
+# target to preprocess a source file
+PoolTest.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/PoolTest.cpp.i
+.PHONY : PoolTest.cpp.i
+
+PoolTest.s: PoolTest.cpp.s
+.PHONY : PoolTest.s
+
+# target to generate assembly for a file
+PoolTest.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/PoolTest.cpp.s
+.PHONY : PoolTest.cpp.s
+
 SimpleObjectFactory.o: SimpleObjectFactory.cpp.o
 .PHONY : SimpleObjectFactory.o
 
@@ -282,6 +330,30 @@ TestListsScene.cpp.s:
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/TestListsScene.cpp.s
 .PHONY : TestListsScene.cpp.s
 
+VectorTest.o: VectorTest.cpp.o
+.PHONY : VectorTest.o
+
+# target to build an object file
+VectorTest.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/VectorTest.cpp.o
+.PHONY : VectorTest.cpp.o
+
+VectorTest.i: VectorTest.cpp.i
+.PHONY : VectorTest.i
+
+# target to preprocess a source file
+VectorTest.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/VectorTest.cpp.i
+.PHONY : VectorTest.cpp.i
+
+VectorTest.s: VectorTest.cpp.s
+.PHONY : VectorTest.s
+
+# target to generate assembly for a file
+VectorTest.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/VectorTest.cpp.s
+.PHONY : VectorTest.cpp.s
+
 XfileModelTestScene.o: XfileModelTestScene.cpp.o
 .PHONY : XfileModelTestScene.o
 
@@ -327,6 +399,12 @@ help:
 	@echo "... GLFWGameTest.o"
 	@echo "... GLFWGameTest.i"
 	@echo "... GLFWGameTest.s"
+	@echo "... KeyboadHandlerTest.o"
+	@echo "... KeyboadHandlerTest.i"
+	@echo "... KeyboadHandlerTest.s"
+	@echo "... PoolTest.o"
+	@echo "... PoolTest.i"
+	@echo "... PoolTest.s"
 	@echo "... SimpleObjectFactory.o"
 	@echo "... SimpleObjectFactory.i"
 	@echo "... SimpleObjectFactory.s"
@@ -336,6 +414,9 @@ help:
 	@echo "... TestListsScene.o"
 	@echo "... TestListsScene.i"
 	@echo "... TestListsScene.s"
+	@echo "... VectorTest.o"
+	@echo "... VectorTest.i"
+	@echo "... VectorTest.s"
 	@echo "... XfileModelTestScene.o"
 	@echo "... XfileModelTestScene.i"
 	@echo "... XfileModelTestScene.s"

@@ -1,3 +1,4 @@
+/*
 #include "../include/math/Vector2.h"
 
 int main()
@@ -5,3 +6,4 @@ int main()
   
   return 0;
 }
+*/

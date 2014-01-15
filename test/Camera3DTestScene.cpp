@@ -1,5 +1,6 @@
 #include "Camera3DTestScene.h"
 #include "TestListsScene.h"
+#include "Assets.h"
 #include <syukatsu/GL/freeglut.h>
 #include <string>
 using namespace std;
@@ -101,14 +102,27 @@ void Camera3DTestScene::render(float deltaTime)
 
   glColor3f(1,1,1);
   drawAxis();
-    
+
+  
   glPushMatrix();
   glTranslatef(pos.x, pos.y, pos.z);
-  glRotatef((float) glfwGetTime() * 50.f, glfwGetTime(), glfwGetTime()*2, glfwGetTime()*3);
+  glRotatef((float) glfwGetTime() * 50.f, 0,1,0);
   glutSolidCube(5);    
   glPopMatrix();
-
   glPopAttrib();
+
+  glPushMatrix();
+  Assets::mincho->setSize(5);
+
+  for(int i=0; i<10; i++)
+  {
+    glPushMatrix();    
+    glTranslatef(5*i, 5, 5*i);
+    glRotatef(30, 0.f, 1.f, 0.f);
+    Assets::mincho->render("こんにちわ");
+    glPopMatrix();    
+  }  
+  glPopMatrix();
 
   camera2->setViewportAndMatrices();
   glRasterPos2f(-Camera3DTestScene::WIDTH/2,Camera3DTestScene::HEIGHT/3);
