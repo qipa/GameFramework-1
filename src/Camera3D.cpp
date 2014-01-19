@@ -42,9 +42,6 @@ void Camera3D::setViewportAndMatrices() const
   //lookAt();
 }
 
-#include <iostream>
-using namespace std;
-
 Vector3 Camera3D::screenToWorld(const Vector2 &touch) const
 {
   int width, height;           
@@ -70,6 +67,35 @@ Vector3 Camera3D::screenToWorld(const Vector2 &touch) const
   direction.normalize();
   
   return direction;  
+}
+
+Vector2 Camera3D::worldToScreen(const Vector3 &point) const
+{
+  //カメラ座標に置ける各軸ベクトル
+  Vector3 axisZ = look - position;
+  axisZ.normalize();
+  Vector3 axisY = up - axisZ.dot(up)*axisZ;
+  axisY.normalize();
+  Vector3 axisX = axisZ.cross(axisY);
+  axisX.normalize();
+
+  //カメラ座標に置けるpointの位置ベクトル
+  const Vector3 direction = point - position;
+  
+  float elemZ = direction.dot(axisZ); //z成分
+  float elemY = direction.dot(axisY);
+  float elemX = direction.dot(axisX);
+
+  float ratio = viewportWidth/(float)viewportHeight;
+
+  //今の位置の視錐台の縦と横
+  float height = 2*elemZ*tan(0.5*frustumFOVY*Vector3::TO_RADIANS);
+  float width = ratio*height;
+
+  //左上を原点として, 右下が(viewportWidth, viewportHeight)になるように正規化
+  Vector2 screen( viewportWidth*(elemX/width+0.5), viewportHeight*(0.5 - elemY/height));
+
+  return screen;
 }
 
 void Camera3D::perspective() const

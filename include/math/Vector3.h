@@ -160,7 +160,6 @@ public:
                    this->x*other.y - this->y*other.x);
   }
 
-
   //ラジアンで返る
   float angleTo(const Vector3 &other) const
   {

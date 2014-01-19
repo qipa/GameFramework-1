@@ -31,6 +31,8 @@ public:
   
   Vector3 screenToWorld(const Vector2 &touch) const;
 
+  Vector2 worldToScreen(const Vector3 &point) const;
+
   void perspective() const;
   
   void lookAt() const;
