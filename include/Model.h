@@ -2,8 +2,11 @@
 #define MODEL_H_2013_12_22
 
 #include "FilePath.h"
+#include "Texture.h"
+
 #include <string>
 using namespace std;
+
 
 class Model: public FilePath
 {
