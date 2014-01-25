@@ -31,7 +31,7 @@ public:
   FileIO* getFileIO() const;  
   Audio*  getAudio()  const; 
   Graphics* getGraphics() const;  
-  const Scene* getCurrentScene() const;  
+  Scene* const getCurrentScene() const;  
   GLFWwindow* getWindow() const;   //glfwの関数を扱う関係でconstにできない
 };
 
