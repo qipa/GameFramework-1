@@ -98,7 +98,7 @@ Graphics* SyukatsuGame::getGraphics() const
   return NULL;
 }
   
-const Scene* SyukatsuGame::getCurrentScene() const
+Scene* const SyukatsuGame::getCurrentScene() const
 {
   return scene;
 }
