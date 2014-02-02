@@ -41,7 +41,12 @@ scrollHandler = new ScrollHandler();
     keyboadHandler->update();
     mouseHandler->update();
     scrollHandler->update();
-  }  
+  }
+
+  bool isAnyKeyPressed()
+  {
+      return keyboadHandler->isAnyKeyPressed();
+  }
   
   bool isKeyPressed(int keyCode)
   {

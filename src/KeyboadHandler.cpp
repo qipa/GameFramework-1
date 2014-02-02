@@ -18,6 +18,16 @@ KeyboadHandler::~KeyboadHandler()
 {
   delete keyEventPool;
 }
+
+bool KeyboadHandler::isAnyKeyPressed()
+{
+  Lock lck(&lock);
+  for(int i = 0; i < keyMapSize; ++i) {
+    if(pressedKeys[i] == GLFW_PRESS) return true;
+  }
+
+  return false;
+}
   
 bool KeyboadHandler::isKeyPressed(int keyCode)
 {

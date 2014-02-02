@@ -44,6 +44,7 @@ class LeapMotionHandler;
 class Input
 {
 public:
+  virtual bool isAnyKeyPressed() = 0;
   virtual bool isKeyPressed(int keyCode) = 0;
   virtual int getKeyState(int keyCode) = 0;
   virtual MouseEvent* const getMouseEvent() = 0;

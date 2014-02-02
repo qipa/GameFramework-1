@@ -30,11 +30,12 @@ class KeyboadHandler
 public:  
   KeyboadHandler();   
   ~KeyboadHandler();  
+  bool isAnyKeyPressed();
   bool isKeyPressed(int keyCode);  
   int getKeyState(int keyCode);
   const vector<KeyEvent*>& getKeyEvents();  
   void onEvent(int keyCode, int action, int mods);
-void update();
+  void update();
 };
 
 #endif
