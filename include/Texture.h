@@ -24,7 +24,7 @@ public:
 class TextureRegion
 {
 public:
-  const Texture * const texture;
+  const Texture *texture;
   const float u1, v1;
   const float u2, v2;
   const float ratio; // height/width;
@@ -40,6 +40,10 @@ TextureRegion(const Texture *_texture)
     u1(0), v1(0),
     u2(1), v2(1), ratio(_texture->getHeight()/(float)texture->getWidth())
   { }
+
+  unsigned getWidth() { return texture->getWidth(); }
+  unsigned getHeight() { return texture->getHeight(); }
+  float getRatio() { return ratio; }
 };
 
 #endif
