@@ -28,9 +28,6 @@ SpriteBatcher::~SpriteBatcher()
 
 void SpriteBatcher::beginBatch(Texture *texture)
 {  
-//  glEnable(GL_BLEND);
-//  glEnable(GL_ALPHA_TEST); //アルファテスト開始  
-//  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glEnable(GL_TEXTURE_2D);
   texture->bind();  
   numSprite=0;
@@ -50,8 +47,6 @@ void SpriteBatcher::endBatch() const
   glBindTexture(GL_TEXTURE_2D, 0);
   glDisableClientState(GL_VERTEX_ARRAY);
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);  
-//  glDisable(GL_BLEND);
-//  glDisable(GL_ALPHA_TEST); //アルファテスト開始  
 }
 
 
@@ -131,4 +126,5 @@ void SpriteBatcher::drawSprite
 
   numSprite++;
 }
+
 

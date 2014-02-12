@@ -107,7 +107,7 @@ public:
       _y = y/len;
       _z = z/len;
     }
-    return Vector3(x,y,z);
+    return Vector3(_x,_y,_z);
   }
 	
   float dist(Vector3 other) const

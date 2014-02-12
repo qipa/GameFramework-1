@@ -22,8 +22,10 @@ KeyboadHandler::~KeyboadHandler()
 bool KeyboadHandler::isAnyKeyPressed()
 {
   Lock lck(&lock);
-  for(int i = 0; i < keyMapSize; ++i) {
-    if(pressedKeys[i] == GLFW_PRESS) return true;
+  for(auto event : keyEvents)
+  {
+    if(event->action == GLFW_PRESS)
+      return true;
   }
 
   return false;

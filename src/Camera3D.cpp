@@ -100,7 +100,7 @@ Vector2 Camera3D::worldToScreen(const Vector3 &point) const
 
 void Camera3D::perspective() const
 {
-  //todo lookAtかどっちかに間違いがある
+  //todo lookAtかどっちかに間違いがある ->glutで用意されている方を使う
   double ratio = viewportWidth/(float)viewportHeight;  
   double xmin, xmax, ymin, ymax;
   ymax = frustumNear * tan(frustumFOVY * M_PI / 360.0);
@@ -112,7 +112,7 @@ void Camera3D::perspective() const
   
 void Camera3D::lookAt() const
 {
-  //todo perspectiveかどっちかに間違いがある
+  //todo perspectiveかどっちかに間違いがある->glutで用意されている方を使う
   Vector3 forward = look - position;
   forward.normalize();
     
