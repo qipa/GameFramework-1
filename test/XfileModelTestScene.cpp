@@ -1,6 +1,38 @@
 #include "XfileModelTestScene.h"
 #include "TestListsScene.h"
 
+//光源の設定
+static void LightSetting()
+{
+  glEnable(GL_LIGHTING);    
+  glEnable(GL_LIGHT0);
+  glEnable(GL_LIGHT1);
+  glEnable(GL_LIGHT2);
+  glEnable(GL_LIGHT3);
+
+  float edge = 900;
+
+  GLfloat lightpos1[] = { 0.0, edge/2, 0.0, 1.0 };
+  GLfloat lightdir1[] = { 1.0, -1.0, 1.0, 1.0 };
+  glLightfv(GL_LIGHT0, GL_POSITION, lightpos1);
+  glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, lightdir1);
+  
+  GLfloat lightpos2[] = { edge, edge/2, edge, 1.0 };
+  GLfloat lightdir2[] = { -1.0, -1.0, -1.0, 1.0 };
+  glLightfv(GL_LIGHT1, GL_POSITION, lightpos2);
+  glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, lightdir2);
+ 
+  GLfloat lightpos3[] = { 0.0, edge/2, edge, 1.0 };
+  GLfloat lightdir3[] = { 1.0, -1.0, -1.0, 1.0 };
+  glLightfv(GL_LIGHT2, GL_POSITION, lightpos3);
+  glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, lightdir3);
+ 
+  GLfloat lightpos4[] = { edge, edge/2, 0.0, 1.0 };
+  GLfloat lightdir4[] = { -1.0, -1.0, 1.0, 1.0 };
+  glLightfv(GL_LIGHT4, GL_POSITION, lightpos4);
+  glLightfv(GL_LIGHT4, GL_SPOT_DIRECTION, lightdir4); 
+}
+
 XfileModelTestScene::XfileModelTestScene(SyukatsuGame *game)
   :SyukatsuScene(game)
 {
@@ -17,11 +49,14 @@ XfileModelTestScene::XfileModelTestScene(SyukatsuGame *game)
   camera2->setViewportPosition(width/8, height/8);
   batcher = new SpriteBatcher(10);
 
-  model = new XfileModel("sampleModel.x", 1);
+//  model = new TestXfileModel("dragon2.x", 1);
+  model = new TestXfileModel("sampleModel.x", 1);
+  
   texture = new SyukatsuTexture("mone._tex.png");
   region = new TextureRegion(texture);
 
-  theta = phi = 0;  
+  theta = phi = 0;
+  // LightSetting();
 }
 
 void XfileModelTestScene::update(float deltaTime)

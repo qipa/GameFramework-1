@@ -16,7 +16,7 @@ protected:
 public:
   Model(const string _fileName)
     :fileName(_fileName){  }
-  ~Model(){  }
+  virtual ~Model(){  }
   
   virtual void render(const float alpha = -1) const = 0;
   virtual void load(const string, float) = 0;

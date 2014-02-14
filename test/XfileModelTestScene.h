@@ -4,16 +4,15 @@
 #include <syukatsu/SyukatsuScene.h>
 #include <syukatsu/Camera3D.h>
 #include <syukatsu/Camera2D.h>
-#include <syukatsu/XfileModel.h>
 #include <syukatsu/SpriteBatcher.h>
 
 #include "SimpleObjectFactory.h"
-
+#include "TestXFileModel.h"
 class XfileModelTestScene:public SyukatsuScene
 {
   Camera3D *camera;
   Camera2D *camera2;
-  Model *model;
+  TestXfileModel *model;
   Texture *texture;
   TextureRegion *region;
   SpriteBatcher *batcher;

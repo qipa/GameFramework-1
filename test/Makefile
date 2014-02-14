@@ -330,6 +330,30 @@ TestListsScene.cpp.s:
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/TestListsScene.cpp.s
 .PHONY : TestListsScene.cpp.s
 
+TestXfileModel.o: TestXfileModel.cpp.o
+.PHONY : TestXfileModel.o
+
+# target to build an object file
+TestXfileModel.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/TestXfileModel.cpp.o
+.PHONY : TestXfileModel.cpp.o
+
+TestXfileModel.i: TestXfileModel.cpp.i
+.PHONY : TestXfileModel.i
+
+# target to preprocess a source file
+TestXfileModel.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/TestXfileModel.cpp.i
+.PHONY : TestXfileModel.cpp.i
+
+TestXfileModel.s: TestXfileModel.cpp.s
+.PHONY : TestXfileModel.s
+
+# target to generate assembly for a file
+TestXfileModel.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/TestXfileModel.cpp.s
+.PHONY : TestXfileModel.cpp.s
+
 VectorTest.o: VectorTest.cpp.o
 .PHONY : VectorTest.o
 
@@ -414,6 +438,9 @@ help:
 	@echo "... TestListsScene.o"
 	@echo "... TestListsScene.i"
 	@echo "... TestListsScene.s"
+	@echo "... TestXfileModel.o"
+	@echo "... TestXfileModel.i"
+	@echo "... TestXfileModel.s"
 	@echo "... VectorTest.o"
 	@echo "... VectorTest.i"
 	@echo "... VectorTest.s"
