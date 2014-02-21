@@ -5,7 +5,6 @@
 #include <cstring>
 #include <syukatsu.h>
 #include <GL/freeglut.h>
-//#include <GL/glew.h>
 using namespace std;
 
 XfileModel::XfileModel(const string fileName, float size)
@@ -398,11 +397,87 @@ void XfileModel::render(const float alpha) const
   glPopAttrib();  
 }
 
+void XfileModel::renderAddColor(const float &red, const float &green,
+                      const float &blue, const float alpha) const
+{
+  glPushAttrib( GL_COLOR_MATERIAL |
+                GL_CURRENT_BIT |
+                GL_ENABLE_BIT |
+                GL_COLOR_BUFFER_BIT |
+                GL_TEXTURE_BIT);  
+  glEnable(GL_TEXTURE_2D);
+  glEnable(GL_BLEND);
+  glEnable(GL_ALPHA_TEST); //アルファテスト開始
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_NORMAL_ARRAY);
+
+  Color4f color(red, green, blue, 0);
+  
+  for(auto mat : materials)
+  {
+    //もしかしたら, 何のポリゴンも持たないマテリアルがあるかもしれないので, それ対策
+    if ( mat.meshes.size() <= 0 )
+      continue;
+
+    //アルファ値の変更があるかもしれないので, 一旦別の変数に代入
+    auto ambient = mat.ambient + color;
+    auto diffuse = mat.diffuse + color;
+    auto specular = mat.specular + color;
+
+    //アルファ値の指定があれば, 強制的にその値にする
+    if ( alpha != -1 )
+      ambient.a = diffuse.a = specular.a = alpha;
+
+    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT , (const GLfloat*)&ambient);
+    glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE , (const GLfloat*)&diffuse);
+    glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, (const GLfloat*)&specular);
+    glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, mat.shininess);
+
+    /*
+      //VBO使うタイプ
+    glBindBuffer(GL_ARRAY_BUFFER, mat.bufferId);
+    glVertexPointer(3, GL_FLOAT, sizeof(Mesh), BUFFER_OFFSET(0));
+    glNormalPointer(GL_FLOAT,sizeof(Mesh), BUFFER_OFFSET(sizeof(Vector3)));
+    */
+    //VBO使わないタイプ
+    glVertexPointer(3, GL_FLOAT, sizeof(Mesh), (GLfloat*)&mat.meshes[0].vertex.x);
+    glNormalPointer(GL_FLOAT,sizeof(Mesh), (GLfloat*)&mat.meshes[0].normal.x);
+    
+    //テクスチャの設定
+    if(mat.texture != NULL)
+    {
+      mat.texture->bind();
+
+      //VBO使うタイプ
+      //glTexCoordPointer(2, GL_FLOAT, sizeof(Mesh), BUFFER_OFFSET(sizeof(Vector3)+sizeof(Vector3)));
+      //VBO使わないタイプ
+      glTexCoordPointer(2, GL_FLOAT, sizeof(Mesh), (GLfloat*)&mat.meshes[0].uv.u);
+      glEnableClientState(GL_TEXTURE_COORD_ARRAY);    
+    }
+    else
+    {
+      glDisable(GL_TEXTURE_2D);
+      glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    }
+    
+    glDrawArrays(GL_TRIANGLES, 0, mat.meshes.size());
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);    
+  }  
+
+//  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glDisableClientState(GL_VERTEX_ARRAY);
+  glDisableClientState(GL_NORMAL_ARRAY);
+  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+  glPopAttrib();  
+}
 void XfileModel::dispose()
 {
   for ( int i=0; i<materials.size(); i++ )
   {
-    glDeleteBuffers(1, &materials[i].bufferId);
+    //glDeleteBuffers(1, &materials[i].bufferId); //VBO使うタイプ
     materials[i].meshes.clear();
   }
   materials.clear();

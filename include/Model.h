@@ -19,6 +19,10 @@ public:
   virtual ~Model(){  }
   
   virtual void render(const float alpha = -1) const = 0;
+  virtual void renderAddColor(const float &red,
+                      const float &green,
+                      const float &blue,
+                      const float alpha = -1) const = 0;
   virtual void load(const string, float) = 0;
   virtual void dispose() = 0;
 private:

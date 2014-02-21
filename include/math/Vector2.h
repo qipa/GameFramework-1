@@ -228,7 +228,6 @@ public:
     return Vector2(this->x*k, this->y*k);    
   }
 
-  //friend 関数はただのグローバルだが, ヘッダに直接書いて大丈夫なのか(インクルードガードはあるけど...)
   friend Vector2 operator*(const float &k, const Vector2 &rhs)
   {
     return Vector2(k*rhs.x, k*rhs.y);
