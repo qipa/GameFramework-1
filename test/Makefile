@@ -138,6 +138,30 @@ Assets.cpp.s:
 	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/Assets.cpp.s
 .PHONY : Assets.cpp.s
 
+AssimpTestScene.o: AssimpTestScene.cpp.o
+.PHONY : AssimpTestScene.o
+
+# target to build an object file
+AssimpTestScene.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/AssimpTestScene.cpp.o
+.PHONY : AssimpTestScene.cpp.o
+
+AssimpTestScene.i: AssimpTestScene.cpp.i
+.PHONY : AssimpTestScene.i
+
+# target to preprocess a source file
+AssimpTestScene.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/AssimpTestScene.cpp.i
+.PHONY : AssimpTestScene.cpp.i
+
+AssimpTestScene.s: AssimpTestScene.cpp.s
+.PHONY : AssimpTestScene.s
+
+# target to generate assembly for a file
+AssimpTestScene.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/AssimpTestScene.cpp.s
+.PHONY : AssimpTestScene.cpp.s
+
 Camera2DTestScene.o: Camera2DTestScene.cpp.o
 .PHONY : Camera2DTestScene.o
 
@@ -414,6 +438,9 @@ help:
 	@echo "... Assets.o"
 	@echo "... Assets.i"
 	@echo "... Assets.s"
+	@echo "... AssimpTestScene.o"
+	@echo "... AssimpTestScene.i"
+	@echo "... AssimpTestScene.s"
 	@echo "... Camera2DTestScene.o"
 	@echo "... Camera2DTestScene.i"
 	@echo "... Camera2DTestScene.s"

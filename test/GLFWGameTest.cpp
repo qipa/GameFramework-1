@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
   glfwSetKeyCallback(window, key_callback);
   glfwSetMouseButtonCallback(window, mouse_callback);
   
-  glClearColor(0.0, 0.0, 0.0, 1.0);
+  glClearColor(0.0, 0.0, 1.0, 1.0);
   
   while(!glfwWindowShouldClose(window))
   {
