@@ -4,7 +4,8 @@
 #include <string>
 #include <cstring>
 #include <syukatsu.h>
-
+#include <GL/freeglut.h>
+//#include <GL/glew.h>
 using namespace std;
 
 XfileModel::XfileModel(const string fileName, float size)
@@ -304,7 +305,7 @@ void XfileModel::load(const string fileName, float size)
       j+=5;//次のポリゴンの頂点数が格納されている添字
     }
   }
-    
+/*    
     //VBO化して,GPUに置いておく
   for ( int i=0; i<materials.size(); i++)
   {
@@ -317,7 +318,7 @@ void XfileModel::load(const string fileName, float size)
     
     glBindBuffer(GL_ARRAY_BUFFER, 0); 
   }
-
+*/
   return;
 }
 
@@ -358,15 +359,25 @@ void XfileModel::render(const float alpha) const
     glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, (const GLfloat*)&specular);
     glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, mat.shininess);
 
+    /*
+      //VBO使うタイプ
     glBindBuffer(GL_ARRAY_BUFFER, mat.bufferId);
     glVertexPointer(3, GL_FLOAT, sizeof(Mesh), BUFFER_OFFSET(0));
     glNormalPointer(GL_FLOAT,sizeof(Mesh), BUFFER_OFFSET(sizeof(Vector3)));
-
+    */
+    //VBO使わないタイプ
+    glVertexPointer(3, GL_FLOAT, sizeof(Mesh), (GLfloat*)&mat.meshes[0].vertex.x);
+    glNormalPointer(GL_FLOAT,sizeof(Mesh), (GLfloat*)&mat.meshes[0].normal.x);
+    
     //テクスチャの設定
     if(mat.texture != NULL)
     {
       mat.texture->bind();
-      glTexCoordPointer(2, GL_FLOAT, sizeof(Mesh), BUFFER_OFFSET(sizeof(Vector3)+sizeof(Vector3)));
+
+      //VBO使うタイプ
+      //glTexCoordPointer(2, GL_FLOAT, sizeof(Mesh), BUFFER_OFFSET(sizeof(Vector3)+sizeof(Vector3)));
+      //VBO使わないタイプ
+      glTexCoordPointer(2, GL_FLOAT, sizeof(Mesh), (GLfloat*)&mat.meshes[0].uv.u);
       glEnableClientState(GL_TEXTURE_COORD_ARRAY);    
     }
     else
@@ -379,7 +390,7 @@ void XfileModel::render(const float alpha) const
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);    
   }  
 
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
+//  glBindBuffer(GL_ARRAY_BUFFER, 0);
   glDisableClientState(GL_VERTEX_ARRAY);
   glDisableClientState(GL_NORMAL_ARRAY);
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
