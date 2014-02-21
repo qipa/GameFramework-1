@@ -139,7 +139,7 @@ void XfileModel::readMesh(FILE *fp, vector<Vector3> &vertices, vector<int> &inde
   }
 }
 
-void XfileModel::readMeshNormal(FILE *fp, vector<Vector3> &normal, vector<int> &indexis)
+void XfileModel::readMeshNormal(FILE *fp, std::vector<Vector3> &normal, std::vector<int> &indexis)
 {
   char buf[255];
   //法線データの読み込み
@@ -185,7 +185,7 @@ void XfileModel::readMeshNormal(FILE *fp, vector<Vector3> &normal, vector<int> &
   }
 }
 
-void XfileModel::readTexCoord(FILE *fp, vector<UV> &uv)
+void XfileModel::readTexCoord(FILE *fp, std::vector<UV> &uv)
 {
   char buf[255]; 
   fgets(buf,sizeof(buf),fp);//データは2行下にあると推定　改行する
@@ -201,7 +201,7 @@ void XfileModel::readTexCoord(FILE *fp, vector<UV> &uv)
   }
 }
 
-void XfileModel::readMeshMaterialList(FILE *fp, vector<int> &indexis)
+void XfileModel::readMeshMaterialList(FILE *fp, std::vector<int> &indexis)
 {
   char buf[255]; 
   fgets(buf,sizeof(buf),fp);//空改行
@@ -219,12 +219,12 @@ void XfileModel::readMeshMaterialList(FILE *fp, vector<int> &indexis)
 void XfileModel::load(const string fileName, float size)
 {
   Material mtl;
-  vector <Vector3> Vertex;//頂点
-  vector <Vector3> Normal;//法線
-  vector <UV> uv;//UV
-  vector <int> VertexIndex;
-  vector <int> NormalIndex;
-  vector <int> MaterialIndex;
+  std::vector <Vector3> Vertex;//頂点
+  std::vector <Vector3> Normal;//法線
+  std::vector <UV> uv;//UV
+  std::vector <int> VertexIndex;
+  std::vector <int> NormalIndex;
+  std::vector <int> MaterialIndex;
 
   char key[255];
   //Xファイルを開いて内容を読み込む
