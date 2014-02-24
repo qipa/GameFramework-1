@@ -48,32 +48,33 @@ void XfileModel::readMaterial(FILE *fp)
   char buf[255];
   fgets(buf,sizeof(buf),fp);//改行する(次の行からデータがあると仮定)
   Color4f color;
+  int err;
   //ディフューズ
-  fscanf(fp,"%f;%f;%f;%f;;",&color.r,&color.g,&color.b,&color.a);
+  err = fscanf(fp,"%f;%f;%f;%f;;",&color.r,&color.g,&color.b,&color.a);
 //  mtl.materialColor.diffuse = color;
     mtl.diffuse = color;
   //SHININESS  
-  fscanf(fp,"%f;",&mtl.shininess);
+  err = fscanf(fp,"%f;",&mtl.shininess);
 
   //残りはアルファ値はないのでとりあえず1にしとく
   color.a = 1;
   //スペキュラー 
-  fscanf(fp,"%f;%f;%f;;",&color.r, &color.g, &color.b);
+  err = fscanf(fp,"%f;%f;%f;;",&color.r, &color.g, &color.b);
   mtl.specular=color;
   
   //エミッシブ
-  fscanf(fp,"%f;%f;%f;;",&color.r, &color.g, &color.b);  
+  err = fscanf(fp,"%f;%f;%f;;",&color.r, &color.g, &color.b);  
   mtl.ambient=color;
 
   char key[255];
   //テクスチャー
-  fscanf(fp,"%s ",key);
+  err = fscanf(fp,"%s ",key);
 
   mtl.texture = NULL;      
   if(strcmp(key,"TextureFilename")==0)
   {
     fgets(buf,sizeof(buf),fp);//直後の行にあると推定　改行する
-    fscanf(fp,"%s",buf); //テクスチャネーム
+    err = fscanf(fp,"%s",buf); //テクスチャネーム
     
     string texName = buf;
     texName = spliter(texName);
@@ -92,6 +93,7 @@ void XfileModel::readMaterial(FILE *fp)
 void XfileModel::readMesh(FILE *fp, vector<Vector3> &vertices, vector<int> &indexis, const float &size)
 {
   char buf[255];
+  int err;
   fgets(buf,sizeof(buf),fp);  //改行する
   fgets(buf,sizeof(buf),fp);  //頂点の数を取得
   
@@ -102,7 +104,7 @@ void XfileModel::readMesh(FILE *fp, vector<Vector3> &vertices, vector<int> &inde
   for(int i=0;i<vertexNum ;i++)
   {
     Vector3 vec;
-    fscanf(fp,"%f;%f;%f;,",&vec.x,&vec.y,&vec.z);
+    err = fscanf(fp,"%f;%f;%f;,",&vec.x,&vec.y,&vec.z);
     vertices.push_back(vec*size);
   }
   
@@ -119,7 +121,7 @@ void XfileModel::readMesh(FILE *fp, vector<Vector3> &vertices, vector<int> &inde
   {
     int v1,v2,v3,v4;
     int vecNum; //メッシュの頂点数
-    fscanf(fp,"%d;",&vecNum);
+    err = fscanf(fp,"%d;",&vecNum);
     indexis.push_back(vecNum);
     if(vecNum == 3)
     {
@@ -130,7 +132,7 @@ void XfileModel::readMesh(FILE *fp, vector<Vector3> &vertices, vector<int> &inde
     }
     else
     {
-      fscanf(fp,"%d,%d,%d,%d;,",&v1,&v2,&v3,&v4);
+      err = fscanf(fp,"%d,%d,%d,%d;,",&v1,&v2,&v3,&v4);
       indexis.push_back(v1);
       indexis.push_back(v2);
       indexis.push_back(v3);
@@ -146,12 +148,13 @@ void XfileModel::readMeshNormal(FILE *fp, std::vector<Vector3> &normal, std::vec
   fgets(buf,sizeof(buf),fp); //改行する
   fgets(buf,sizeof(buf),fp); //法線の数を取得
   int normalNum=atoi(buf);
+  int err;
   normal.reserve(normalNum);
   
   for(int i=0;i<normalNum ;i++)
   {
     Vector3 vec;
-    fscanf(fp,"%f;%f;%f;,",&vec.x, &vec.y, &vec.z);
+    err = fscanf(fp,"%f;%f;%f;,",&vec.x, &vec.y, &vec.z);
     normal.push_back(vec);
   }
   
@@ -165,7 +168,7 @@ void XfileModel::readMeshNormal(FILE *fp, std::vector<Vector3> &normal, std::vec
   {
     int norNum;
     int v1,v2,v3,v4;
-    fscanf(fp,"%d;",&norNum);
+    err = fscanf(fp,"%d;",&norNum);
     indexis.push_back(norNum);
     if(norNum == 3)
     {      
@@ -176,7 +179,7 @@ void XfileModel::readMeshNormal(FILE *fp, std::vector<Vector3> &normal, std::vec
     }
     else
     {
-      fscanf(fp,"%d,%d,%d,%d;,",&v1,&v2,&v3,&v4);
+      err = fscanf(fp,"%d,%d,%d,%d;,",&v1,&v2,&v3,&v4);
       indexis.push_back(v1);
       indexis.push_back(v2);
       indexis.push_back(v3);
@@ -187,7 +190,8 @@ void XfileModel::readMeshNormal(FILE *fp, std::vector<Vector3> &normal, std::vec
 
 void XfileModel::readTexCoord(FILE *fp, std::vector<UV> &uv)
 {
-  char buf[255]; 
+  char buf[255];
+  int err;
   fgets(buf,sizeof(buf),fp);//データは2行下にあると推定　改行する
   fgets(buf,sizeof(buf),fp);
   while(strchr(buf,';')==NULL){fgets(buf,sizeof(buf),fp);}//空行対策
@@ -196,7 +200,7 @@ void XfileModel::readTexCoord(FILE *fp, std::vector<UV> &uv)
   for(int i=0;i<texNum ;i++)
   {
     UV vec;
-    fscanf(fp,"%f;%f;,",&vec.u,&vec.v);
+    err = fscanf(fp,"%f;%f;,",&vec.u,&vec.v);
     uv.push_back(vec);
   }
 }
@@ -225,7 +229,7 @@ void XfileModel::load(const string fileName, float size)
   std::vector <int> VertexIndex;
   std::vector <int> NormalIndex;
   std::vector <int> MaterialIndex;
-
+  int err;
   char key[255];
   //Xファイルを開いて内容を読み込む
   FILE* fp=NULL;
@@ -245,7 +249,7 @@ void XfileModel::load(const string fileName, float size)
   {
     //キーワード 読み込み
     memset(key, 0, sizeof(key));
-    fscanf(fp,"%s ",key);
+    err = fscanf(fp,"%s ",key);
 
     //テンプレートの行は跳ばす
     if(strcmp(key, "template") == 0)    
@@ -475,7 +479,7 @@ void XfileModel::renderAddColor(const float &red, const float &green,
 }
 void XfileModel::dispose()
 {
-  for ( int i=0; i<materials.size(); i++ )
+  for (unsigned int i=0; i<materials.size(); i++ )
   {
     //glDeleteBuffers(1, &materials[i].bufferId); //VBO使うタイプ
     materials[i].meshes.clear();

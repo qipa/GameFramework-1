@@ -22,12 +22,14 @@ void SyukatsuTexture::load(const string fileName)
   if(error != 0)
   {
     fprintf(stderr, "can not read file %s\n", name.c_str());
+    //todo例外を投げるべき
     exit(2);
   }
 
   if( (width&(width-1)) != 0 || (height&(height-1)) != 0)
   {
     fprintf(stderr, "texture size must be power of 2\n");
+    //todo例外を投げるべき
     exit(2);
   }
 

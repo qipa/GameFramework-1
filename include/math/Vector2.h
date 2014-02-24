@@ -90,7 +90,7 @@ public:
       _x = x/len;
       _y = y/len;
     }
-    return Vector2(x,y);
+    return Vector2(_x,_y);
   }
 
   //radianで返る

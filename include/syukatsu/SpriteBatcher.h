@@ -19,7 +19,7 @@ public:
   
   void drawSprite(const float &x, const float &y, const float &width, const float &height, const TextureRegion *region);  
   void drawSprite(const float &x, const float &y, const float &width, const float &height, const float &angle, const TextureRegion *region);
-void drawSprite(const Vector2 &point, const Vector2 &size, const TextureRegion *region)
+  void drawSprite(const Vector2 &point, const Vector2 &size, const TextureRegion *region)
 {
 drawSprite(point.x, point.y, size.x, size.y, region);
 }
