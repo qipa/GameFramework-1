@@ -16,22 +16,20 @@ protected:
   SyukatsuInput *input;
   SyukatsuFileIO *fileIO;
   SyukatsuAudio *audio;
-  Scene *scene,*nextScene;
-  
+  Scene *scene,*nextScene;  
   float elapsedTime[2];  
   void replaceScene();  //次のシーンがあれば入れ替える  
 public:
-  SyukatsuGame(GLFWwindow*);  
+  SyukatsuGame(std::string window_title, int window_width, int window_height, bool is_fullscreen=false);
+  SyukatsuGame(std::string window_title);
   virtual ~SyukatsuGame();
-
   void loop();
-  
-  bool setScene(Scene *scene);  
-  Input* getInput() const;  
+  bool setScene(Scene *scene);
+  Input* getInput() const;
   FileIO* getFileIO() const;  
   Audio*  getAudio()  const; 
-  Graphics* getGraphics() const;  
-  Scene* const getCurrentScene() const;  
+  Graphics* getGraphics() const;
+  Scene* const getCurrentScene() const;
   GLFWwindow* getWindow() const;   //glfwの関数を扱う関係でconstにできない
 };
 

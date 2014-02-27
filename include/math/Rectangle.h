@@ -1,4 +1,0 @@
-#ifndef RECTANGLE_H_2013_12_20
-#define RECTANGLE_H_2013_12_20
-
-#endif
