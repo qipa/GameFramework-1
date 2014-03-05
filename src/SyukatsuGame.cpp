@@ -42,11 +42,6 @@ namespace
     auto scene = game->getCurrentScene();
     scene->reshape(width, height);
   }
-
-  GLFWwindow* getWindow(std::string title, int width, int height, bool is_fullscreen)
-  {
-    
-  }
 }
 
 SyukatsuGame::SyukatsuGame
