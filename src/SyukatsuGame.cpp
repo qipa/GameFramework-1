@@ -1,4 +1,5 @@
 #include <GLFW/glfw3.h>
+#include <GL/glut.h>
 #include <SyukatsuGame.h>
 #include <SyukatsuInput.h>
 #include <SyukatsuFileIO.h>
@@ -51,9 +52,11 @@ namespace
 SyukatsuGame::SyukatsuGame
 (std::string window_title, int window_width, int window_height, bool is_fullscreen)
   :scene(NULL), nextScene(NULL)
-{ 
+{
+  int argc = 0;
+  glutInit(&argc, NULL); //コマンドライン引数はNULLにする.
+  
   glfwSetErrorCallback(error_callback);
-
   if(!glfwInit())
   {
     exit(EXIT_FAILURE);
@@ -62,9 +65,9 @@ SyukatsuGame::SyukatsuGame
   elapsedTime[0] = glfwGetTime();
   elapsedTime[1] = glfwGetTime();
 
-  auto _monitor = is_fullscreen ? glfwGetPrimaryMonitor() : NULL;
-  window = glfwCreateWindow(window_width, window_height, window_title.c_str(), _monitor, NULL);
-  
+  //windowを生成
+  auto _monitor = is_fullscreen ? glfwGetPrimaryMonitor() : NULL;  
+  window = glfwCreateWindow(window_width, window_height, window_title.c_str(), _monitor, NULL);  
   if(!window)
   {
     glfwTerminate();
@@ -74,19 +77,19 @@ SyukatsuGame::SyukatsuGame
   glfwMakeContextCurrent(window);
   glfwSetWindowUserPointer(window, this); //このwindowにコールバック用にインプットを登録
   
-  input = new SyukatsuInput(window);
+  input  = new SyukatsuInput(window);
   fileIO = NULL;
   audio  = NULL;
-  
-  glfwSetKeyCallback(window, keyCallback);
-  glfwSetMouseButtonCallback(window, mouseCallback);
-  glfwSetScrollCallback(window, scrollCallback);
-  glfwSetFramebufferSizeCallback (window, resize_callback);
+
+              glfwSetKeyCallback(window, keyCallback);
+      glfwSetMouseButtonCallback(window, mouseCallback);
+           glfwSetScrollCallback(window, scrollCallback);
+  glfwSetFramebufferSizeCallback(window, resize_callback);
 };
 
 SyukatsuGame::~SyukatsuGame()
 {
-  //todo  
+  //todo  fileIO audioを追加する
   delete input;
   /*
   delete fileIO;
@@ -119,15 +122,14 @@ void SyukatsuGame::loop()
 {
   while(!glfwWindowShouldClose(window))
   {
-    float deltaTime = elapsedTime[1] - elapsedTime[0];
+    float deltaTime_sec = elapsedTime[1] - elapsedTime[0];
     elapsedTime[0] = glfwGetTime();
     input->update();  
-    scene->update(deltaTime);
-  
+    scene->update(deltaTime_sec);  
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
-    scene->render(deltaTime);
-  
+    scene->render(deltaTime_sec);  
     replaceScene();
+
     glFlush();  
     glfwSwapBuffers(window); //絶対必要
     glfwPollEvents();        //絶対必要
@@ -140,7 +142,6 @@ void SyukatsuGame::loop()
 
 void SyukatsuGame::replaceScene()
 {
-  //シーンを切り変える
   if(nextScene != NULL)
   {
     delete scene;
