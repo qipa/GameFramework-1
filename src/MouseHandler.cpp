@@ -1,30 +1,37 @@
 #include <MouseHandler.h>
 
+#include <mutex>
+namespace
+{
+  std::mutex mtx_lock;
+}
+
 MouseHandler::MouseHandler(GLFWwindow *_window)
   :window(_window)
 {
-  pthread_mutex_init(&lock, NULL);
   mouseEvent = new MouseEvent();
   mouseEventBuffer = new MouseEvent();
 }
 
 MouseHandler::~MouseHandler()
 {
-  Lock lck(&lock);
+  std::lock_guard<std::mutex> lock(mtx_lock);
+
   delete mouseEvent;
   delete mouseEventBuffer;  
 }
   
 MouseEvent* const MouseHandler::getMouseEvent()
 {
-  Lock lck(&lock);
+  std::lock_guard<std::mutex> lock(mtx_lock);
     
   return mouseEvent;
 }
 
 void MouseHandler::onEvent(int button, int action, int mods)
 {
-  Lock lck(&lock);
+  std::lock_guard<std::mutex> lock(mtx_lock);
+
   mouseEventBuffer->button = button;
   mouseEventBuffer->action = action;
   mouseEventBuffer->modifier = mods; 
@@ -32,7 +39,7 @@ void MouseHandler::onEvent(int button, int action, int mods)
 
 void MouseHandler::update()
 {
-  Lock lck(&lock);
+  std::lock_guard<std::mutex> lock(mtx_lock);
   
   mouseEvent->button   = mouseEventBuffer->button;  //中身をコピー
   mouseEvent->action   = mouseEventBuffer->action;  //中身をコピー

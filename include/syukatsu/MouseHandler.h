@@ -3,15 +3,13 @@
 
 #include "../Input.h"
 #include "../Pool.h"
-#include "../Lock.h"
 #include "GLFW/glfw3.h"
-#include <pthread.h>
 
 class MouseHandler
 {
   GLFWwindow *window;
   MouseEvent *mouseEvent, *mouseEventBuffer;
-  pthread_mutex_t lock;
+
 public:
   MouseHandler(GLFWwindow *_window);  
   ~MouseHandler();  

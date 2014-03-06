@@ -1,5 +1,11 @@
+#include <mutex>
 #include <KeyboadHandler.h>
 #include <GLFW/glfw3.h>
+
+namespace
+{
+  std::mutex mtx_lock;
+}
 
 KeyboadHandler::KeyboadHandler()
 {
@@ -10,8 +16,6 @@ KeyboadHandler::KeyboadHandler()
 
   keyEvents.reserve(maxKeyEvent);
   keyEventBuffer.reserve(maxKeyEvent);
-  
-  pthread_mutex_init(&lock, NULL);
 }
   
 KeyboadHandler::~KeyboadHandler()
@@ -21,7 +25,8 @@ KeyboadHandler::~KeyboadHandler()
 
 bool KeyboadHandler::isAnyKeyPressed()
 {
-  Lock lck(&lock);
+  std::lock_guard<std::mutex> lock(mtx_lock);
+
   for(auto event : keyEvents)
   {
     if(event->action == GLFW_PRESS)
@@ -33,7 +38,8 @@ bool KeyboadHandler::isAnyKeyPressed()
   
 bool KeyboadHandler::isKeyPressed(int keyCode)
 {
-  Lock lck(&lock); //ロック
+  std::lock_guard<std::mutex> lock(mtx_lock);
+  
   if(keyCode < 0 || keyCode>=keyMapSize)
     return false;
   
@@ -42,7 +48,8 @@ bool KeyboadHandler::isKeyPressed(int keyCode)
 
 int KeyboadHandler::getKeyState(int keyCode)
 {
-  Lock lck(&lock);  
+  std::lock_guard<std::mutex> lock(mtx_lock);
+
   if(keyCode < 0 || keyCode>=keyMapSize)
     return GLFW_KEY_UNKNOWN;
   
@@ -52,13 +59,14 @@ int KeyboadHandler::getKeyState(int keyCode)
 //ループの最初に一回だけ呼び出す
 const vector<KeyEvent*>& KeyboadHandler::getKeyEvents()
 {
-  Lock lck(&lock); //ロック デストラクタでアンロックする  
+  std::lock_guard<std::mutex> lock(mtx_lock);
+  
   return keyEvents; 
 }
   
 void KeyboadHandler::onEvent(int keyCode, int action, int mods)
 {
-  Lock lck(&lock); //ロック
+  std::lock_guard<std::mutex> lock(mtx_lock);
   
   //KeyEventで定義している定数ががGLFWの定数と同じなのでそのまま代入
   KeyEvent *event = keyEventPool->newObject();
@@ -69,12 +77,9 @@ void KeyboadHandler::onEvent(int keyCode, int action, int mods)
   keyEventBuffer.push_back(event);
 }
 
-#include <iostream>
-using namespace std;
-
 void KeyboadHandler::update()
 {
-  Lock lck(&lock); //ロック デストラクタでアンロックする        
+  std::lock_guard<std::mutex> lock(mtx_lock);  
 
   for(auto event : keyEvents)
     keyEventPool->freeObject(event);

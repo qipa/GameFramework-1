@@ -3,11 +3,8 @@
 
 #include "../Input.h"
 #include "../Pool.h"
-#include "../Lock.h"
 #include <vector>
-#include <pthread.h>
 #include <cstring>
-using namespace std;
 
 class KeyboadHandler
 {
@@ -23,9 +20,8 @@ class KeyboadHandler
   int pressedKeys[keyMapSize];
 
   Pool<KeyEvent> *keyEventPool;
-  vector<KeyEvent*> keyEvents;
-  vector<KeyEvent*> keyEventBuffer;
-  pthread_mutex_t lock;
+  std::vector<KeyEvent*> keyEvents;
+  std::vector<KeyEvent*> keyEventBuffer;
 
 public:  
   KeyboadHandler();   
@@ -33,7 +29,7 @@ public:
   bool isAnyKeyPressed();
   bool isKeyPressed(int keyCode);  
   int getKeyState(int keyCode);
-  const vector<KeyEvent*>& getKeyEvents();  
+  const std::vector<KeyEvent*>& getKeyEvents();  
   void onEvent(int keyCode, int action, int mods);
   void update();
 };
